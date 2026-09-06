@@ -7,567 +7,584 @@
 <title>SUBURBANO 2K | Ranking Oficial</title>
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root{
+  --gold:#f5aa13;
+  --gold2:#ffc83d;
+  --red:#ef172d;
+  --black:#050505;
+  --panel:rgba(5,5,5,.91);
+  --panel2:rgba(12,12,12,.94);
+  --line:#343434;
+  --white:#f5f5f5;
+  --gray:#9b9b9b;
 }
 
-:root{
-    --gold:#ffb514;
-    --gold2:#ffc94a;
-    --red:#ef172d;
-    --black:#060606;
-    --panel:rgba(8,8,8,.94);
-    --line:#333;
-    --white:#f5f5f5;
-    --gray:#999;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-    min-height:100vh;
-    font-family:Arial,Helvetica,sans-serif;
-    color:white;
-
-    background:
-        linear-gradient(
-            rgba(0,0,0,.28),
-            rgba(0,0,0,.60)
-        ),
-        url("suburbano-ranking.png");
-
-    background-position:top center;
-    background-size:cover;
-    background-attachment:fixed;
-    background-color:#050505;
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--white);
+  background:#050505;
 }
 
+/* ==================================================
+   FUNDO SUBURBANO
+   ================================================== */
 
-/* =========================
-   MENU
-========================= */
+.page-bg{
+  min-height:100vh;
 
-.nav{
-    width:100%;
-    min-height:65px;
-    background:rgba(0,0,0,.94);
-    border-bottom:1px solid #292929;
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,.04) 0%,
+      rgba(0,0,0,.04) 45%,
+      rgba(0,0,0,.25) 100%
+    ),
+    url("suburbano-ranking.png");
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+  background-size:100% auto;
+  background-position:top center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+}
 
-    padding:0 5%;
-    position:relative;
-    z-index:10;
+/* ==================================================
+   CABEÇALHO
+   ================================================== */
+
+.topbar{
+  min-height:64px;
+  background:rgba(0,0,0,.93);
+  border-bottom:1px solid rgba(245,170,19,.45);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 4%;
+  position:relative;
+  z-index:10;
 }
 
 .brand{
-    font-size:22px;
-    font-weight:1000;
-    white-space:nowrap;
+  font-size:21px;
+  font-weight:1000;
+  letter-spacing:-.5px;
 }
 
-.brand span{
-    color:var(--red);
+.brand .red{
+  color:var(--red);
 }
 
-.nav-links{
-    display:flex;
-    gap:35px;
-    font-size:12px;
-    font-weight:900;
-    text-transform:uppercase;
+.menu{
+  display:flex;
+  gap:30px;
 }
 
-.nav-links a{
-    color:#aaa;
-    text-decoration:none;
+.menu a{
+  text-decoration:none;
+  color:#aaa;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
 }
 
-.nav-links a:hover,
-.nav-links .active{
-    color:var(--gold);
+.menu a:hover{
+  color:var(--gold);
 }
 
-.enter{
-    background:var(--gold);
-    color:#080808;
-    font-size:12px;
-    font-weight:1000;
-    padding:11px 20px;
-    border-radius:5px;
+.crew-button{
+  background:var(--gold);
+  color:#080808;
+  padding:10px 17px;
+  font-size:11px;
+  font-weight:1000;
+  border-radius:3px;
 }
 
+/* ==================================================
+   ESPAÇO DA ARTE
+   A LOGO JÁ ESTÁ NA IMAGEM
+   ================================================== */
 
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    text-align:center;
-    min-height:420px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-    align-items:center;
-
-    padding:40px 20px 20px;
+.art-space{
+  height:350px;
+  pointer-events:none;
 }
 
-.logo-box{
-    width:min(630px,90%);
+/* ==================================================
+   CONTEÚDO
+   ================================================== */
+
+.content{
+  width:min(820px,94%);
+  margin:0 auto;
+  position:relative;
+  z-index:3;
 }
 
-.logo-main{
-    font-size:68px;
-    font-weight:1000;
-    line-height:.83;
-    font-style:italic;
+/* cria sombra atrás somente do ranking,
+   sem matar as laterais */
 
-    color:#eee;
+.content::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
 
-    text-shadow:
-        5px 6px 0 #000,
-        -2px -2px 0 #000,
-        0 0 18px rgba(255,180,0,.3);
+  top:-35px;
+  bottom:-40px;
+  left:-45px;
+  right:-45px;
+
+  background:linear-gradient(
+    90deg,
+    rgba(0,0,0,0),
+    rgba(0,0,0,.75) 8%,
+    rgba(0,0,0,.94) 20%,
+    rgba(0,0,0,.97) 50%,
+    rgba(0,0,0,.94) 80%,
+    rgba(0,0,0,.75) 92%,
+    rgba(0,0,0,0)
+  );
 }
 
-.logo-main span{
-    display:block;
-    margin-top:13px;
-    font-size:76px;
-}
-
-.logo-main .two{
-    color:#eee;
-}
-
-.logo-main .k{
-    color:var(--red);
-}
-
-.ranking-word{
-    color:var(--gold);
-    font-weight:1000;
-    font-style:italic;
-    font-size:39px;
-    margin-top:5px;
-}
-
-.hero-sub{
-    margin-top:8px;
-    font-size:11px;
-    letter-spacing:5px;
-    color:#ddd;
-}
-
-
-/* =========================
-   CONTEÚDO CENTRAL
-========================= */
-
-.wrapper{
-    width:min(900px,94%);
-    margin:auto;
-
-    background:
-        linear-gradient(
-            rgba(5,5,5,.96),
-            rgba(5,5,5,.92)
-        );
-
-    padding:0 22px 35px;
-
-    box-shadow:
-        0 0 80px 40px rgba(0,0,0,.62);
-}
-
-
-/* =========================
+/* ==================================================
    PRÊMIO
-========================= */
+   ================================================== */
 
 .prize{
-    min-height:90px;
+  border:1px solid #8e6514;
+  border-top:3px solid var(--gold);
 
-    border:2px solid var(--gold);
-    background:linear-gradient(
-        90deg,
-        #111,
-        #090909
+  background:
+    linear-gradient(
+      90deg,
+      rgba(16,16,16,.96),
+      rgba(5,5,5,.96)
     );
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+  min-height:82px;
 
-    padding:20px 28px;
-    margin-bottom:25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 
-    clip-path:polygon(
-        2% 0,
-        98% 0,
-        100% 25%,
-        100% 75%,
-        98% 100%,
-        2% 100%,
-        0 75%,
-        0 25%
-    );
+  padding:17px 25px;
+  margin-bottom:24px;
+
+  box-shadow:0 10px 35px rgba(0,0,0,.55);
 }
 
 .prize-left{
-    display:flex;
-    align-items:center;
-    gap:15px;
+  display:flex;
+  align-items:center;
+  gap:13px;
 }
 
 .trophy{
-    font-size:38px;
+  font-size:31px;
 }
 
 .prize small{
-    display:block;
-    color:#888;
-    text-transform:uppercase;
-    font-size:11px;
+  display:block;
+  color:#888;
+  font-size:9px;
+  letter-spacing:1px;
+  text-transform:uppercase;
 }
 
 .prize strong{
-    display:block;
-    font-size:24px;
-    margin-top:4px;
+  display:block;
+  margin-top:4px;
+  font-size:17px;
 }
 
-.prize-value{
-    color:var(--gold2);
-    font-size:40px;
-    font-weight:1000;
+.prize-money{
+  font-size:28px;
+  font-weight:1000;
+  color:var(--gold2);
 }
 
-
-/* =========================
+/* ==================================================
    TÍTULOS
-========================= */
+   ================================================== */
 
-.title{
-    font-size:20px;
-    font-weight:1000;
-    font-style:italic;
-    text-transform:uppercase;
+.section-title{
+  margin:20px 0 13px;
+  font-size:17px;
+  font-weight:1000;
+  font-style:italic;
+  text-transform:uppercase;
 
-    margin:20px 0 15px;
-
-    display:flex;
-    align-items:center;
-    gap:9px;
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
-.title:before{
-    content:"";
-    width:6px;
-    height:26px;
-    background:var(--gold);
-    transform:skew(-12deg);
+.section-title::before{
+  content:"";
+  display:block;
+  width:5px;
+  height:22px;
+  background:var(--gold);
+  transform:skew(-12deg);
 }
 
-
-/* =========================
+/* ==================================================
    TOP 3
-========================= */
+   ================================================== */
 
 .podium{
-    display:grid;
-    grid-template-columns:1fr 1.08fr 1fr;
-    gap:10px;
-    align-items:end;
+  display:grid;
+  grid-template-columns:1fr 1.08fr 1fr;
+  gap:12px;
+  align-items:end;
 }
 
-.card{
-    background:
-        linear-gradient(
-            180deg,
-            #171717,
-            #090909
-        );
+.podium-card{
+  min-height:170px;
+  border:1px solid #505050;
+  border-top:3px solid #888;
 
-    border:1px solid #555;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(22,22,22,.96),
+      rgba(6,6,6,.97)
+    );
 
-    min-height:185px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+  text-align:center;
+  padding:15px;
 
-    text-align:center;
-
-    padding:20px 10px;
+  box-shadow:0 12px 30px rgba(0,0,0,.45);
 }
 
-.card.first{
-    min-height:205px;
-    border:2px solid var(--gold);
-    background:
-        radial-gradient(
-            circle at top,
-            #2d210c,
-            #0b0b0b 65%
-        );
+.podium-card.first{
+  min-height:194px;
+  border:1px solid #8b6719;
+  border-top:4px solid var(--gold);
 
-    box-shadow:0 0 25px rgba(255,181,20,.18);
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(90,61,7,.35),
+      rgba(8,8,8,.98) 65%
+    );
 }
 
 .medal{
-    font-size:34px;
+  font-size:31px;
 }
 
-.position{
-    color:#888;
-    font-size:10px;
-    text-transform:uppercase;
-    margin-top:8px;
+.place{
+  margin-top:8px;
+  color:#888;
+  font-size:9px;
+  text-transform:uppercase;
 }
 
-.gamertag{
-    margin-top:6px;
-    font-size:18px;
-    font-weight:1000;
+.podium-name{
+  margin-top:5px;
+  font-size:16px;
+  font-weight:1000;
 }
 
-.xp{
-    color:var(--gold2);
-    font-size:22px;
-    font-weight:1000;
-    margin-top:8px;
+.podium-xp{
+  margin-top:7px;
+  color:var(--gold2);
+  font-size:19px;
+  font-weight:1000;
 }
 
 .today{
-    color:#999;
-    font-size:11px;
-    margin-top:5px;
+  margin-top:5px;
+  color:#999;
+  font-size:9px;
 }
 
+/* ==================================================
+   RANKING
+   ================================================== */
 
-/* =========================
-   TABELA
-========================= */
-
-.rankbox{
-    border-top:3px solid var(--gold);
-    background:#090909;
+.ranking{
+  border-top:4px solid var(--gold);
+  background:rgba(5,5,5,.96);
+  box-shadow:0 15px 45px rgba(0,0,0,.55);
 }
 
-.rank-head,
-.rank-row{
-    display:grid;
-    grid-template-columns:70px 1fr 150px;
-    align-items:center;
+.ranking-head,
+.player-row{
+  display:grid;
+  grid-template-columns:65px 1fr 150px;
+  align-items:center;
 }
 
-.rank-head{
-    background:linear-gradient(
-        90deg,
-        #e99d0d,
-        #ffc63f
+.ranking-head{
+  min-height:43px;
+
+  padding:0 17px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #df9408,
+      #ffc83d
     );
 
-    color:#050505;
-    min-height:44px;
-
-    font-size:12px;
-    font-weight:1000;
-    text-transform:uppercase;
-
-    padding:0 18px;
+  color:#080808;
+  font-size:10px;
+  font-weight:1000;
+  text-transform:uppercase;
 }
 
-.rank-row{
-    min-height:58px;
-    padding:0 18px;
-    border-bottom:1px solid #292929;
+.player-row{
+  min-height:49px;
+  padding:0 17px;
 
-    transition:.2s;
+  border-bottom:1px solid #292929;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(17,17,17,.97),
+      rgba(6,6,6,.97)
+    );
+
+  transition:.15s ease;
 }
 
-.rank-row:hover{
-    background:#151515;
+.player-row:hover{
+  background:#181818;
+  transform:translateX(2px);
 }
 
 .rank-number{
-    font-size:22px;
-    font-weight:1000;
-    font-style:italic;
-    color:#aaa;
+  font-size:19px;
+  font-weight:1000;
+  font-style:italic;
+  color:#a8a8a8;
 }
 
-.rank-row:nth-child(2) .rank-number{
-    color:var(--gold);
+.player-row:nth-child(2) .rank-number{
+  color:#ffbd21;
 }
 
-.rank-row:nth-child(3) .rank-number{
-    color:#ddd;
+.player-row:nth-child(3) .rank-number{
+  color:#e7e7e7;
 }
 
-.rank-row:nth-child(4) .rank-number{
-    color:#c87434;
+.player-row:nth-child(4) .rank-number{
+  color:#c27638;
 }
 
 .player-name{
-    font-weight:900;
-    font-size:14px;
+  font-size:13px;
+  font-weight:900;
 }
 
-.playerxp{
-    text-align:right;
-    color:var(--gold2);
-    font-size:16px;
-    font-weight:1000;
+.player-xp{
+  text-align:right;
+  color:var(--gold2);
+  font-size:14px;
+  font-weight:1000;
 }
 
+/* ==================================================
+   INFORMAÇÕES
+   ================================================== */
 
-/* =========================
-   BOXES
-========================= */
-
-.bottom-stats{
-    margin-top:15px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:13px;
 }
 
 .stat{
-    min-height:90px;
-    background:#0c0c0c;
-    border:1px solid #444;
-    padding:17px;
+  min-height:80px;
+  background:rgba(8,8,8,.96);
+  border:1px solid #3a3a3a;
+  padding:15px;
 }
 
 .stat small{
-    color:#888;
-    font-size:10px;
-    text-transform:uppercase;
+  color:#888;
+  font-size:9px;
+  text-transform:uppercase;
 }
 
 .stat strong{
-    display:block;
-    margin-top:10px;
-    font-size:16px;
+  display:block;
+  margin-top:8px;
+  font-size:14px;
 }
 
+.rules{
+  margin-top:10px;
+  background:rgba(8,8,8,.96);
+  border:1px solid #3a3a3a;
+  padding:16px;
+}
 
-/* =========================
-   RODAPÉ
-========================= */
+.rules small{
+  color:#888;
+  font-size:9px;
+}
+
+.rules strong{
+  display:block;
+  margin-top:7px;
+  font-size:13px;
+}
+
+/* ==================================================
+   FOOTER
+   ================================================== */
 
 .footer{
-    text-align:center;
-    padding-top:35px;
+  text-align:center;
+  padding:35px 10px 60px;
 }
 
 .slogan{
-    color:white;
-    font-size:12px;
-    letter-spacing:7px;
+  color:var(--gold);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:7px;
 }
 
-.update{
-    color:#777;
-    font-size:10px;
-    margin-top:13px;
+.updated{
+  margin-top:10px;
+  color:#777;
+  font-size:9px;
 }
 
-
-/* =========================
+/* ==================================================
    CELULAR
-========================= */
+   ================================================== */
 
 @media(max-width:700px){
 
-    body{
-        background-attachment:scroll;
-        background-size:auto 100%;
-    }
+  .page-bg{
+    background-attachment:scroll;
 
-    .nav{
-        padding:0 15px;
-    }
+    /*
+      No celular preservamos o centro da arte.
+      As extremidades são cortadas de propósito.
+    */
 
-    .nav-links{
-        display:none;
-    }
+    background-size:auto 650px;
+    background-position:top center;
+  }
 
-    .brand{
-        font-size:17px;
-    }
+  .topbar{
+    padding:0 13px;
+  }
 
-    .enter{
-        padding:9px 14px;
-    }
+  .brand{
+    font-size:16px;
+  }
 
-    .hero{
-        min-height:330px;
-    }
+  .menu{
+    display:none;
+  }
 
-    .logo-main{
-        font-size:43px;
-    }
+  .crew-button{
+    padding:8px 11px;
+    font-size:9px;
+  }
 
-    .logo-main span{
-        font-size:53px;
-    }
+  .art-space{
+    height:285px;
+  }
 
-    .ranking-word{
-        font-size:27px;
-    }
+  .content{
+    width:96%;
+  }
 
-    .wrapper{
-        width:96%;
-        padding-left:10px;
-        padding-right:10px;
-    }
+  .content::before{
+    left:-10px;
+    right:-10px;
+  }
 
-    .prize{
-        padding:17px;
-    }
+  .prize{
+    padding:13px;
+  }
 
-    .prize strong{
-        font-size:17px;
-    }
+  .trophy{
+    font-size:24px;
+  }
 
-    .prize-value{
-        font-size:27px;
-    }
+  .prize strong{
+    font-size:13px;
+  }
 
-    .podium{
-        grid-template-columns:1fr;
-    }
+  .prize-money{
+    font-size:21px;
+  }
 
-    .card.first{
-        order:-1;
-    }
+  .podium{
+    grid-template-columns:1fr;
+  }
 
-    .rank-head,
-    .rank-row{
-        grid-template-columns:45px 1fr 90px;
-        padding:0 9px;
-    }
+  .podium-card.first{
+    order:-1;
+  }
 
-    .player-name{
-        font-size:12px;
-    }
+  .podium-card,
+  .podium-card.first{
+    min-height:125px;
+  }
 
-    .playerxp{
-        font-size:13px;
-    }
+  .ranking-head,
+  .player-row{
+    grid-template-columns:42px 1fr 82px;
+  }
 
-    .bottom-stats{
-        grid-template-columns:1fr;
-    }
+  .ranking-head,
+  .player-row{
+    padding-left:9px;
+    padding-right:9px;
+  }
+
+  .player-row{
+    min-height:46px;
+  }
+
+  .rank-number{
+    font-size:16px;
+  }
+
+  .player-name{
+    font-size:11px;
+  }
+
+  .player-xp{
+    font-size:11px;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .slogan{
+    letter-spacing:4px;
+  }
 }
 
 </style>
@@ -575,459 +592,520 @@ body{
 
 <body>
 
+<div class="page-bg">
 
-<!-- MENU -->
+<!-- ==================================================
+     MENU
+     ================================================== -->
 
-<nav class="nav">
+<header class="topbar">
 
-    <div class="brand">
-        👑 SUBURBANO <span>2K</span>
+  <div class="brand">
+    👑 SUBURBANO <span class="red">2K</span>
+  </div>
+
+  <nav class="menu">
+    <a href="#">INÍCIO</a>
+    <a href="#ranking">RANKING</a>
+    <a href="#regras">REGRAS</a>
+    <a href="#premiacao">PREMIAÇÃO</a>
+  </nav>
+
+  <div class="crew-button">
+    🎮 CREW
+  </div>
+
+</header>
+
+
+<!-- A LOGO GRANDE E O CENÁRIO VÊM DA IMAGEM -->
+
+<div class="art-space"></div>
+
+
+<main class="content">
+
+
+<!-- ==================================================
+     PRÊMIO
+     ================================================== -->
+
+<section class="prize" id="premiacao">
+
+  <div class="prize-left">
+
+    <div class="trophy">🏆</div>
+
+    <div>
+      <small>Premiação mensal</small>
+      <strong>TOP XP DO MÊS</strong>
     </div>
 
-    <div class="nav-links">
-        <a class="active" href="#">INÍCIO</a>
-        <a href="#ranking">RANKING</a>
-        <a href="#regras">REGRAS</a>
-        <a href="#premiacao">PREMIAÇÃO</a>
-    </div>
+  </div>
 
-    <div class="enter">
-        🎮 CREW
-    </div>
-
-</nav>
-
-
-
-<!-- HERO -->
-
-<section class="hero">
-
-    <div class="logo-box">
-
-        <div class="logo-main">
-            SUBURBANO
-
-            <span>
-                <span class="two">2</span><span class="k">K</span>
-            </span>
-        </div>
-
-        <div class="ranking-word">
-            RANKING
-        </div>
-
-        <div class="hero-sub">
-            RANKING OFICIAL DA CREW
-        </div>
-
-    </div>
+  <div class="prize-money">
+    R$ 100
+  </div>
 
 </section>
 
 
+<!-- ==================================================
+     TOP 3
+     ================================================== -->
 
-<main class="wrapper">
-
-
-<!-- PRÊMIO -->
-
-<section
-    class="prize"
-    id="premiacao"
->
-
-    <div class="prize-left">
-
-        <div class="trophy">
-            🏆
-        </div>
-
-        <div>
-
-            <small>
-                Premiação mensal
-            </small>
-
-            <strong>
-                TOP XP DO MÊS
-            </strong>
-
-        </div>
-
-    </div>
-
-
-    <div class="prize-value">
-        R$ 100
-    </div>
-
-</section>
-
-
-
-<!-- TOP 3 -->
-
-<h2 class="title">
-    TOP 3 DO MÊS
+<h2 class="section-title">
+  TOP 3 DO MÊS
 </h2>
-
 
 <section class="podium">
 
+  <!-- SEGUNDO -->
+  <div class="podium-card">
 
-    <!-- 2 -->
+    <div class="medal">🥈</div>
 
-    <div class="card">
-
-        <div class="medal">
-            🥈
-        </div>
-
-        <div class="position">
-            2º lugar
-        </div>
-
-        <div class="gamertag">
-            Player02
-        </div>
-
-        <div class="xp">
-            0 XP
-        </div>
-
-        <div class="today">
-            +0 XP hoje
-        </div>
-
+    <div class="place">
+      2º LUGAR
     </div>
 
-
-
-    <!-- 1 -->
-
-    <div class="card first">
-
-        <div class="medal">
-            👑
-        </div>
-
-        <div class="position">
-            Líder atual
-        </div>
-
-        <div class="gamertag">
-            Player01
-        </div>
-
-        <div class="xp">
-            0 XP
-        </div>
-
-        <div class="today">
-            +0 XP hoje
-        </div>
-
+    <div class="podium-name">
+      Player02
     </div>
 
-
-
-    <!-- 3 -->
-
-    <div class="card">
-
-        <div class="medal">
-            🥉
-        </div>
-
-        <div class="position">
-            3º lugar
-        </div>
-
-        <div class="gamertag">
-            Player03
-        </div>
-
-        <div class="xp">
-            0 XP
-        </div>
-
-        <div class="today">
-            +0 XP hoje
-        </div>
-
+    <div class="podium-xp">
+      0 XP
     </div>
 
+    <div class="today">
+      +0 XP hoje
+    </div>
+
+  </div>
+
+
+  <!-- PRIMEIRO -->
+  <div class="podium-card first">
+
+    <div class="medal">👑</div>
+
+    <div class="place">
+      LÍDER ATUAL
+    </div>
+
+    <div class="podium-name">
+      Player01
+    </div>
+
+    <div class="podium-xp">
+      0 XP
+    </div>
+
+    <div class="today">
+      +0 XP hoje
+    </div>
+
+  </div>
+
+
+  <!-- TERCEIRO -->
+  <div class="podium-card">
+
+    <div class="medal">🥉</div>
+
+    <div class="place">
+      3º LUGAR
+    </div>
+
+    <div class="podium-name">
+      Player03
+    </div>
+
+    <div class="podium-xp">
+      0 XP
+    </div>
+
+    <div class="today">
+      +0 XP hoje
+    </div>
+
+  </div>
 
 </section>
 
 
+<!-- ==================================================
+     RANKING COMPLETO
+     ================================================== -->
 
-<!-- RANKING -->
-
-<h2
-    class="title"
-    id="ranking"
->
-    RANKING COMPLETO
+<h2 class="section-title" id="ranking">
+  RANKING COMPLETO
 </h2>
 
 
-<section class="rankbox">
+<section class="ranking">
 
-
-<div class="rank-head">
-
+  <div class="ranking-head">
     <div>#</div>
-
     <div>PLAYER</div>
-
-    <div style="text-align:right;">
-        XP
-    </div>
-
-</div>
+    <div style="text-align:right;">XP</div>
+  </div>
 
 
-
-<div class="rank-row">
-
+  <div class="player-row">
     <div class="rank-number">1</div>
+    <div class="player-name">👑 Player01</div>
+    <div class="player-xp">0 XP</div>
+  </div>
 
-    <div class="player-name">
-        👑 Player01
-    </div>
-
-    <div class="playerxp">
-        0 XP
-    </div>
-
-</div>
-
-
-<div class="rank-row">
-
+  <div class="player-row">
     <div class="rank-number">2</div>
+    <div class="player-name">Player02</div>
+    <div class="player-xp">0 XP</div>
+  </div>
 
-    <div class="player-name">
-        Player02
-    </div>
-
-    <div class="playerxp">
-        0 XP
-    </div>
-
-</div>
-
-
-<div class="rank-row">
-
+  <div class="player-row">
     <div class="rank-number">3</div>
+    <div class="player-name">Player03</div>
+    <div class="player-xp">0 XP</div>
+  </div>
 
-    <div class="player-name">
-        Player03
-    </div>
-
-    <div class="playerxp">
-        0 XP
-    </div>
-
-</div>
-
-
-<div class="rank-row">
-
+  <div class="player-row">
     <div class="rank-number">4</div>
+    <div class="player-name">Player04</div>
+    <div class="player-xp">0 XP</div>
+  </div>
 
-    <div class="player-name">
-        Player04
-    </div>
-
-    <div class="playerxp">
-        0 XP
-    </div>
-
-</div>
-
-
-<div class="rank-row">
-
+  <div class="player-row">
     <div class="rank-number">5</div>
+    <div class="player-name">Player05</div>
+    <div class="player-xp">0 XP</div>
+  </div>
 
-    <div class="player-name">
-        Player05
-    </div>
-
-    <div class="playerxp">
-        0 XP
-    </div>
-
-</div>
-
-
-<div class="rank-row">
-
+  <div class="player-row">
     <div class="rank-number">6</div>
+    <div class="player-name">Player06</div>
+    <div class="player-xp">0 XP</div>
+  </div>
 
-    <div class="player-name">
-        Player06
-    </div>
-
-    <div class="playerxp">
-        0 XP
-    </div>
-
-</div>
-
-
-<div class="rank-row">
-
+  <div class="player-row">
     <div class="rank-number">7</div>
+    <div class="player-name">Player07</div>
+    <div class="player-xp">0 XP</div>
+  </div>
 
-    <div class="player-name">
-        Player07
-    </div>
-
-    <div class="playerxp">
-        0 XP
-    </div>
-
-</div>
-
-
-<div class="rank-row">
-
+  <div class="player-row">
     <div class="rank-number">8</div>
+    <div class="player-name">Player08</div>
+    <div class="player-xp">0 XP</div>
+  </div>
 
-    <div class="player-name">
-        Player08
-    </div>
-
-    <div class="playerxp">
-        0 XP
-    </div>
-
-</div>
-
-
-<div class="rank-row">
-
+  <div class="player-row">
     <div class="rank-number">9</div>
+    <div class="player-name">Player09</div>
+    <div class="player-xp">0 XP</div>
+  </div>
 
-    <div class="player-name">
-        Player09
-    </div>
-
-    <div class="playerxp">
-        0 XP
-    </div>
-
-</div>
-
-
-<div class="rank-row">
-
+  <div class="player-row">
     <div class="rank-number">10</div>
+    <div class="player-name">Player10</div>
+    <div class="player-xp">0 XP</div>
+  </div>
 
-    <div class="player-name">
-        Player10
-    </div>
+  <div class="player-row">
+    <div class="rank-number">11</div>
+    <div class="player-name">Player11</div>
+    <div class="player-xp">0 XP</div>
+  </div>
 
-    <div class="playerxp">
-        0 XP
-    </div>
+  <div class="player-row">
+    <div class="rank-number">12</div>
+    <div class="player-name">Player12</div>
+    <div class="player-xp">0 XP</div>
+  </div>
 
-</div>
+  <div class="player-row">
+    <div class="rank-number">13</div>
+    <div class="player-name">Player13</div>
+    <div class="player-xp">0 XP</div>
+  </div>
 
+  <div class="player-row">
+    <div class="rank-number">14</div>
+    <div class="player-name">Player14</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">15</div>
+    <div class="player-name">Player15</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">16</div>
+    <div class="player-name">Player16</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">17</div>
+    <div class="player-name">Player17</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">18</div>
+    <div class="player-name">Player18</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">19</div>
+    <div class="player-name">Player19</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">20</div>
+    <div class="player-name">Player20</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">21</div>
+    <div class="player-name">Player21</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">22</div>
+    <div class="player-name">Player22</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">23</div>
+    <div class="player-name">Player23</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">24</div>
+    <div class="player-name">Player24</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">25</div>
+    <div class="player-name">Player25</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">26</div>
+    <div class="player-name">Player26</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">27</div>
+    <div class="player-name">Player27</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">28</div>
+    <div class="player-name">Player28</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">29</div>
+    <div class="player-name">Player29</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">30</div>
+    <div class="player-name">Player30</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">31</div>
+    <div class="player-name">Player31</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">32</div>
+    <div class="player-name">Player32</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">33</div>
+    <div class="player-name">Player33</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">34</div>
+    <div class="player-name">Player34</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">35</div>
+    <div class="player-name">Player35</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">36</div>
+    <div class="player-name">Player36</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">37</div>
+    <div class="player-name">Player37</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">38</div>
+    <div class="player-name">Player38</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">39</div>
+    <div class="player-name">Player39</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">40</div>
+    <div class="player-name">Player40</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">41</div>
+    <div class="player-name">Player41</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">42</div>
+    <div class="player-name">Player42</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">43</div>
+    <div class="player-name">Player43</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">44</div>
+    <div class="player-name">Player44</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">45</div>
+    <div class="player-name">Player45</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">46</div>
+    <div class="player-name">Player46</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">47</div>
+    <div class="player-name">Player47</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">48</div>
+    <div class="player-name">Player48</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">49</div>
+    <div class="player-name">Player49</div>
+    <div class="player-xp">0 XP</div>
+  </div>
+
+  <div class="player-row">
+    <div class="rank-number">50</div>
+    <div class="player-name">Player50</div>
+    <div class="player-xp">0 XP</div>
+  </div>
 
 </section>
 
 
+<!-- ==================================================
+     RESUMO
+     ================================================== -->
 
-<!-- INFORMAÇÕES -->
+<section class="stats">
 
-<section class="bottom-stats">
+  <div class="stat">
+    <small>🔥 Maior XP do dia</small>
+    <strong>—</strong>
+  </div>
 
+  <div class="stat">
+    <small>👑 Líder mensal</small>
+    <strong>—</strong>
+  </div>
 
-<div class="stat">
-
-    <small>
-        🔥 Maior XP do dia
-    </small>
-
-    <strong>
-        —
-    </strong>
-
-</div>
-
-
-
-<div class="stat">
-
-    <small>
-        👑 Líder mensal
-    </small>
-
-    <strong>
-        —
-    </strong>
-
-</div>
-
-
-
-<div class="stat">
-
-    <small>
-        💰 Premiação
-    </small>
-
-    <strong>
-        R$ 100
-    </strong>
-
-</div>
-
+  <div class="stat">
+    <small>💰 Premiação</small>
+    <strong>R$ 100</strong>
+  </div>
 
 </section>
 
 
+<section class="rules" id="regras">
 
-<!-- REGRAS -->
+  <small>REGRA DO RANKING</small>
 
-<section
-    class="stat"
-    id="regras"
-    style="margin-top:15px;"
->
-
-<small>
-    REGRA DO RANKING
-</small>
-
-<strong>
+  <strong>
     O ranking considera o XP acumulado durante o mês.
-</strong>
+  </strong>
 
 </section>
-
 
 
 <footer class="footer">
 
-    <div class="slogan">
-        MAIS QUE UM JOGO
-    </div>
+  <div class="slogan">
+    MAIS QUE UM JOGO
+  </div>
 
-    <div class="update">
-        Última atualização: 06/09/2026
-    </div>
+  <div class="updated">
+    Última atualização: 06/09/2026
+  </div>
 
 </footer>
 
 
 </main>
+
+</div>
 
 </body>
 </html>
