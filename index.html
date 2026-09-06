@@ -1,376 +1,128 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>SUBURBANO 2K | Ranking</title>
-
-  <style>
-    :root{
-      --gold:#f4a90f;
-      --gold2:#ffc43a;
-      --red:#ef1b2d;
-      --black:#050505;
-      --panel:#0a0a0a;
-      --line:#2d2d2d;
-      --white:#f4f4f4;
-      --gray:#9a9a9a;
-    }
-
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
-
-    html,body{
-      width:100%;
-      height:100%;
-      overflow:hidden;
-      background:#050505;
-      font-family:Arial,Helvetica,sans-serif;
-      color:var(--white);
-    }
-
-    body{
-      display:flex;
-      justify-content:center;
-    }
-
-    .page{
-      position:relative;
-      width:100%;
-      max-width:520px;
-      height:100dvh;
-      min-height:620px;
-      overflow:hidden;
-      background:
-        linear-gradient(rgba(0,0,0,.06),rgba(0,0,0,.12)),
-        url("suburbano-mobile.png") center top / cover no-repeat;
-      box-shadow:0 0 60px rgba(0,0,0,.65);
-    }
-
-    /* Escurece apenas o centro onde entram os dados.
-       Assim a lista desenhada da arte de fundo fica escondida. */
-    .center-mask{
-      position:absolute;
-      left:19%;
-      right:19%;
-      top:31%;
-      bottom:8%;
-      background:rgba(5,5,5,.98);
-      border-left:1px solid rgba(244,169,15,.20);
-      border-right:1px solid rgba(244,169,15,.20);
-      pointer-events:none;
-    }
-
-    .ranking-shell{
-      position:absolute;
-      left:18.5%;
-      right:18.5%;
-      top:30%;
-      bottom:7.3%;
-      display:flex;
-      flex-direction:column;
-      min-height:0;
-    }
-
-    .ranking-title{
-      flex:none;
-      height:47px;
-      display:grid;
-      grid-template-columns:46px 1fr 90px;
-      align-items:center;
-      padding:0 12px;
-      background:
-        linear-gradient(180deg,#ffc23b,#eaa00f);
-      border:1px solid #ffc43a;
-      color:#090909;
-      font-weight:1000;
-      font-style:italic;
-      font-size:14px;
-      text-transform:uppercase;
-      box-shadow:0 0 15px rgba(244,169,15,.25);
-    }
-
-    .ranking-title div:last-child{
-      text-align:right;
-    }
-
-    .players-scroll{
-      flex:1;
-      min-height:0;
-      overflow-y:auto;
-      overflow-x:hidden;
-      background:rgba(7,7,7,.98);
-      border-left:1px solid #4a4a4a;
-      border-right:1px solid #4a4a4a;
-      border-bottom:1px solid #4a4a4a;
-      scrollbar-color:#888 #151515;
-      scrollbar-width:thin;
-      overscroll-behavior:contain;
-      -webkit-overflow-scrolling:touch;
-    }
-
-    .player-row{
-      min-height:49px;
-      display:grid;
-      grid-template-columns:46px 1fr 90px;
-      align-items:center;
-      padding:0 12px;
-      border-bottom:1px solid #333;
-      background:
-        linear-gradient(90deg,#111 0%,#080808 75%);
-    }
-
-    .player-row:nth-child(even){
-      background:
-        linear-gradient(90deg,#171717 0%,#0b0b0b 75%);
-    }
-
-    .rank{
-      font-size:21px;
-      font-weight:1000;
-      font-style:italic;
-      color:#d7d7d7;
-    }
-
-    .player-row.top1{
-      background:
-        linear-gradient(90deg,#2a1d05 0%,#0b0b0b 74%);
-      border-top:1px solid #d99a13;
-      border-bottom:1px solid #d99a13;
-    }
-
-    .player-row.top1 .rank{
-      color:var(--gold2);
-    }
-
-    .player-row.top2 .rank{
-      color:#e5e5e5;
-    }
-
-    .player-row.top3 .rank{
-      color:#c87536;
-    }
-
-    .name{
-      font-size:14px;
-      font-weight:900;
-      min-width:0;
-      overflow:hidden;
-      white-space:nowrap;
-      text-overflow:ellipsis;
-    }
-
-    .xp{
-      text-align:right;
-      font-size:14px;
-      font-weight:1000;
-      color:var(--gold2);
-      white-space:nowrap;
-    }
-
-    .statusbar{
-      position:absolute;
-      left:20%;
-      right:20%;
-      bottom:3.7%;
-      text-align:center;
-      color:#bcbcbc;
-      font-size:9px;
-      letter-spacing:.4px;
-      text-shadow:0 2px 3px #000;
-    }
-
-    .statusbar strong{
-      color:var(--gold2);
-    }
-
-    @media (max-width:420px){
-      .page{
-        max-width:none;
-      }
-
-      .ranking-shell{
-        left:17.5%;
-        right:17.5%;
-      }
-
-      .center-mask{
-        left:18%;
-        right:18%;
-      }
-
-      .ranking-title,
-      .player-row{
-        grid-template-columns:40px 1fr 76px;
-        padding-left:9px;
-        padding-right:9px;
-      }
-
-      .ranking-title{
-        height:43px;
-        font-size:12px;
-      }
-
-      .player-row{
-        min-height:46px;
-      }
-
-      .rank{
-        font-size:18px;
-      }
-
-      .name,
-      .xp{
-        font-size:12px;
-      }
-    }
-
-    @media (min-width:700px){
-      .page{
-        max-width:560px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SUBURBANO 2K | Ranking</title>
+<style>
+:root{--gold:#ffb51b;--white:#f5f5f5;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#050505;font-family:Arial,Helvetica,sans-serif;color:white}
+body{display:flex;justify-content:center}
+.page{
+ position:relative;width:100%;max-width:520px;height:100dvh;min-height:620px;overflow:hidden;
+ background:url("suburbano-mobile.png") center top/cover no-repeat;background-color:#080808;
+}
+.ranking-shell{
+ position:absolute;left:19%;right:19%;top:30%;bottom:7.5%;
+ display:flex;flex-direction:column;min-height:0;
+}
+.ranking-title{
+ flex:none;height:46px;display:grid;grid-template-columns:45px 1fr 86px;align-items:center;
+ padding:0 11px;background:linear-gradient(#ffc63f,#e9a00f);color:#090909;
+ border:1px solid #ffd05a;font-weight:1000;font-style:italic;font-size:13px;
+}
+.ranking-title div:last-child{text-align:right}
+.players-scroll{
+ flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;background:rgba(7,7,7,.96);
+ border:1px solid #454545;border-top:0;scrollbar-width:thin;scrollbar-color:#777 #151515;
+ -webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+}
+.player-row{
+ min-height:47px;display:grid;grid-template-columns:45px 1fr 86px;align-items:center;
+ padding:0 11px;border-bottom:1px solid #303030;background:linear-gradient(90deg,#151515,#080808);
+}
+.player-row:nth-child(even){background:linear-gradient(90deg,#101010,#060606)}
+.rank{font-size:19px;font-weight:1000;font-style:italic;color:#ddd}
+.name{font-size:13px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xp{text-align:right;font-size:13px;font-weight:1000;color:var(--gold);white-space:nowrap}
+.top1{background:linear-gradient(90deg,#2d2008,#080808);border-top:1px solid #d99a13;border-bottom:1px solid #d99a13}
+.top1 .rank{color:#ffc43a} .top2 .rank{color:#eee} .top3 .rank{color:#bd7139}
+.statusbar{position:absolute;left:20%;right:20%;bottom:3.7%;text-align:center;font-size:9px;color:#bbb}
+.statusbar strong{color:var(--gold)}
+@media(max-width:420px){
+ .ranking-shell{left:18%;right:18%}
+ .ranking-title,.player-row{grid-template-columns:38px 1fr 72px;padding:0 8px}
+ .ranking-title{height:42px;font-size:11px}
+ .player-row{min-height:44px}
+ .rank{font-size:17px} .name,.xp{font-size:11px}
+}
+</style>
 </head>
-
 <body>
-  <main class="page">
+<main class="page">
+ <section class="ranking-shell">
+  <header class="ranking-title"><div>#</div><div>PLAYER</div><div>XP</div></header>
+  <div class="players-scroll" id="rankingList"></div>
+ </section>
+ <div class="statusbar">Atualizado em <strong>06/09/2026</strong></div>
+</main>
+<script>
+const jogadores = [
+      { nome:"Vitorguim17", xp:620 },
+      { nome:"Complexo2K", xp:414 },
+      { nome:"Skyzee6793", xp:408 },
+      { nome:"Matheusinho4992", xp:384 },
+      { nome:"Mateco2K", xp:332 },
+      { nome:"X_e_X_a_", xp:328 },
+      { nome:"fa_de_mpb", xp:230 },
+      { nome:"NILLA2K", xp:194 },
+      { nome:"aued_19", xp:188 },
+      { nome:"pvt fejuada", xp:168 },
+      { nome:"yRichxzzz", xp:168 },
+      { nome:"marpepper", xp:148 },
+      { nome:"ISO-Saint--", xp:134 },
+      { nome:"made_1nchina", xp:126 },
+      { nome:"GGWizzard-YT", xp:124 },
+      { nome:"MaxZiiiN", xp:116 },
+      { nome:"BeneSalles", xp:112 },
+      { nome:"VictorNexus", xp:108 },
+      { nome:"Yotineee_", xp:74 },
+      { nome:"jpcaldeira_", xp:68 },
+      { nome:"joaovamassatu", xp:60 },
+      { nome:"JoaoJunioor", xp:40 },
+      { nome:"NewVnw", xp:38 },
+      { nome:"BKS_wLx", xp:36 },
+      { nome:"coronel_bg96", xp:30 },
+      { nome:"FILZIN_PITBULL", xp:26 },
+      { nome:"thom4-sz12", xp:24 },
+      { nome:"M A R C O S8274", xp:22 },
+      { nome:"richard1227_", xp:22 },
+      { nome:"RyanZin076553", xp:20 },
+      { nome:"felipeneves10_", xp:10 },
+      { nome:"bigfelp-", xp:2 },
+      { nome:"MiSTic-Lose", xp:2 },
+      { nome:"Diogenes Coruja", xp:2 },
+      { nome:"Yeager7xx rj", xp:2 },
+      { nome:"Idalgo19", xp:2 },
+      { nome:"alonsotal", xp:2 },
+      { nome:"Henrique10ma", xp:2 },
+      { nome:"Ojoao_vitor365", xp:0 },
+      { nome:"RDProtocol", xp:0 },
+      { nome:"EdgeReturns", xp:0 },
+      { nome:"Gusnaldo", xp:0 },
+      { nome:"wBob___", xp:0 },
+      { nome:"RoBertonny", xp:0 },
+      { nome:"xWrld_DM", xp:0 },
+      { nome:"iCarlos_F21", xp:0 },
+      { nome:"Anderson AMA", xp:0 },
+      { nome:"VtFogueira", xp:0 },
+      { nome:"Frajolastz", xp:0 }
+];
 
-    <div class="center-mask"></div>
-
-    <section class="ranking-shell" aria-label="Ranking mensal da Crew">
-      <header class="ranking-title">
-        <div>#</div>
-        <div>PLAYER</div>
-        <div>XP</div>
-      </header>
-
-      <div class="players-scroll" id="rankingList" tabindex="0"></div>
-    </section>
-
-    <div class="statusbar">
-      Atualizado em <strong id="updatedAt">06/09/2026</strong>
-    </div>
-
-  </main>
-
-  <script>
-    /*
-      ===========================================================
-      DADOS DO RANKING
-      ===========================================================
-
-      Para atualizar o ranking no futuro, mexa SOMENTE nesta lista.
-
-      Formato:
-      { nome: "Gamertag", xp: 12345 }
-
-      O site ordena sozinho do maior XP para o menor.
-      ===========================================================
-    */
-
-    const jogadores = [
-      { nome:"Player01", xp:0 },
-      { nome:"Player02", xp:0 },
-      { nome:"Player03", xp:0 },
-      { nome:"Player04", xp:0 },
-      { nome:"Player05", xp:0 },
-      { nome:"Player06", xp:0 },
-      { nome:"Player07", xp:0 },
-      { nome:"Player08", xp:0 },
-      { nome:"Player09", xp:0 },
-      { nome:"Player10", xp:0 },
-
-      { nome:"Player11", xp:0 },
-      { nome:"Player12", xp:0 },
-      { nome:"Player13", xp:0 },
-      { nome:"Player14", xp:0 },
-      { nome:"Player15", xp:0 },
-      { nome:"Player16", xp:0 },
-      { nome:"Player17", xp:0 },
-      { nome:"Player18", xp:0 },
-      { nome:"Player19", xp:0 },
-      { nome:"Player20", xp:0 },
-
-      { nome:"Player21", xp:0 },
-      { nome:"Player22", xp:0 },
-      { nome:"Player23", xp:0 },
-      { nome:"Player24", xp:0 },
-      { nome:"Player25", xp:0 },
-      { nome:"Player26", xp:0 },
-      { nome:"Player27", xp:0 },
-      { nome:"Player28", xp:0 },
-      { nome:"Player29", xp:0 },
-      { nome:"Player30", xp:0 },
-
-      { nome:"Player31", xp:0 },
-      { nome:"Player32", xp:0 },
-      { nome:"Player33", xp:0 },
-      { nome:"Player34", xp:0 },
-      { nome:"Player35", xp:0 },
-      { nome:"Player36", xp:0 },
-      { nome:"Player37", xp:0 },
-      { nome:"Player38", xp:0 },
-      { nome:"Player39", xp:0 },
-      { nome:"Player40", xp:0 },
-
-      { nome:"Player41", xp:0 },
-      { nome:"Player42", xp:0 },
-      { nome:"Player43", xp:0 },
-      { nome:"Player44", xp:0 },
-      { nome:"Player45", xp:0 },
-      { nome:"Player46", xp:0 },
-      { nome:"Player47", xp:0 },
-      { nome:"Player48", xp:0 },
-      { nome:"Player49", xp:0 },
-      { nome:"Player50", xp:0 }
-    ];
-
-    const ultimaAtualizacao = "06/09/2026";
-
-    function formatXP(valor){
-      return Number(valor || 0).toLocaleString("pt-BR") + " XP";
-    }
-
-    function renderRanking(){
-      const rankingList = document.getElementById("rankingList");
-      const updatedAt = document.getElementById("updatedAt");
-
-      const ordenados = jogadores
-        .map((j, indiceOriginal) => ({...j, indiceOriginal}))
-        .sort((a,b) => {
-          if (b.xp !== a.xp) return b.xp - a.xp;
-          return a.indiceOriginal - b.indiceOriginal;
-        });
-
-      rankingList.innerHTML = "";
-
-      ordenados.forEach((jogador, index) => {
-        const row = document.createElement("div");
-        row.className = "player-row";
-
-        if(index === 0) row.classList.add("top1");
-        if(index === 1) row.classList.add("top2");
-        if(index === 2) row.classList.add("top3");
-
-        const crown = index === 0 ? "👑 " : "";
-
-        row.innerHTML = `
-          <div class="rank">${index + 1}</div>
-          <div class="name">${crown}${jogador.nome}</div>
-          <div class="xp">${formatXP(jogador.xp)}</div>
-        `;
-
-        rankingList.appendChild(row);
-      });
-
-      updatedAt.textContent = ultimaAtualizacao;
-    }
-
-    renderRanking();
-  </script>
+function formatXP(v){return Number(v||0).toLocaleString("pt-BR")+" XP";}
+function renderRanking(){
+ const lista=document.getElementById("rankingList");
+ const ordenados=jogadores.map((j,i)=>({...j,i})).sort((a,b)=>b.xp-a.xp||a.i-b.i);
+ lista.innerHTML="";
+ ordenados.forEach((j,index)=>{
+  const row=document.createElement("div");
+  row.className="player-row "+(index===0?"top1":index===1?"top2":index===2?"top3":"");
+  row.innerHTML=`<div class="rank">${index+1}</div><div class="name">${index===0?"👑 ":""}${j.nome}</div><div class="xp">${formatXP(j.xp)}</div>`;
+  lista.appendChild(row);
+ });
+}
+renderRanking();
+</script>
 </body>
 </html>
