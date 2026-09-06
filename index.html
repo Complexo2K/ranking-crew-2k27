@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ranking Crew 2K27</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, #202020 0%, #0d0d0d 45%, #050505 100%);
+      color: white;
+      min-height: 100vh;
+      padding: 30px 15px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .header {
+      background: #111;
+      border: 1px solid #2b2b2b;
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #aaa;
+      font-size: 15px;
+    }
+
+    .premio {
+      margin-top: 20px;
+      background: #1b1b1b;
+      border: 1px solid #444;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .premio span {
+      display: block;
+      color: #aaa;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .premio strong {
+      display: block;
+      font-size: 34px;
+      margin-top: 5px;
+    }
+
+    .section-title {
+      margin: 30px 0 15px;
+      font-size: 20px;
+    }
+
+    .podium {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      align-items: end;
+    }
+
+    .player-card {
+      background: #121212;
+      border: 1px solid #333;
+      border-radius: 18px;
+      padding: 22px 15px;
+      text-align: center;
+    }
+
+    .player-card.first {
+      padding-top: 35px;
+      padding-bottom: 35px;
+      border-color: #666;
+    }
+
+    .medal {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .position {
+      color: #999;
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .gamertag {
+      font-size: 21px;
+      font-weight: bold;
+      word-break: break-word;
+    }
+
+    .xp {
+      font-size: 27px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .today {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #bbb;
+    }
+
+    .ranking-box {
+      background: #111;
+      border: 1px solid #292929;
+      border-radius: 18px;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 16px 14px;
+      text-align: left;
+      border-bottom: 1px solid #262626;
+    }
+
+    th {
+      color: #999;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    td {
+      font-size: 15px;
+    }
+
+    .rank {
+      font-weight: bold;
+      width: 60px;
+    }
+
+    .monthly-xp {
+      font-weight: bold;
+    }
+
+    .up {
+      color: #8ee69b;
+    }
+
+    .down {
+      color: #ff8e8e;
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .info-card {
+      background: #111;
+      border: 1px solid #292929;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .info-card small {
+      color: #999;
+      text-transform: uppercase;
+    }
+
+    .info-card strong {
+      display: block;
+      margin-top: 7px;
+    }
+
+    .update {
+      text-align: center;
+      color: #777;
+      margin-top: 25px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      .header h1 {
+        font-size: 29px;
+      }
+
+      .podium {
+        grid-template-columns: 1fr;
+      }
+
+      .player-card.first {
+        order: -1;
+      }
+
+      .info {
+        grid-template-columns: 1fr;
+      }
+
+      .ranking-box {
+        overflow-x: auto;
+      }
+
+      table {
+        min-width: 650px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <h1>🏀 RANKING CREW 2K27</h1>
+
+      <p>Ranking mensal de XP da Crew</p>
+
+      <div class="premio">
+        <span>Premiação para o Top XP do mês</span>
+        <strong>🏆 R$ 100</strong>
+      </div>
+    </div>
+
+    <h2 class="section-title">🔥 TOP 3 DO MÊS</h2>
+
+    <div class="podium">
+
+      <div class="player-card">
+        <div class="medal">🥈</div>
+
+        <div class="position">
+          2º Lugar
+        </div>
+
+        <div class="gamertag">
+          Player02
+        </div>
+
+        <div class="xp">
+          128.450 XP
+        </div>
+
+        <div class="today">
+          +8.900 XP hoje
+        </div>
+      </div>
+
+
+      <div class="player-card first">
+        <div class="medal">🥇</div>
+
+        <div class="position">
+          Líder atual
+        </div>
+
+        <div class="gamertag">
+          Player01
+        </div>
+
+        <div class="xp">
+          142.780 XP
+        </div>
+
+        <div class="today">
+          +12.300 XP hoje
+        </div>
+      </div>
+
+
+      <div class="player-card">
+        <div class="medal">🥉</div>
+
+        <div class="position">
+          3º Lugar
+        </div>
+
+        <div class="gamertag">
+          Player03
+        </div>
+
+        <div class="xp">
+          117.920 XP
+        </div>
+
+        <div class="today">
+          +7.150 XP hoje
+        </div>
+      </div>
+
+    </div>
+
+
+    <h2 class="section-title">
+      📊 RANKING COMPLETO
+    </h2>
+
+
+    <div class="ranking-box">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Gamertag</th>
+            <th>XP Hoje</th>
+            <th>XP Mensal</th>
+            <th>Movimento</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td class="rank">1</td>
+            <td>Player01</td>
+            <td>+12.300</td>
+            <td class="monthly-xp">142.780 XP</td>
+            <td>—</td>
+          </tr>
+
+          <tr>
+            <td class="rank">2</td>
+            <td>Player02</td>
+            <td>+8.900</td>
+            <td class="monthly-xp">128.450 XP</td>
+            <td class="up">▲ 1</td>
+          </tr>
+
+          <tr>
+            <td class="rank">3</td>
+            <td>Player03</td>
+            <td>+7.150</td>
+            <td class="monthly-xp">117.920 XP</td>
+            <td class="down">▼ 1</td>
+          </tr>
+
+          <tr>
+            <td class="rank">4</td>
+            <td>Player04</td>
+            <td>+6.870</td>
+            <td class="monthly-xp">105.340 XP</td>
+            <td class="up">▲ 2</td>
+          </tr>
+
+          <tr>
+            <td class="rank">5</td>
+            <td>Player05</td>
+            <td>+5.420</td>
+            <td class="monthly-xp">98.610 XP</td>
+            <td class="down">▼ 2</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <div class="info">
+
+      <div class="info-card">
+        <small>Maior ganho do dia</small>
+
+        <strong>
+          🔥 Player01 — +12.300 XP
+        </strong>
+      </div>
+
+
+      <div class="info-card">
+        <small>Regra</small>
+
+        <strong>
+          O ranking considera o XP acumulado durante o mês.
+        </strong>
+      </div>
+
+    </div>
+
+
+    <div class="update">
+      Última atualização: 06/09/2026
+    </div>
+
+  </div>
+
+</body>
+</html>
