@@ -1,128 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>SUBURBANO 2K | Ranking</title>
 <style>
-:root{--gold:#ffb51b;--white:#f5f5f5;}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;height:100%;overflow:hidden;background:#050505;font-family:Arial,Helvetica,sans-serif;color:white}
+html,body{height:100%;overflow:hidden;background:#050505;font-family:Arial,sans-serif;color:#fff}
 body{display:flex;justify-content:center}
 .page{
- position:relative;width:100%;max-width:520px;height:100dvh;min-height:620px;overflow:hidden;
- background:url("suburbano-mobile.png") center top/cover no-repeat;background-color:#080808;
+  position:relative;width:100%;max-width:520px;height:100dvh;min-height:620px;overflow:hidden;
+  background:url('suburbano-mobile.png') center top/cover no-repeat #080808;
 }
-.ranking-shell{
- position:absolute;left:19%;right:19%;top:30%;bottom:7.5%;
- display:flex;flex-direction:column;min-height:0;
+.shell{
+  position:absolute;left:18%;right:18%;top:30%;bottom:7.5%;
+  display:flex;flex-direction:column;min-height:0;
 }
-.ranking-title{
- flex:none;height:46px;display:grid;grid-template-columns:45px 1fr 86px;align-items:center;
- padding:0 11px;background:linear-gradient(#ffc63f,#e9a00f);color:#090909;
- border:1px solid #ffd05a;font-weight:1000;font-style:italic;font-size:13px;
+.head,.row{
+  display:grid;grid-template-columns:42px 1fr 82px;align-items:center;padding:0 9px;
 }
-.ranking-title div:last-child{text-align:right}
-.players-scroll{
- flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;background:rgba(7,7,7,.96);
- border:1px solid #454545;border-top:0;scrollbar-width:thin;scrollbar-color:#777 #151515;
- -webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+.head{
+  height:44px;flex:none;background:linear-gradient(#ffc63f,#e9a00f);color:#090909;
+  border:1px solid #ffd05a;font-weight:1000;font-style:italic;font-size:12px;
 }
-.player-row{
- min-height:47px;display:grid;grid-template-columns:45px 1fr 86px;align-items:center;
- padding:0 11px;border-bottom:1px solid #303030;background:linear-gradient(90deg,#151515,#080808);
+.head div:last-child,.xp{text-align:right}
+.list{
+  flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;background:rgba(7,7,7,.96);
+  border:1px solid #454545;border-top:0;-webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;scrollbar-color:#777 #151515;
 }
-.player-row:nth-child(even){background:linear-gradient(90deg,#101010,#060606)}
-.rank{font-size:19px;font-weight:1000;font-style:italic;color:#ddd}
-.name{font-size:13px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.xp{text-align:right;font-size:13px;font-weight:1000;color:var(--gold);white-space:nowrap}
-.top1{background:linear-gradient(90deg,#2d2008,#080808);border-top:1px solid #d99a13;border-bottom:1px solid #d99a13}
-.top1 .rank{color:#ffc43a} .top2 .rank{color:#eee} .top3 .rank{color:#bd7139}
-.statusbar{position:absolute;left:20%;right:20%;bottom:3.7%;text-align:center;font-size:9px;color:#bbb}
-.statusbar strong{color:var(--gold)}
-@media(max-width:420px){
- .ranking-shell{left:18%;right:18%}
- .ranking-title,.player-row{grid-template-columns:38px 1fr 72px;padding:0 8px}
- .ranking-title{height:42px;font-size:11px}
- .player-row{min-height:44px}
- .rank{font-size:17px} .name,.xp{font-size:11px}
+.row{
+  min-height:45px;border-bottom:1px solid #303030;
+  background:linear-gradient(90deg,#151515,#080808);
 }
+.row:nth-child(even){background:linear-gradient(90deg,#101010,#060606)}
+.rank{font-size:18px;font-weight:1000;font-style:italic;color:#ddd}
+.name{font-size:12px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xp{font-size:12px;font-weight:1000;color:#ffb51b;white-space:nowrap}
+.first{
+  background:linear-gradient(90deg,#2d2008,#080808);
+  border-top:1px solid #d99a13;border-bottom:1px solid #d99a13
+}
+.first .rank{color:#ffc43a}
+.third .rank{color:#bd7139}
+.updated{
+  position:absolute;left:18%;right:18%;bottom:3.7%;text-align:center;font-size:9px;color:#bbb
+}
+.updated b{color:#ffb51b}
 </style>
 </head>
 <body>
 <main class="page">
- <section class="ranking-shell">
-  <header class="ranking-title"><div>#</div><div>PLAYER</div><div>XP</div></header>
-  <div class="players-scroll" id="rankingList"></div>
- </section>
- <div class="statusbar">Atualizado em <strong>06/09/2026</strong></div>
+  <section class="shell">
+    <div class="head"><div>#</div><div>PLAYER</div><div>GXP TOTAL</div></div>
+    <div class="list" id="list"></div>
+  </section>
+  <div class="updated">Atualizado em <b>07/09/2026</b></div>
 </main>
-<script>
-const jogadores = [
-      { nome:"Vitorguim17", xp:620 },
-      { nome:"Complexo2K", xp:414 },
-      { nome:"Skyzee6793", xp:408 },
-      { nome:"Matheusinho4992", xp:384 },
-      { nome:"Mateco2K", xp:332 },
-      { nome:"X_e_X_a_", xp:328 },
-      { nome:"fa_de_mpb", xp:230 },
-      { nome:"NILLA2K", xp:194 },
-      { nome:"aued_19", xp:188 },
-      { nome:"pvt fejuada", xp:168 },
-      { nome:"yRichxzzz", xp:168 },
-      { nome:"marpepper", xp:148 },
-      { nome:"ISO-Saint--", xp:134 },
-      { nome:"made_1nchina", xp:126 },
-      { nome:"GGWizzard-YT", xp:124 },
-      { nome:"MaxZiiiN", xp:116 },
-      { nome:"BeneSalles", xp:112 },
-      { nome:"VictorNexus", xp:108 },
-      { nome:"Yotineee_", xp:74 },
-      { nome:"jpcaldeira_", xp:68 },
-      { nome:"joaovamassatu", xp:60 },
-      { nome:"JoaoJunioor", xp:40 },
-      { nome:"NewVnw", xp:38 },
-      { nome:"BKS_wLx", xp:36 },
-      { nome:"coronel_bg96", xp:30 },
-      { nome:"FILZIN_PITBULL", xp:26 },
-      { nome:"thom4-sz12", xp:24 },
-      { nome:"M A R C O S8274", xp:22 },
-      { nome:"richard1227_", xp:22 },
-      { nome:"RyanZin076553", xp:20 },
-      { nome:"felipeneves10_", xp:10 },
-      { nome:"bigfelp-", xp:2 },
-      { nome:"MiSTic-Lose", xp:2 },
-      { nome:"Diogenes Coruja", xp:2 },
-      { nome:"Yeager7xx rj", xp:2 },
-      { nome:"Idalgo19", xp:2 },
-      { nome:"alonsotal", xp:2 },
-      { nome:"Henrique10ma", xp:2 },
-      { nome:"Ojoao_vitor365", xp:0 },
-      { nome:"RDProtocol", xp:0 },
-      { nome:"EdgeReturns", xp:0 },
-      { nome:"Gusnaldo", xp:0 },
-      { nome:"wBob___", xp:0 },
-      { nome:"RoBertonny", xp:0 },
-      { nome:"xWrld_DM", xp:0 },
-      { nome:"iCarlos_F21", xp:0 },
-      { nome:"Anderson AMA", xp:0 },
-      { nome:"VtFogueira", xp:0 },
-      { nome:"Frajolastz", xp:0 }
-];
 
-function formatXP(v){return Number(v||0).toLocaleString("pt-BR")+" XP";}
-function renderRanking(){
- const lista=document.getElementById("rankingList");
- const ordenados=jogadores.map((j,i)=>({...j,i})).sort((a,b)=>b.xp-a.xp||a.i-b.i);
- lista.innerHTML="";
- ordenados.forEach((j,index)=>{
-  const row=document.createElement("div");
-  row.className="player-row "+(index===0?"top1":index===1?"top2":index===2?"top3":"");
-  row.innerHTML=`<div class="rank">${index+1}</div><div class="name">${index===0?"👑 ":""}${j.nome}</div><div class="xp">${formatXP(j.xp)}</div>`;
-  lista.appendChild(row);
- });
-}
-renderRanking();
+<script>
+const jogadores=[{nome:"Skyzee6793",xp:806},
+{nome:"Vitorguim17",xp:798},
+{nome:"Matheusinho4992",xp:710},
+{nome:"Complexo2K",xp:546},
+{nome:"X_e_X_a_",xp:532},
+{nome:"Mateco2K",xp:440},
+{nome:"fa_de_mpb",xp:390},
+{nome:"pvt fejuada",xp:300},
+{nome:"yRichxzzz",xp:292},
+{nome:"GGWizzard-YT",xp:228},
+{nome:"aued_19",xp:224},
+{nome:"NILLA2K",xp:218},
+{nome:"made_1nchina",xp:218},
+{nome:"jogayamassatu",xp:212},
+{nome:"CaioLucena2k",xp:180},
+{nome:"MaxZiiiN",xp:176},
+{nome:"VictorNexus",xp:168},
+{nome:"jpcaldeira_",xp:166},
+{nome:"thom4-sz12",xp:146},
+{nome:"BKS_wLx",xp:142},
+{nome:"coronel_bg96",xp:130},
+{nome:"alonsotal",xp:114},
+{nome:"M A R C O S8274",xp:96},
+{nome:"JoaoJunioor",xp:86},
+{nome:"NewVnw",xp:82},
+{nome:"Yotineee_",xp:74},
+{nome:"bigfelp-",xp:64},
+{nome:"NickzinSCR",xp:24},
+{nome:"richard1227_",xp:22},
+{nome:"felipeneves10_",xp:20},
+{nome:"MiSTic-Lose",xp:18},
+{nome:"adjetivo-moido",xp:18},
+{nome:"Diogenes Coruja",xp:14},
+{nome:"FelpWRLD",xp:10},
+{nome:"NGLK9",xp:8},
+{nome:"wBob___",xp:6},
+{nome:"Idalgo19",xp:6},
+{nome:"Henrique10ma",xp:4},
+{nome:"Acee7z-",xp:4},
+{nome:"Yeager7xx rj",xp:2},
+{nome:"Ojoao_vitor365",xp:0},
+{nome:"VtFogueira",xp:0},
+{nome:"MKCorleone_",xp:0},
+{nome:"vtwarnerr",xp:0},
+{nome:"RPZ Welson",xp:0}];
+
+const el=document.getElementById('list');
+
+jogadores.forEach((j,i)=>{
+  const r=document.createElement('div');
+  r.className='row '+(i===0?'first':i===1?'second':i===2?'third':'');
+  r.innerHTML=`
+    <div class="rank">${i+1}</div>
+    <div class="name">${i===0?'👑 ':''}${j.nome}</div>
+    <div class="xp">${j.xp.toLocaleString('pt-BR')} GXP</div>
+  `;
+  el.appendChild(r);
+});
 </script>
 </body>
 </html>
