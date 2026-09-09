@@ -1,122 +1,242 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>SUBURBANO 2K | Ranking</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden;background:#050505;font-family:Arial,sans-serif;color:#fff}
-body{display:flex;justify-content:center}
-.page{
-  position:relative;width:100%;max-width:520px;height:100dvh;min-height:620px;overflow:hidden;
-  background:url('suburbano-mobile.png') center top/cover no-repeat #080808;
-}
-.shell{
-  position:absolute;left:18%;right:18%;top:30%;bottom:7.5%;
-  display:flex;flex-direction:column;min-height:0;
-}
-.head,.row{
-  display:grid;grid-template-columns:42px 1fr 82px;align-items:center;padding:0 9px;
-}
-.head{
-  height:44px;flex:none;background:linear-gradient(#ffc63f,#e9a00f);color:#090909;
-  border:1px solid #ffd05a;font-weight:1000;font-style:italic;font-size:12px;
-}
-.head div:last-child,.xp{text-align:right}
-.list{
-  flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;background:rgba(7,7,7,.96);
-  border:1px solid #454545;border-top:0;-webkit-overflow-scrolling:touch;
-  scrollbar-width:thin;scrollbar-color:#777 #151515;
-}
-.row{
-  min-height:45px;border-bottom:1px solid #303030;
-  background:linear-gradient(90deg,#151515,#080808);
-}
-.row:nth-child(even){background:linear-gradient(90deg,#101010,#060606)}
-.rank{font-size:18px;font-weight:1000;font-style:italic;color:#ddd}
-.name{font-size:12px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.xp{font-size:12px;font-weight:1000;color:#ffb51b;white-space:nowrap}
-.first{
-  background:linear-gradient(90deg,#2d2008,#080808);
-  border-top:1px solid #d99a13;border-bottom:1px solid #d99a13
-}
-.first .rank{color:#ffc43a}
-.third .rank{color:#bd7139}
-.updated{
-  position:absolute;left:18%;right:18%;bottom:3.7%;text-align:center;font-size:9px;color:#bbb
-}
-.updated b{color:#ffb51b}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>SUBURBANO 2K | Ranking</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #050505;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #fff;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      height: 100dvh;
+      min-height: 620px;
+      overflow: hidden;
+      background:
+        url("suburbano-mobile.png")
+        center top / cover no-repeat #080808;
+    }
+
+    .ranking-shell {
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      top: 30%;
+      bottom: 7.5%;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .ranking-head,
+    .player-row {
+      display: grid;
+      grid-template-columns: 42px 1fr 82px;
+      align-items: center;
+      padding: 0 9px;
+    }
+
+    .ranking-head {
+      height: 44px;
+      flex: none;
+      background: linear-gradient(#ffc63f, #e9a00f);
+      color: #090909;
+      border: 1px solid #ffd05a;
+      font-weight: 1000;
+      font-style: italic;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .ranking-head div:last-child,
+    .xp {
+      text-align: right;
+    }
+
+    .players-scroll {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: rgba(7,7,7,.96);
+      border: 1px solid #454545;
+      border-top: 0;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #777 #151515;
+    }
+
+    .player-row {
+      min-height: 45px;
+      border-bottom: 1px solid #303030;
+      background: linear-gradient(90deg, #151515, #080808);
+    }
+
+    .player-row:nth-child(even) {
+      background: linear-gradient(90deg, #101010, #060606);
+    }
+
+    .rank {
+      font-size: 18px;
+      font-weight: 1000;
+      font-style: italic;
+      color: #ddd;
+    }
+
+    .name {
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .xp {
+      font-size: 12px;
+      font-weight: 1000;
+      color: #ffb51b;
+      white-space: nowrap;
+    }
+
+    .first {
+      background: linear-gradient(90deg, #2d2008, #080808);
+      border-top: 1px solid #d99a13;
+      border-bottom: 1px solid #d99a13;
+    }
+
+    .first .rank {
+      color: #ffc43a;
+    }
+
+    .third .rank {
+      color: #bd7139;
+    }
+
+    .updated {
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      bottom: 3.7%;
+      text-align: center;
+      font-size: 9px;
+      color: #bbb;
+    }
+
+    .updated b {
+      color: #ffb51b;
+    }
+  </style>
 </head>
+
 <body>
-<main class="page">
-  <section class="shell">
-    <div class="head"><div>#</div><div>PLAYER</div><div>GXP TOTAL</div></div>
-    <div class="list" id="list"></div>
-  </section>
-  <div class="updated">Atualizado em <b>07/09/2026</b></div>
-</main>
+  <main class="page">
 
-<script>
-const jogadores=[{nome:"Skyzee6793",xp:806},
-{nome:"Vitorguim17",xp:798},
-{nome:"Matheusinho4992",xp:710},
-{nome:"Complexo2K",xp:546},
-{nome:"X_e_X_a_",xp:532},
-{nome:"Mateco2K",xp:440},
-{nome:"fa_de_mpb",xp:390},
-{nome:"pvt fejuada",xp:300},
-{nome:"yRichxzzz",xp:292},
-{nome:"GGWizzard-YT",xp:228},
-{nome:"aued_19",xp:224},
-{nome:"NILLA2K",xp:218},
-{nome:"made_1nchina",xp:218},
-{nome:"jogayamassatu",xp:212},
-{nome:"CaioLucena2k",xp:180},
-{nome:"MaxZiiiN",xp:176},
-{nome:"VictorNexus",xp:168},
-{nome:"jpcaldeira_",xp:166},
-{nome:"thom4-sz12",xp:146},
-{nome:"BKS_wLx",xp:142},
-{nome:"coronel_bg96",xp:130},
-{nome:"alonsotal",xp:114},
-{nome:"M A R C O S8274",xp:96},
-{nome:"JoaoJunioor",xp:86},
-{nome:"NewVnw",xp:82},
-{nome:"Yotineee_",xp:74},
-{nome:"bigfelp-",xp:64},
-{nome:"NickzinSCR",xp:24},
-{nome:"richard1227_",xp:22},
-{nome:"felipeneves10_",xp:20},
-{nome:"MiSTic-Lose",xp:18},
-{nome:"adjetivo-moido",xp:18},
-{nome:"Diogenes Coruja",xp:14},
-{nome:"FelpWRLD",xp:10},
-{nome:"NGLK9",xp:8},
-{nome:"wBob___",xp:6},
-{nome:"Idalgo19",xp:6},
-{nome:"Henrique10ma",xp:4},
-{nome:"Acee7z-",xp:4},
-{nome:"Yeager7xx rj",xp:2},
-{nome:"Ojoao_vitor365",xp:0},
-{nome:"VtFogueira",xp:0},
-{nome:"MKCorleone_",xp:0},
-{nome:"vtwarnerr",xp:0},
-{nome:"RPZ Welson",xp:0}];
+    <section class="ranking-shell" aria-label="Ranking GXP Total">
+      <div class="ranking-head">
+        <div>#</div>
+        <div>PLAYER</div>
+        <div>GXP TOTAL</div>
+      </div>
 
-const el=document.getElementById('list');
+      <div class="players-scroll" id="rankingList"></div>
+    </section>
 
-jogadores.forEach((j,i)=>{
-  const r=document.createElement('div');
-  r.className='row '+(i===0?'first':i===1?'second':i===2?'third':'');
-  r.innerHTML=`
-    <div class="rank">${i+1}</div>
-    <div class="name">${i===0?'👑 ':''}${j.nome}</div>
-    <div class="xp">${j.xp.toLocaleString('pt-BR')} GXP</div>
-  `;
-  el.appendChild(r);
-});
-</script>
+    <div class="updated">
+      Atualizado em <b>09/09/2026</b>
+    </div>
+
+  </main>
+
+  <script>
+    const jogadores = [
+      { nome: "Skyzee6793", xp: 842 },
+{ nome: "Vitorguim17", xp: 840 },
+{ nome: "Matheusinho4992", xp: 710 },
+{ nome: "X_e_X_a_", xp: 616 },
+{ nome: "fa_de_mpb", xp: 584 },
+{ nome: "Complexo2K", xp: 558 },
+{ nome: "Mateco2K", xp: 500 },
+{ nome: "pvt fejuada", xp: 356 },
+{ nome: "yRichxzzz", xp: 292 },
+{ nome: "NILLA2K", xp: 278 },
+{ nome: "GGWizzard-YT", xp: 266 },
+{ nome: "made_1nchina", xp: 238 },
+{ nome: "aued_19", xp: 224 },
+{ nome: "alonsotal", xp: 218 },
+{ nome: "jogayamassatu", xp: 216 },
+{ nome: "jpcaldeira_", xp: 216 },
+{ nome: "CaioLucena2k", xp: 216 },
+{ nome: "MaxZiiiN", xp: 208 },
+{ nome: "VictorNexus", xp: 190 },
+{ nome: "JoaoJunioor", xp: 166 },
+{ nome: "thom4-sz12", xp: 162 },
+{ nome: "BKS_wLx", xp: 152 },
+{ nome: "NewVnw", xp: 152 },
+{ nome: "coronel_bg96", xp: 130 },
+{ nome: "M A R C O S8274", xp: 96 },
+{ nome: "bigfelp-", xp: 82 },
+{ nome: "Yotineee_", xp: 74 },
+{ nome: "NGLK9", xp: 44 },
+{ nome: "MiSTic-Lose", xp: 42 },
+{ nome: "NickzinSCR", xp: 24 },
+{ nome: "richard1227_", xp: 22 },
+{ nome: "felipeneves10_", xp: 20 },
+{ nome: "adjetivo-moido", xp: 18 },
+{ nome: "Diogenes Coruja", xp: 14 },
+{ nome: "FelpWRLD", xp: 10 },
+{ nome: "wBob___", xp: 8 },
+{ nome: "RPZ Welson", xp: 8 },
+{ nome: "Idalgo19", xp: 6 },
+{ nome: "Henrique10ma", xp: 4 },
+{ nome: "Yeager7xx rj", xp: 2 },
+{ nome: "Ojoao_vitor365", xp: 0 },
+{ nome: "MKCorleone_", xp: 0 }
+    ];
+
+    const rankingList = document.getElementById("rankingList");
+
+    jogadores.forEach((jogador, index) => {
+      const row = document.createElement("div");
+
+      row.className =
+        "player-row " +
+        (index === 0
+          ? "first"
+          : index === 1
+          ? "second"
+          : index === 2
+          ? "third"
+          : "");
+
+      row.innerHTML = `
+        <div class="rank">${index + 1}</div>
+        <div class="name">${index === 0 ? "👑 " : ""}${jogador.nome}</div>
+        <div class="xp">${jogador.xp.toLocaleString("pt-BR")} GXP</div>
+      `;
+
+      rankingList.appendChild(row);
+    });
+  </script>
 </body>
 </html>
