@@ -1,6 +1,6 @@
 /* Define a imagem completa como fundo do controle */
 .controller.xbox {
-    background: url("LINK_DA_SUA_IMAGEM_COMPLETA.png") no-repeat center !important;
+    background: url("https://i.imgur.com/Vm1kGbo.png") no-repeat center !important;
     background-size: contain !important;
 }
 
