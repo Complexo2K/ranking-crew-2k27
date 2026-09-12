@@ -1,0 +1,25 @@
+/* Define a imagem completa como fundo do controle */
+.controller.xbox {
+    background: url("LINK_DA_SUA_IMAGEM_COMPLETA.png") no-repeat center !important;
+    background-size: contain !important;
+}
+
+/* Deixa os botões padrão invisíveis por padrão */
+.controller.xbox .button,
+.controller.xbox .stick,
+.controller.xbox .dpad .button {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Efeito quando qualquer botão for pressionado (ex: brilha em vermelho) */
+.controller.xbox .button.pressed,
+.controller.xbox .dpad .button.pressed {
+    background: rgba(255, 0, 0, 0.4) !important; /* Cor vermelha transparente */
+    box-shadow: 0 0 10px #ff0000 !important; /* Brilho vermelho */
+}
+
+/* Movimentação visual dos analógicos sem trocar a imagem */
+.controller.xbox .stick.pressed {
+    background: rgba(255, 0, 0, 0.3) !important;
+}
