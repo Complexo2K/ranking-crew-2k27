@@ -7,7 +7,10 @@
 <title>Complexo 2K - Timing Trainer</title>
 
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
 
 body {
   margin: 0;
@@ -15,25 +18,30 @@ body {
   background: #080808;
   color: white;
   font-family: Arial, sans-serif;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .trainer {
   width: 92%;
   max-width: 700px;
   text-align: center;
+  padding: 20px 0 30px;
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 30px;
   margin: 0 0 8px;
 }
 
 .status {
   color: #aaa;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   font-size: 14px;
 }
 
@@ -45,7 +53,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .timing-title {
@@ -58,18 +66,23 @@ h1 {
 .vertical-wrapper {
   position: relative;
   width: 190px;
-  height: 360px;
+  height: 340px;
+
   display: flex;
   justify-content: center;
 }
 
 .timing-bar {
   position: relative;
+
   width: 48px;
-  height: 360px;
+  height: 340px;
+
   background: #292929;
+
   border: 2px solid #555;
   border-radius: 10px;
+
   overflow: hidden;
 }
 
@@ -77,6 +90,7 @@ h1 {
 
 .live-fill {
   position: absolute;
+
   bottom: 0;
   left: 0;
 
@@ -84,14 +98,18 @@ h1 {
   height: 0%;
 
   background: rgba(255,255,255,0.18);
+
+  z-index: 1;
 }
 
-/* GREEN 605–640 */
+/* GREEN WINDOW 605–640 */
 
 .green-window {
   position: absolute;
+
   top: 44%;
   height: 14%;
+
   left: 0;
   width: 100%;
 
@@ -108,7 +126,7 @@ h1 {
 .marker {
   position: absolute;
 
-  left: -18px;
+  left: 55px;
 
   width: 80px;
   height: 4px;
@@ -122,30 +140,35 @@ h1 {
 
   transform: translateY(-50%);
 
-  z-index: 10;
+  z-index: 20;
+
+  pointer-events: none;
 }
 
-.marker::after {
+.marker::before {
   content: "";
 
   position: absolute;
 
-  right: -9px;
+  left: -9px;
   top: 50%;
 
   transform: translateY(-50%);
 
   border-top: 6px solid transparent;
   border-bottom: 6px solid transparent;
-  border-left: 9px solid white;
+  border-right: 9px solid white;
 }
 
 /* números */
 
 .scale-label {
   position: absolute;
+
   left: 130px;
+
   font-size: 13px;
+
   transform: translateY(-50%);
 }
 
@@ -169,32 +192,42 @@ h1 {
   color: #777;
 }
 
-/* textos laterais */
+/* EARLY / GREEN / LATE */
 
 .late-label {
   position: absolute;
+
   right: 125px;
   top: 15%;
+
   color: #ff3535;
+
   font-size: 12px;
   font-weight: bold;
 }
 
 .green-label {
   position: absolute;
+
   right: 120px;
   top: 51%;
+
   transform: translateY(-50%);
+
   color: #00ff73;
+
   font-size: 12px;
   font-weight: bold;
 }
 
 .early-label {
   position: absolute;
+
   right: 125px;
   top: 80%;
+
   color: #ffae00;
+
   font-size: 12px;
   font-weight: bold;
 }
@@ -204,11 +237,11 @@ h1 {
 ========================= */
 
 .timer-container {
-  margin-top: 25px;
+  margin-top: 22px;
 }
 
 .timer {
-  font-size: 72px;
+  font-size: 68px;
   font-weight: 900;
 }
 
@@ -218,14 +251,16 @@ h1 {
 }
 
 /* =========================
-   X
+   BOTÃO X
 ========================= */
 
 .button-x {
-  width: 95px;
-  height: 95px;
+  width: 110px;
+  height: 110px;
+
   border-radius: 50%;
-  margin: 20px auto;
+
+  margin: 18px auto 8px;
 
   display: flex;
   align-items: center;
@@ -233,15 +268,34 @@ h1 {
 
   background: #1266d3;
 
-  font-size: 48px;
+  border: 3px solid #2780f0;
+
+  box-shadow:
+    0 0 18px rgba(18,102,211,0.35);
+
+  font-size: 52px;
   font-weight: bold;
 
-  transition: 0.05s;
+  cursor: pointer;
+
+  touch-action: none;
+
+  transition:
+    transform 0.05s,
+    box-shadow 0.05s;
 }
 
 .button-x.pressed {
-  transform: scale(0.85);
-  box-shadow: 0 0 25px #1266d3;
+  transform: scale(0.86);
+
+  box-shadow:
+    0 0 35px rgba(18,102,211,0.9);
+}
+
+.touch-help {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 10px;
 }
 
 /* =========================
@@ -251,136 +305,243 @@ h1 {
 .result {
   font-size: 38px;
   font-weight: 900;
-  margin-top: 15px;
+
+  margin-top: 12px;
+
   min-height: 48px;
 }
 
-.early { color: #ffae00; }
-.green { color: #00ff73; }
-.late  { color: #ff3535; }
+.early {
+  color: #ffae00;
+}
+
+.green {
+  color: #00ff73;
+}
+
+.late {
+  color: #ff3535;
+}
 
 .release-info {
-  margin-top: 8px;
+  margin-top: 6px;
+
   font-size: 17px;
+
   color: #aaa;
+
   min-height: 24px;
 }
 
 .window-info {
   margin-top: 12px;
+
   color: #777;
+
   font-size: 14px;
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
+
+  body {
+    align-items: flex-start;
+  }
+
+  .trainer {
+    padding-top: 15px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .status {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .vertical-wrapper {
+    height: 280px;
+  }
+
+  .timing-bar {
+    height: 280px;
+  }
+
+  .timer-container {
+    margin-top: 16px;
+  }
+
+  .timer {
+    font-size: 55px;
+  }
+
+  .button-x {
+    width: 105px;
+    height: 105px;
+
+    font-size: 48px;
+
+    margin-top: 12px;
+  }
+
+  .result {
+    font-size: 32px;
+  }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
 <div class="trainer">
 
-<h1>JUMPSHOT TIMING TRAINER</h1>
+  <h1>
+    JUMPSHOT TIMING TRAINER
+  </h1>
 
-<div id="status" class="status">
-Conecte o controle e pressione qualquer botão
-</div>
-
-
-<!-- BARRA -->
-
-<div class="timing-area">
-
-<div class="timing-title">
-RELEASE TIMING
-</div>
-
-<div class="vertical-wrapper">
-
-<div class="late-label">LATE</div>
-<div class="green-label">GREEN</div>
-<div class="early-label">EARLY</div>
-
-<div class="timing-bar">
-
-<div
-id="liveFill"
-class="live-fill">
-</div>
-
-<div class="green-window"></div>
-
-</div>
-
-<div
-id="marker"
-class="marker">
-</div>
-
-<div class="scale-label label-750">
-750 ms
-</div>
-
-<div class="scale-label label-640">
-640
-</div>
-
-<div class="scale-label label-605">
-605
-</div>
-
-<div class="scale-label label-500">
-500 ms
-</div>
-
-</div>
-</div>
+  <div id="status" class="status">
+    🎮 Controle ou 📱 toque no X
+  </div>
 
 
-<!-- TIMER -->
+  <!-- =====================
+       BARRA
+  ====================== -->
 
-<div class="timer-container">
+  <div class="timing-area">
 
-<span id="timer" class="timer">
-0
-</span>
-
-<span class="ms">
-ms
-</span>
-
-</div>
+    <div class="timing-title">
+      RELEASE TIMING
+    </div>
 
 
-<!-- BOTÃO -->
+    <div class="vertical-wrapper">
 
-<div id="buttonX" class="button-x">
-X
-</div>
+      <div class="late-label">
+        LATE
+      </div>
+
+      <div class="green-label">
+        GREEN
+      </div>
+
+      <div class="early-label">
+        EARLY
+      </div>
 
 
-<!-- RESULTADO -->
+      <div class="timing-bar">
 
-<div id="result" class="result">
-SEGURE X E SOLTE
-</div>
+        <div
+          id="liveFill"
+          class="live-fill">
+        </div>
 
-<div
-id="releaseInfo"
-class="release-info">
-</div>
+        <div class="green-window">
+        </div>
 
-<div class="window-info">
-GREEN WINDOW: 605–640 ms
-</div>
+      </div>
+
+
+      <div
+        id="marker"
+        class="marker">
+      </div>
+
+
+      <div class="scale-label label-750">
+        750 ms
+      </div>
+
+      <div class="scale-label label-640">
+        640
+      </div>
+
+      <div class="scale-label label-605">
+        605
+      </div>
+
+      <div class="scale-label label-500">
+        500 ms
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================
+       TIMER
+  ====================== -->
+
+  <div class="timer-container">
+
+    <span
+      id="timer"
+      class="timer">
+      0
+    </span>
+
+    <span class="ms">
+      ms
+    </span>
+
+  </div>
+
+
+  <!-- =====================
+       BOTÃO X
+  ====================== -->
+
+  <div
+    id="buttonX"
+    class="button-x">
+    X
+  </div>
+
+  <div class="touch-help">
+    Segure e solte • Controle, mouse ou toque
+  </div>
+
+
+  <!-- =====================
+       RESULTADO
+  ====================== -->
+
+  <div
+    id="result"
+    class="result">
+    SEGURE X E SOLTE
+  </div>
+
+
+  <div
+    id="releaseInfo"
+    class="release-info">
+  </div>
+
+
+  <div class="window-info">
+    GREEN WINDOW: 605–640 ms
+  </div>
 
 </div>
 
 
 <script>
 
-/* ============================
+/* =============================
    CONFIGURAÇÕES
-============================ */
+============================= */
 
 const GREEN_START = 605;
 const GREEN_END = 640;
@@ -389,314 +550,559 @@ const BAR_MIN = 500;
 const BAR_MAX = 750;
 
 
-/* ============================
-   VARIÁVEIS
-============================ */
+/* =============================
+   ESTADO
+============================= */
 
 let pressing = false;
+
 let startTime = 0;
 
+let inputSource = null;
 
-/* ============================
+
+/* estado do controle */
+
+let gamepadWasPressed = false;
+
+
+/* =============================
    ELEMENTOS
-============================ */
+============================= */
 
 const timer =
-document.getElementById("timer");
+  document.getElementById("timer");
 
 const result =
-document.getElementById("result");
+  document.getElementById("result");
 
 const status =
-document.getElementById("status");
+  document.getElementById("status");
 
 const buttonX =
-document.getElementById("buttonX");
+  document.getElementById("buttonX");
 
 const marker =
-document.getElementById("marker");
+  document.getElementById("marker");
 
 const liveFill =
-document.getElementById("liveFill");
+  document.getElementById("liveFill");
 
 const releaseInfo =
-document.getElementById("releaseInfo");
+  document.getElementById("releaseInfo");
 
 
-/* ============================
-   POSIÇÃO DO MARCADOR
-============================ */
+/* =============================
+   POSIÇÃO NA BARRA
+============================= */
 
 function getPosition(ms) {
 
-let percentage =
-100 -
-(
-(ms - BAR_MIN) /
-(BAR_MAX - BAR_MIN)
-) * 100;
+  let percentage =
+    100 -
+    (
+      (ms - BAR_MIN) /
+      (BAR_MAX - BAR_MIN)
+    ) * 100;
 
-if (percentage < 0)
-percentage = 0;
 
-if (percentage > 100)
-percentage = 100;
+  if (percentage < 0) {
+    percentage = 0;
+  }
 
-return percentage;
 
+  if (percentage > 100) {
+    percentage = 100;
+  }
+
+
+  return percentage;
 }
 
 
-/* ============================
-   MOVIMENTAR MARCADOR
-============================ */
+/* =============================
+   MOVER MARCADOR
+============================= */
 
 function moveMarker(ms) {
 
-const position =
-getPosition(ms);
+  const position =
+    getPosition(ms);
 
-marker.style.top =
-position + "%";
 
-marker.style.display =
-"block";
+  marker.style.top =
+    position + "%";
 
+
+  marker.style.display =
+    "block";
 }
 
 
-/* ============================
+/* =============================
    PREENCHER BARRA
-============================ */
+============================= */
 
 function updateFill(ms) {
 
-/*
-500ms = começo visível
-750ms = barra completa
-*/
+  let fill =
+    (
+      (ms - BAR_MIN) /
+      (BAR_MAX - BAR_MIN)
+    ) * 100;
 
-let fill =
-((ms - BAR_MIN) /
-(BAR_MAX - BAR_MIN)) * 100;
 
-if (fill < 0)
-fill = 0;
+  if (fill < 0) {
+    fill = 0;
+  }
 
-if (fill > 100)
-fill = 100;
 
-liveFill.style.height =
-fill + "%";
+  if (fill > 100) {
+    fill = 100;
+  }
+
+
+  liveFill.style.height =
+    fill + "%";
+}
+
+
+/* =============================
+   COMEÇAR ARREMESSO
+============================= */
+
+function startShot(source) {
+
+  /*
+    impede dois dispositivos
+    iniciarem ao mesmo tempo
+  */
+
+  if (pressing) {
+    return;
+  }
+
+
+  pressing = true;
+
+  inputSource = source;
+
+  startTime =
+    performance.now();
+
+
+  timer.innerText =
+    "0";
+
+
+  buttonX.classList.add(
+    "pressed"
+  );
+
+
+  result.className =
+    "result";
+
+
+  result.innerText =
+    "SEGURANDO...";
+
+
+  releaseInfo.innerText =
+    "";
+
+
+  marker.style.display =
+    "block";
+
+
+  /*
+    começa embaixo
+  */
+
+  moveMarker(BAR_MIN);
+
+  liveFill.style.height =
+    "0%";
+}
+
+
+/* =============================
+   FINALIZAR ARREMESSO
+============================= */
+
+function endShot(source) {
+
+  /*
+    Só o dispositivo que iniciou
+    pode finalizar
+  */
+
+  if (!pressing) {
+    return;
+  }
+
+
+  if (inputSource !== source) {
+    return;
+  }
+
+
+  const duration =
+    performance.now() -
+    startTime;
+
+
+  const ms =
+    Math.round(duration);
+
+
+  pressing = false;
+
+  inputSource = null;
+
+
+  timer.innerText =
+    ms;
+
+
+  moveMarker(ms);
+
+  updateFill(ms);
+
+
+  buttonX.classList.remove(
+    "pressed"
+  );
+
+
+  /* =========================
+     EARLY
+  ========================== */
+
+  if (ms < GREEN_START) {
+
+    result.className =
+      "result early";
+
+
+    result.innerText =
+      "EARLY";
+
+
+    const difference =
+      GREEN_START - ms;
+
+
+    releaseInfo.innerText =
+      difference +
+      " ms antes da janela";
+
+  }
+
+
+  /* =========================
+     GREEN
+  ========================== */
+
+  else if (ms <= GREEN_END) {
+
+    result.className =
+      "result green";
+
+
+    result.innerText =
+      "GREEN!";
+
+
+    const center =
+      (
+        GREEN_START +
+        GREEN_END
+      ) / 2;
+
+
+    const difference =
+      Math.round(
+        Math.abs(
+          ms - center
+        )
+      );
+
+
+    releaseInfo.innerText =
+      "Dentro da janela • " +
+      difference +
+      " ms do centro";
+
+  }
+
+
+  /* =========================
+     LATE
+  ========================== */
+
+  else {
+
+    result.className =
+      "result late";
+
+
+    result.innerText =
+      "LATE";
+
+
+    const difference =
+      ms - GREEN_END;
+
+
+    releaseInfo.innerText =
+      difference +
+      " ms depois da janela";
+
+  }
 
 }
 
 
-/* ============================
-   LOOP
-============================ */
+/* =============================
+   CELULAR + MOUSE
+============================= */
+
+/*
+Pointer Events funcionam com:
+
+- mouse
+- touchscreen
+- caneta
+*/
+
+buttonX.addEventListener(
+  "pointerdown",
+  function(event) {
+
+    event.preventDefault();
+
+
+    /*
+      Captura o ponteiro.
+
+      Isso permite a pessoa
+      tirar o dedo um pouco
+      para fora do botão
+      sem quebrar o release.
+    */
+
+    try {
+
+      buttonX.setPointerCapture(
+        event.pointerId
+      );
+
+    }
+
+    catch (error) {}
+
+
+    startShot("screen");
+
+  }
+);
+
+
+buttonX.addEventListener(
+  "pointerup",
+  function(event) {
+
+    event.preventDefault();
+
+    endShot("screen");
+
+  }
+);
+
+
+buttonX.addEventListener(
+  "pointercancel",
+  function(event) {
+
+    event.preventDefault();
+
+    endShot("screen");
+
+  }
+);
+
+
+/*
+Impede menu de contexto
+ao segurar no celular
+*/
+
+buttonX.addEventListener(
+  "contextmenu",
+  function(event) {
+
+    event.preventDefault();
+
+  }
+);
+
+
+/* =============================
+   GAMEPAD
+============================= */
+
+function checkGamepad() {
+
+  const gamepads =
+    navigator.getGamepads();
+
+
+  let controller = null;
+
+
+  /*
+    Procura qualquer controle
+    conectado
+  */
+
+  for (
+    let i = 0;
+    i < gamepads.length;
+    i++
+  ) {
+
+    if (gamepads[i]) {
+
+      controller =
+        gamepads[i];
+
+      break;
+
+    }
+
+  }
+
+
+  if (controller) {
+
+    status.innerText =
+      "🎮 " +
+      controller.id;
+
+
+    /*
+      Xbox Gamepad API
+
+      A = 0
+      B = 1
+      X = 2
+      Y = 3
+    */
+
+    const xPressed =
+      controller.buttons[2].pressed;
+
+
+    /*
+      acabou de apertar
+    */
+
+    if (
+      xPressed &&
+      !gamepadWasPressed
+    ) {
+
+      startShot("gamepad");
+
+    }
+
+
+    /*
+      acabou de soltar
+    */
+
+    if (
+      !xPressed &&
+      gamepadWasPressed
+    ) {
+
+      endShot("gamepad");
+
+    }
+
+
+    gamepadWasPressed =
+      xPressed;
+
+  }
+
+  else {
+
+    status.innerText =
+      "📱 Toque no X • 🖱️ Mouse • 🎮 Controle";
+
+    gamepadWasPressed =
+      false;
+
+  }
+
+}
+
+
+/* =============================
+   LOOP PRINCIPAL
+============================= */
 
 function update() {
 
-const gamepads =
-navigator.getGamepads();
 
-if (gamepads[0]) {
+  /*
+    Atualiza controle
+  */
 
-const controller =
-gamepads[0];
-
-status.innerText =
-"Controle conectado: " +
-controller.id;
+  checkGamepad();
 
 
-/*
-Xbox:
+  /*
+    Enquanto qualquer entrada
+    estiver segurando,
+    atualiza tudo AO VIVO.
+  */
 
-A = 0
-B = 1
-X = 2
-Y = 3
-*/
+  if (pressing) {
 
-const xPressed =
-controller.buttons[2].pressed;
+    const current =
+      performance.now() -
+      startTime;
 
 
-/* ============================
-   APERTOU
-============================ */
+    const ms =
+      Math.round(current);
 
-if (xPressed && !pressing) {
 
-pressing = true;
+    timer.innerText =
+      ms;
 
-startTime =
-performance.now();
 
-buttonX.classList.add(
-"pressed"
-);
+    moveMarker(ms);
 
-result.className =
-"result";
+    updateFill(ms);
 
-result.innerText =
-"SEGURANDO...";
+  }
 
-releaseInfo.innerText =
-"";
 
-marker.style.display =
-"block";
-
-liveFill.style.height =
-"0%";
+  requestAnimationFrame(
+    update
+  );
 
 }
 
 
-/* ============================
-   SEGURANDO
-============================ */
-
-if (xPressed && pressing) {
-
-const current =
-performance.now() -
-startTime;
-
-const ms =
-Math.round(current);
-
-timer.innerText =
-ms;
-
-
-/*
-Agora a barra reage
-AO VIVO
-*/
-
-moveMarker(ms);
-
-updateFill(ms);
-
-}
-
-
-/* ============================
-   SOLTOU
-============================ */
-
-if (!xPressed && pressing) {
-
-pressing = false;
-
-const duration =
-performance.now() -
-startTime;
-
-const ms =
-Math.round(duration);
-
-timer.innerText =
-ms;
-
-
-/*
-Congela marcador
-na posição final
-*/
-
-moveMarker(ms);
-
-updateFill(ms);
-
-
-/* EARLY */
-
-if (ms < GREEN_START) {
-
-result.className =
-"result early";
-
-result.innerText =
-"EARLY";
-
-const difference =
-GREEN_START - ms;
-
-releaseInfo.innerText =
-difference +
-" ms antes da janela";
-
-}
-
-
-/* GREEN */
-
-else if (ms <= GREEN_END) {
-
-result.className =
-"result green";
-
-result.innerText =
-"GREEN!";
-
-const center =
-(GREEN_START + GREEN_END) / 2;
-
-const difference =
-Math.round(
-Math.abs(ms - center)
-);
-
-releaseInfo.innerText =
-"Dentro da janela • " +
-difference +
-" ms do centro";
-
-}
-
-
-/* LATE */
-
-else {
-
-result.className =
-"result late";
-
-result.innerText =
-"LATE";
-
-const difference =
-ms - GREEN_END;
-
-releaseInfo.innerText =
-difference +
-" ms depois da janela";
-
-}
-
-
-buttonX.classList.remove(
-"pressed"
-);
-
-}
-
-}
-
-requestAnimationFrame(update);
-
-}
-
-
-/* ============================
+/* =============================
    INICIAR
-============================ */
+============================= */
 
 update();
 
