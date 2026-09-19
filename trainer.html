@@ -16,10 +16,8 @@
 body {
   margin: 0;
   min-height: 100vh;
-
   background: #080808;
   color: white;
-
   font-family: Arial, sans-serif;
 
   display: flex;
@@ -33,9 +31,7 @@ body {
 .trainer {
   width: 92%;
   max-width: 700px;
-
   text-align: center;
-
   padding: 20px 0 30px;
 }
 
@@ -52,7 +48,7 @@ h1 {
 
 
 /* ========================================
-   CONFIGURAÇÃO DA JANELA
+   CONFIGURAÇÃO
 ======================================== */
 
 .window-settings {
@@ -60,7 +56,6 @@ h1 {
   max-width: 430px;
 
   margin: 0 auto 25px;
-
   padding: 15px;
 
   background: #111;
@@ -71,41 +66,31 @@ h1 {
 
 .settings-title {
   font-size: 13px;
-
   color: #aaa;
-
   letter-spacing: 1px;
-
   margin-bottom: 12px;
 }
 
 .settings-fields {
   display: flex;
-
   gap: 10px;
-
   justify-content: center;
 }
 
 .field {
   flex: 1;
-
   text-align: left;
 }
 
 .field label {
   display: block;
-
   font-size: 12px;
-
   color: #888;
-
   margin-bottom: 5px;
 }
 
 .field input {
   width: 100%;
-
   padding: 10px;
 
   background: #080808;
@@ -127,19 +112,22 @@ h1 {
   border-color: #00ff73;
 }
 
-.apply-button {
+
+/* ========================================
+   BOTÕES
+======================================== */
+
+.apply-button,
+.hide-button {
+
   width: 100%;
 
   margin-top: 12px;
 
   padding: 11px;
 
-  background: #00c85a;
-
   border: none;
   border-radius: 7px;
-
-  color: #001b0c;
 
   font-size: 14px;
   font-weight: 900;
@@ -147,17 +135,31 @@ h1 {
   cursor: pointer;
 }
 
-.apply-button:active {
+.apply-button {
+  background: #00c85a;
+  color: #001b0c;
+}
+
+.hide-button {
+  background: #252525;
+  color: white;
+  border: 1px solid #444;
+}
+
+.hide-button.active {
+  background: #8b1515;
+  border-color: #ff3535;
+}
+
+.apply-button:active,
+.hide-button:active {
   transform: scale(0.98);
 }
 
 .settings-message {
   margin-top: 8px;
-
   min-height: 18px;
-
   color: #888;
-
   font-size: 12px;
 }
 
@@ -167,14 +169,33 @@ h1 {
 ======================================== */
 
 .timing-area {
+
   display: flex;
   flex-direction: column;
   align-items: center;
 
   margin-top: 10px;
+
+  transition:
+    opacity 0.2s,
+    max-height 0.3s;
 }
 
+
+/*
+Quando o modo memória estiver ativo,
+a área da barra desaparece.
+*/
+
+.timing-area.hidden {
+
+  display: none;
+
+}
+
+
 .timing-title {
+
   font-size: 14px;
 
   color: #aaa;
@@ -182,9 +203,11 @@ h1 {
   margin-bottom: 12px;
 
   letter-spacing: 2px;
+
 }
 
 .vertical-wrapper {
+
   position: relative;
 
   width: 210px;
@@ -192,9 +215,11 @@ h1 {
 
   display: flex;
   justify-content: center;
+
 }
 
 .timing-bar {
+
   position: relative;
 
   width: 48px;
@@ -206,14 +231,14 @@ h1 {
   border-radius: 10px;
 
   overflow: hidden;
+
 }
 
 
-/* ========================================
-   PREENCHIMENTO AO VIVO
-======================================== */
+/* preenchimento */
 
 .live-fill {
+
   position: absolute;
 
   bottom: 0;
@@ -225,20 +250,18 @@ h1 {
   background: rgba(255,255,255,0.20);
 
   z-index: 1;
+
 }
 
 
-/* ========================================
-   GREEN WINDOW
-
-   A posição agora é calculada
-   automaticamente pelo JavaScript.
-======================================== */
+/* GREEN */
 
 .green-window {
+
   position: absolute;
 
   left: 0;
+
   width: 100%;
 
   background: #00d965;
@@ -247,14 +270,14 @@ h1 {
     0 0 14px rgba(0,255,115,0.7);
 
   z-index: 2;
+
 }
 
 
-/* ========================================
-   MARCADOR
-======================================== */
+/* MARCADOR */
 
 .marker {
+
   position: absolute;
 
   left: 65px;
@@ -274,9 +297,11 @@ h1 {
   z-index: 20;
 
   pointer-events: none;
+
 }
 
 .marker::before {
+
   content: "";
 
   position: absolute;
@@ -289,14 +314,16 @@ h1 {
   border-top: 6px solid transparent;
   border-bottom: 6px solid transparent;
   border-right: 9px solid white;
+
 }
 
 
 /* ========================================
-   NÚMEROS
+   ESCALA
 ======================================== */
 
 .scale-label {
+
   position: absolute;
 
   left: 140px;
@@ -304,32 +331,42 @@ h1 {
   font-size: 13px;
 
   transform: translateY(-50%);
+
 }
 
 .label-max {
+
   top: 0%;
   color: #777;
+
 }
 
 .label-green-end {
+
   color: #00ff73;
+
 }
 
 .label-green-start {
+
   color: #00ff73;
+
 }
 
 .label-zero {
+
   top: 100%;
   color: #777;
+
 }
 
 
 /* ========================================
-   EARLY / GREEN / LATE
+   ZONAS
 ======================================== */
 
 .zone-label {
+
   position: absolute;
 
   right: 135px;
@@ -338,6 +375,7 @@ h1 {
   font-weight: bold;
 
   transform: translateY(-50%);
+
 }
 
 .late-label {
@@ -377,6 +415,7 @@ h1 {
 ======================================== */
 
 .button-x {
+
   width: 110px;
   height: 110px;
 
@@ -405,21 +444,26 @@ h1 {
   transition:
     transform 0.05s,
     box-shadow 0.05s;
+
 }
 
 .button-x.pressed {
+
   transform: scale(0.86);
 
   box-shadow:
     0 0 35px rgba(18,102,211,0.9);
+
 }
 
 .touch-help {
+
   font-size: 13px;
 
   color: #777;
 
   margin-bottom: 10px;
+
 }
 
 
@@ -428,12 +472,14 @@ h1 {
 ======================================== */
 
 .result {
+
   font-size: 38px;
   font-weight: 900;
 
   margin-top: 12px;
 
   min-height: 48px;
+
 }
 
 .early {
@@ -449,6 +495,7 @@ h1 {
 }
 
 .release-info {
+
   margin-top: 6px;
 
   font-size: 17px;
@@ -456,14 +503,17 @@ h1 {
   color: #aaa;
 
   min-height: 24px;
+
 }
 
 .window-info {
+
   margin-top: 12px;
 
   color: #777;
 
   font-size: 14px;
+
 }
 
 
@@ -502,21 +552,17 @@ h1 {
     height: 280px;
   }
 
-  .timer-container {
-    margin-top: 16px;
-  }
-
   .timer {
     font-size: 55px;
   }
 
   .button-x {
+
     width: 105px;
     height: 105px;
 
     font-size: 48px;
 
-    margin-top: 12px;
   }
 
   .result {
@@ -534,257 +580,292 @@ h1 {
 <div class="trainer">
 
 
-  <h1>
-    JUMPSHOT TIMING TRAINER
-  </h1>
+<h1>
+JUMPSHOT TIMING TRAINER
+</h1>
 
 
-  <div id="status" class="status">
-    🎮 Controle ou 📱 toque no X
-  </div>
+<div
+id="status"
+class="status">
 
+🎮 Controle ou 📱 toque no X
 
-  <!-- =================================
-       CONFIGURAÇÃO DA JANELA
-  ================================== -->
+</div>
 
-  <div class="window-settings">
 
-    <div class="settings-title">
-      CONFIGURE SUA GREEN WINDOW
-    </div>
+<!-- =================================
+     CONFIGURAÇÃO
+================================= -->
 
+<div class="window-settings">
 
-    <div class="settings-fields">
 
+<div class="settings-title">
 
-      <div class="field">
+CONFIGURE SUA GREEN WINDOW
 
-        <label for="greenStartInput">
-          INÍCIO DO GREEN (ms)
-        </label>
+</div>
 
-        <input
-          id="greenStartInput"
-          type="number"
-          inputmode="numeric"
-          min="0"
-          value="605">
 
-      </div>
+<div class="settings-fields">
 
 
-      <div class="field">
+<div class="field">
 
-        <label for="greenEndInput">
-          FIM DO GREEN (ms)
-        </label>
+<label for="greenStartInput">
 
-        <input
-          id="greenEndInput"
-          type="number"
-          inputmode="numeric"
-          min="1"
-          value="640">
+INÍCIO DO GREEN (ms)
 
-      </div>
+</label>
 
+<input
+id="greenStartInput"
+type="number"
+inputmode="numeric"
+min="0"
+value="605">
 
-    </div>
+</div>
 
 
-    <button
-      id="applyWindow"
-      class="apply-button"
-      type="button">
+<div class="field">
 
-      APLICAR JANELA
+<label for="greenEndInput">
 
-    </button>
+FIM DO GREEN (ms)
 
+</label>
 
-    <div
-      id="settingsMessage"
-      class="settings-message">
+<input
+id="greenEndInput"
+type="number"
+inputmode="numeric"
+min="1"
+value="640">
 
-      Janela atual: 605–640 ms
+</div>
 
-    </div>
 
-  </div>
+</div>
 
 
-  <!-- =================================
-       BARRA
-  ================================== -->
+<button
+id="applyWindow"
+class="apply-button"
+type="button">
 
-  <div class="timing-area">
+APLICAR JANELA
 
-    <div class="timing-title">
-      RELEASE TIMING
-    </div>
+</button>
 
 
-    <div class="vertical-wrapper">
+<!-- NOVO BOTÃO -->
 
+<button
+id="hideBarButton"
+class="hide-button"
+type="button">
 
-      <div
-        id="lateLabel"
-        class="zone-label late-label">
+👁 OCULTAR BARRA
 
-        LATE
+</button>
 
-      </div>
 
+<div
+id="settingsMessage"
+class="settings-message">
 
-      <div
-        id="greenLabel"
-        class="zone-label green-label">
+Janela atual: 605–640 ms
 
-        GREEN
+</div>
 
-      </div>
 
+</div>
 
-      <div
-        id="earlyLabel"
-        class="zone-label early-label">
 
-        EARLY
+<!-- =================================
+     BARRA
+================================= -->
 
-      </div>
+<div
+id="timingArea"
+class="timing-area">
 
 
-      <div class="timing-bar">
+<div class="timing-title">
 
-        <div
-          id="liveFill"
-          class="live-fill">
-        </div>
+RELEASE TIMING
 
+</div>
 
-        <div
-          id="greenWindow"
-          class="green-window">
-        </div>
 
-      </div>
+<div class="vertical-wrapper">
 
 
-      <div
-        id="marker"
-        class="marker">
-      </div>
+<div
+id="lateLabel"
+class="zone-label late-label">
 
+LATE
 
-      <div
-        id="maxLabel"
-        class="scale-label label-max">
+</div>
 
-        750 ms
 
-      </div>
+<div
+id="greenLabel"
+class="zone-label green-label">
 
+GREEN
 
-      <div
-        id="greenEndLabel"
-        class="scale-label label-green-end">
+</div>
 
-        640
 
-      </div>
+<div
+id="earlyLabel"
+class="zone-label early-label">
 
+EARLY
 
-      <div
-        id="greenStartLabel"
-        class="scale-label label-green-start">
+</div>
 
-        605
 
-      </div>
+<div class="timing-bar">
 
 
-      <div
-        class="scale-label label-zero">
+<div
+id="liveFill"
+class="live-fill">
+</div>
 
-        0 ms
 
-      </div>
+<div
+id="greenWindow"
+class="green-window">
+</div>
 
 
-    </div>
+</div>
 
-  </div>
 
+<div
+id="marker"
+class="marker">
+</div>
 
-  <!-- =================================
-       TIMER
-  ================================== -->
 
-  <div class="timer-container">
+<div
+id="maxLabel"
+class="scale-label label-max">
 
-    <span
-      id="timer"
-      class="timer">
+750 ms
 
-      0
+</div>
 
-    </span>
 
+<div
+id="greenEndLabel"
+class="scale-label label-green-end">
 
-    <span class="ms">
-      ms
-    </span>
+640
 
-  </div>
+</div>
 
 
-  <!-- =================================
-       BOTÃO X
-  ================================== -->
+<div
+id="greenStartLabel"
+class="scale-label label-green-start">
 
-  <div
-    id="buttonX"
-    class="button-x">
+605
 
-    X
+</div>
 
-  </div>
 
+<div
+class="scale-label label-zero">
 
-  <div class="touch-help">
+0 ms
 
-    Segure e solte • Controle, mouse ou toque
+</div>
 
-  </div>
 
+</div>
 
-  <!-- =================================
-       RESULTADO
-  ================================== -->
+</div>
 
-  <div
-    id="result"
-    class="result">
 
-    SEGURE X E SOLTE
+<!-- =================================
+     TIMER
+================================= -->
 
-  </div>
+<div class="timer-container">
 
 
-  <div
-    id="releaseInfo"
-    class="release-info">
-  </div>
+<span
+id="timer"
+class="timer">
 
+0
 
-  <div
-    id="windowInfo"
-    class="window-info">
+</span>
 
-    GREEN WINDOW: 605–640 ms
 
-  </div>
+<span class="ms">
+
+ms
+
+</span>
+
+
+</div>
+
+
+<!-- =================================
+     BOTÃO X
+================================= -->
+
+<div
+id="buttonX"
+class="button-x">
+
+X
+
+</div>
+
+
+<div class="touch-help">
+
+Segure e solte • Controle, mouse ou toque
+
+</div>
+
+
+<!-- =================================
+     RESULTADO
+================================= -->
+
+<div
+id="result"
+class="result">
+
+SEGURE X E SOLTE
+
+</div>
+
+
+<div
+id="releaseInfo"
+class="release-info">
+</div>
+
+
+<div
+id="windowInfo"
+class="window-info">
+
+GREEN WINDOW: 605–640 ms
+
+</div>
 
 
 </div>
@@ -793,27 +874,14 @@ h1 {
 <script>
 
 /* ========================================
-   CONFIGURAÇÃO INICIAL
+   CONFIGURAÇÃO
 ======================================== */
 
 let GREEN_START = 605;
 
 let GREEN_END = 640;
 
-
-/*
-  A barra sempre começa em 0.
-*/
-
 const BAR_MIN = 0;
-
-
-/*
-  Escala inicial.
-
-  Se a janela passar desse valor,
-  ela aumenta automaticamente.
-*/
 
 let BAR_MAX = 750;
 
@@ -830,225 +898,220 @@ let inputSource = null;
 
 let gamepadWasPressed = false;
 
+let barHidden = false;
+
 
 /* ========================================
    ELEMENTOS
 ======================================== */
 
 const timer =
-  document.getElementById("timer");
+document.getElementById("timer");
 
 const result =
-  document.getElementById("result");
+document.getElementById("result");
 
 const status =
-  document.getElementById("status");
+document.getElementById("status");
 
 const buttonX =
-  document.getElementById("buttonX");
+document.getElementById("buttonX");
 
 const marker =
-  document.getElementById("marker");
+document.getElementById("marker");
 
 const liveFill =
-  document.getElementById("liveFill");
+document.getElementById("liveFill");
 
 const releaseInfo =
-  document.getElementById("releaseInfo");
+document.getElementById("releaseInfo");
 
 const greenWindow =
-  document.getElementById("greenWindow");
+document.getElementById("greenWindow");
 
 const greenStartInput =
-  document.getElementById("greenStartInput");
+document.getElementById("greenStartInput");
 
 const greenEndInput =
-  document.getElementById("greenEndInput");
+document.getElementById("greenEndInput");
 
 const applyWindow =
-  document.getElementById("applyWindow");
+document.getElementById("applyWindow");
 
 const settingsMessage =
-  document.getElementById("settingsMessage");
+document.getElementById("settingsMessage");
 
 const windowInfo =
-  document.getElementById("windowInfo");
+document.getElementById("windowInfo");
 
 const maxLabel =
-  document.getElementById("maxLabel");
+document.getElementById("maxLabel");
 
 const greenStartLabel =
-  document.getElementById("greenStartLabel");
+document.getElementById("greenStartLabel");
 
 const greenEndLabel =
-  document.getElementById("greenEndLabel");
+document.getElementById("greenEndLabel");
 
 const earlyLabel =
-  document.getElementById("earlyLabel");
+document.getElementById("earlyLabel");
 
 const greenLabel =
-  document.getElementById("greenLabel");
+document.getElementById("greenLabel");
 
 const lateLabel =
-  document.getElementById("lateLabel");
+document.getElementById("lateLabel");
+
+const timingArea =
+document.getElementById("timingArea");
+
+const hideBarButton =
+document.getElementById("hideBarButton");
 
 
 /* ========================================
-   CONVERTER MS EM POSIÇÃO
+   OCULTAR / MOSTRAR BARRA
+======================================== */
+
+hideBarButton.addEventListener(
+"click",
+function() {
+
+barHidden = !barHidden;
+
+
+if (barHidden) {
+
+timingArea.classList.add(
+"hidden"
+);
+
+hideBarButton.classList.add(
+"active"
+);
+
+hideBarButton.innerText =
+"👁 MOSTRAR BARRA";
+
+}
+
+else {
+
+timingArea.classList.remove(
+"hidden"
+);
+
+hideBarButton.classList.remove(
+"active"
+);
+
+hideBarButton.innerText =
+"👁 OCULTAR BARRA";
+
+}
+
+}
+);
+
+
+/* ========================================
+   POSIÇÃO
 ======================================== */
 
 function getPosition(ms) {
 
-  let percentage =
-    100 -
-    (
-      (ms - BAR_MIN) /
-      (BAR_MAX - BAR_MIN)
-    ) * 100;
+let percentage =
+100 -
+(
+(ms - BAR_MIN) /
+(BAR_MAX - BAR_MIN)
+) * 100;
 
+if (percentage < 0)
+percentage = 0;
 
-  if (percentage < 0) {
-    percentage = 0;
-  }
+if (percentage > 100)
+percentage = 100;
 
-
-  if (percentage > 100) {
-    percentage = 100;
-  }
-
-
-  return percentage;
+return percentage;
 
 }
 
 
 /* ========================================
-   ATUALIZAR DESENHO DA GREEN WINDOW
+   DESENHAR GREEN WINDOW
 ======================================== */
 
 function updateGreenWindow() {
 
+const endPosition =
+getPosition(GREEN_END);
 
-  /*
-    posição do final do green
-    na barra
-  */
+const startPosition =
+getPosition(GREEN_START);
 
-  const endPosition =
-    getPosition(GREEN_END);
-
-
-  /*
-    posição do início
-  */
-
-  const startPosition =
-    getPosition(GREEN_START);
+const windowHeight =
+startPosition - endPosition;
 
 
-  /*
-    altura da faixa
-  */
+greenWindow.style.top =
+endPosition + "%";
 
-  const windowHeight =
-    startPosition -
-    endPosition;
+greenWindow.style.height =
+windowHeight + "%";
 
 
-  greenWindow.style.top =
-    endPosition + "%";
+greenEndLabel.style.top =
+endPosition + "%";
+
+greenEndLabel.innerText =
+GREEN_END;
 
 
-  greenWindow.style.height =
-    windowHeight + "%";
+greenStartLabel.style.top =
+startPosition + "%";
+
+greenStartLabel.innerText =
+GREEN_START;
 
 
-  /* ===============================
-     NÚMEROS
-  ================================ */
-
-  greenEndLabel.style.top =
-    endPosition + "%";
+maxLabel.innerText =
+BAR_MAX + " ms";
 
 
-  greenEndLabel.innerText =
-    GREEN_END;
+const greenCenter =
+(endPosition + startPosition) / 2;
 
 
-  greenStartLabel.style.top =
-    startPosition + "%";
+greenLabel.style.top =
+greenCenter + "%";
 
 
-  greenStartLabel.innerText =
-    GREEN_START;
+lateLabel.style.top =
+(endPosition / 2) + "%";
 
 
-  maxLabel.innerText =
-    BAR_MAX + " ms";
+earlyLabel.style.top =
+(
+startPosition +
+(100 - startPosition) / 2
+) + "%";
 
 
-  /* ===============================
-     POSIÇÃO DOS TEXTOS
-  ================================ */
+windowInfo.innerText =
+"GREEN WINDOW: " +
+GREEN_START +
+"–" +
+GREEN_END +
+" ms";
 
 
-  /*
-    GREEN fica no centro da janela
-  */
-
-  const greenCenter =
-    (
-      endPosition +
-      startPosition
-    ) / 2;
-
-
-  greenLabel.style.top =
-    greenCenter + "%";
-
-
-  /*
-    LATE fica entre o topo
-    e o final da janela
-  */
-
-  lateLabel.style.top =
-    (endPosition / 2) + "%";
-
-
-  /*
-    EARLY fica entre o início
-    da janela e o fundo
-  */
-
-  earlyLabel.style.top =
-    (
-      startPosition +
-      (
-        100 -
-        startPosition
-      ) / 2
-    ) + "%";
-
-
-  /* ===============================
-     TEXTOS
-  ================================ */
-
-  windowInfo.innerText =
-    "GREEN WINDOW: " +
-    GREEN_START +
-    "–" +
-    GREEN_END +
-    " ms";
-
-
-  settingsMessage.innerText =
-    "Janela atual: " +
-    GREEN_START +
-    "–" +
-    GREEN_END +
-    " ms";
+settingsMessage.innerText =
+"Janela atual: " +
+GREEN_START +
+"–" +
+GREEN_END +
+" ms";
 
 }
 
@@ -1059,472 +1122,381 @@ function updateGreenWindow() {
 
 function calculateBarMax() {
 
+if (GREEN_END <= 700) {
 
-  /*
-    Se o final do green for até 700,
-    mantém a escala clássica de 750.
-  */
+BAR_MAX = 750;
 
-  if (GREEN_END <= 700) {
+return;
 
-    BAR_MAX = 750;
-
-    return;
-
-  }
+}
 
 
-  /*
-    Acima disso, adicionamos espaço
-    depois da janela.
-
-    Exemplo:
-
-    Green termina em 780
-    escala vira aproximadamente 900.
-  */
-
-  const desiredMax =
-    GREEN_END + 100;
+const desiredMax =
+GREEN_END + 100;
 
 
-  /*
-    arredonda para cima
-    de 50 em 50ms
-  */
-
-  BAR_MAX =
-    Math.ceil(
-      desiredMax / 50
-    ) * 50;
+BAR_MAX =
+Math.ceil(
+desiredMax / 50
+) * 50;
 
 }
 
 
 /* ========================================
-   APLICAR NOVA JANELA
+   APLICAR JANELA
 ======================================== */
 
 function applyNewWindow() {
 
+const newStart =
+Number(
+greenStartInput.value
+);
 
-  const newStart =
-    Number(
-      greenStartInput.value
-    );
-
-
-  const newEnd =
-    Number(
-      greenEndInput.value
-    );
+const newEnd =
+Number(
+greenEndInput.value
+);
 
 
-  /* ===============================
-     VALIDAÇÕES
-  ================================ */
+if (
+!Number.isFinite(newStart) ||
+!Number.isFinite(newEnd)
+) {
 
-  if (
-    !Number.isFinite(newStart) ||
-    !Number.isFinite(newEnd)
-  ) {
+settingsMessage.innerText =
+"Digite valores válidos.";
 
-    settingsMessage.innerText =
-      "Digite valores válidos.";
-
-    return;
-
-  }
-
-
-  if (
-    newStart < 0 ||
-    newEnd <= 0
-  ) {
-
-    settingsMessage.innerText =
-      "Os valores precisam ser positivos.";
-
-    return;
-
-  }
-
-
-  if (
-    newStart >= newEnd
-  ) {
-
-    settingsMessage.innerText =
-      "O início precisa ser menor que o fim.";
-
-    return;
-
-  }
-
-
-  /*
-    Evita valores absurdos
-    que deixariam a interface inutilizável.
-  */
-
-  if (newEnd > 3000) {
-
-    settingsMessage.innerText =
-      "Use uma janela abaixo de 3000 ms.";
-
-    return;
-
-  }
-
-
-  /* ===============================
-     APLICAR
-  ================================ */
-
-  GREEN_START =
-    Math.round(newStart);
-
-
-  GREEN_END =
-    Math.round(newEnd);
-
-
-  calculateBarMax();
-
-
-  updateGreenWindow();
-
-
-  /*
-    Limpa tentativa anterior
-  */
-
-  timer.innerText =
-    "0";
-
-
-  result.className =
-    "result";
-
-
-  result.innerText =
-    "SEGURE X E SOLTE";
-
-
-  releaseInfo.innerText =
-    "";
-
-
-  marker.style.display =
-    "none";
-
-
-  liveFill.style.height =
-    "0%";
+return;
 
 }
 
 
-/* ========================================
-   BOTÃO APLICAR
-======================================== */
+if (
+newStart < 0 ||
+newEnd <= 0
+) {
+
+settingsMessage.innerText =
+"Os valores precisam ser positivos.";
+
+return;
+
+}
+
+
+if (newStart >= newEnd) {
+
+settingsMessage.innerText =
+"O início precisa ser menor que o fim.";
+
+return;
+
+}
+
+
+if (newEnd > 3000) {
+
+settingsMessage.innerText =
+"Use uma janela abaixo de 3000 ms.";
+
+return;
+
+}
+
+
+GREEN_START =
+Math.round(newStart);
+
+GREEN_END =
+Math.round(newEnd);
+
+
+calculateBarMax();
+
+updateGreenWindow();
+
+
+timer.innerText =
+"0";
+
+result.className =
+"result";
+
+result.innerText =
+"SEGURE X E SOLTE";
+
+releaseInfo.innerText =
+"";
+
+marker.style.display =
+"none";
+
+liveFill.style.height =
+"0%";
+
+}
+
 
 applyWindow.addEventListener(
-  "click",
-  applyNewWindow
+"click",
+applyNewWindow
 );
 
 
-/*
-  ENTER também aplica
-*/
-
 greenStartInput.addEventListener(
-  "keydown",
-  function(event) {
+"keydown",
+function(event) {
 
-    if (event.key === "Enter") {
+if (event.key === "Enter") {
 
-      applyNewWindow();
+applyNewWindow();
 
-    }
+}
 
-  }
+}
 );
 
 
 greenEndInput.addEventListener(
-  "keydown",
-  function(event) {
+"keydown",
+function(event) {
 
-    if (event.key === "Enter") {
+if (event.key === "Enter") {
 
-      applyNewWindow();
+applyNewWindow();
 
-    }
+}
 
-  }
+}
 );
 
 
 /* ========================================
-   MOVER MARCADOR
+   MARCADOR
 ======================================== */
 
 function moveMarker(ms) {
 
+const position =
+getPosition(ms);
 
-  const position =
-    getPosition(ms);
+marker.style.top =
+position + "%";
 
-
-  marker.style.top =
-    position + "%";
-
-
-  marker.style.display =
-    "block";
+marker.style.display =
+"block";
 
 }
 
 
 /* ========================================
-   PREENCHER BARRA
+   PREENCHIMENTO
 ======================================== */
 
 function updateFill(ms) {
 
+let fill =
+(
+(ms - BAR_MIN) /
+(BAR_MAX - BAR_MIN)
+) * 100;
 
-  let fill =
-    (
-      (ms - BAR_MIN) /
-      (BAR_MAX - BAR_MIN)
-    ) * 100;
+if (fill < 0)
+fill = 0;
 
+if (fill > 100)
+fill = 100;
 
-  if (fill < 0) {
-    fill = 0;
-  }
-
-
-  if (fill > 100) {
-    fill = 100;
-  }
-
-
-  liveFill.style.height =
-    fill + "%";
+liveFill.style.height =
+fill + "%";
 
 }
 
 
 /* ========================================
-   COMEÇAR ARREMESSO
+   COMEÇAR
 ======================================== */
 
 function startShot(source) {
 
-
-  if (pressing) {
-    return;
-  }
+if (pressing)
+return;
 
 
-  /*
-    Se estiver digitando nos campos,
-    não inicia arremesso.
-  */
-
-  const activeElement =
-    document.activeElement;
+const activeElement =
+document.activeElement;
 
 
-  if (
-    activeElement === greenStartInput ||
-    activeElement === greenEndInput
-  ) {
+if (
+activeElement === greenStartInput ||
+activeElement === greenEndInput
+) {
 
-    activeElement.blur();
+activeElement.blur();
 
-  }
-
-
-  pressing = true;
-
-  inputSource = source;
+}
 
 
-  startTime =
-    performance.now();
+pressing = true;
+
+inputSource =
+source;
+
+startTime =
+performance.now();
 
 
-  timer.innerText =
-    "0";
+timer.innerText =
+"0";
 
 
-  buttonX.classList.add(
-    "pressed"
-  );
+buttonX.classList.add(
+"pressed"
+);
 
 
-  result.className =
-    "result";
+result.className =
+"result";
+
+result.innerText =
+"SEGURANDO...";
 
 
-  result.innerText =
-    "SEGURANDO...";
+releaseInfo.innerText =
+"";
 
 
-  releaseInfo.innerText =
-    "";
+marker.style.display =
+"block";
 
 
-  marker.style.display =
-    "block";
+moveMarker(0);
 
 
-  moveMarker(0);
-
-
-  liveFill.style.height =
-    "0%";
+liveFill.style.height =
+"0%";
 
 }
 
 
 /* ========================================
-   FINALIZAR ARREMESSO
+   FINALIZAR
 ======================================== */
 
 function endShot(source) {
 
+if (!pressing)
+return;
 
-  if (!pressing) {
-    return;
-  }
-
-
-  if (inputSource !== source) {
-    return;
-  }
+if (inputSource !== source)
+return;
 
 
-  const duration =
-    performance.now() -
-    startTime;
+const duration =
+performance.now() -
+startTime;
 
 
-  const ms =
-    Math.round(duration);
+const ms =
+Math.round(duration);
 
 
-  pressing = false;
+pressing =
+false;
 
-  inputSource = null;
-
-
-  timer.innerText =
-    ms;
+inputSource =
+null;
 
 
-  moveMarker(ms);
-
-  updateFill(ms);
-
-
-  buttonX.classList.remove(
-    "pressed"
-  );
+timer.innerText =
+ms;
 
 
-  /* ===============================
-     EARLY
-  ================================ */
+moveMarker(ms);
 
-  if (ms < GREEN_START) {
+updateFill(ms);
 
 
-    result.className =
-      "result early";
+buttonX.classList.remove(
+"pressed"
+);
 
 
-    result.innerText =
-      "EARLY";
+/* EARLY */
+
+if (ms < GREEN_START) {
+
+result.className =
+"result early";
+
+result.innerText =
+"EARLY";
 
 
-    const difference =
-      GREEN_START - ms;
+const difference =
+GREEN_START - ms;
 
 
-    releaseInfo.innerText =
-      difference +
-      " ms antes da janela";
+releaseInfo.innerText =
+difference +
+" ms antes da janela";
 
-  }
-
-
-  /* ===============================
-     GREEN
-  ================================ */
-
-  else if (ms <= GREEN_END) {
+}
 
 
-    result.className =
-      "result green";
+/* GREEN */
+
+else if (ms <= GREEN_END) {
+
+result.className =
+"result green";
+
+result.innerText =
+"GREEN!";
 
 
-    result.innerText =
-      "GREEN!";
+const center =
+(GREEN_START + GREEN_END) / 2;
 
 
-    const center =
-      (
-        GREEN_START +
-        GREEN_END
-      ) / 2;
+const difference =
+Math.round(
+Math.abs(
+ms - center
+)
+);
 
 
-    const difference =
-      Math.round(
-        Math.abs(
-          ms - center
-        )
-      );
+releaseInfo.innerText =
+"Dentro da janela • " +
+difference +
+" ms do centro";
+
+}
 
 
-    releaseInfo.innerText =
-      "Dentro da janela • " +
-      difference +
-      " ms do centro";
+/* LATE */
 
-  }
+else {
 
+result.className =
+"result late";
 
-  /* ===============================
-     LATE
-  ================================ */
-
-  else {
+result.innerText =
+"LATE";
 
 
-    result.className =
-      "result late";
+const difference =
+ms - GREEN_END;
 
 
-    result.innerText =
-      "LATE";
+releaseInfo.innerText =
+difference +
+" ms depois da janela";
 
-
-    const difference =
-      ms - GREEN_END;
-
-
-    releaseInfo.innerText =
-      difference +
-      " ms depois da janela";
-
-  }
+}
 
 }
 
@@ -1534,66 +1506,66 @@ function endShot(source) {
 ======================================== */
 
 buttonX.addEventListener(
-  "pointerdown",
-  function(event) {
+"pointerdown",
+function(event) {
+
+event.preventDefault();
 
 
-    event.preventDefault();
+try {
+
+buttonX.setPointerCapture(
+event.pointerId
+);
+
+}
+
+catch (error) {}
 
 
-    try {
+startShot(
+"screen"
+);
 
-      buttonX.setPointerCapture(
-        event.pointerId
-      );
-
-    }
-
-    catch (error) {}
-
-
-    startShot("screen");
-
-  }
+}
 );
 
 
 buttonX.addEventListener(
-  "pointerup",
-  function(event) {
+"pointerup",
+function(event) {
 
+event.preventDefault();
 
-    event.preventDefault();
+endShot(
+"screen"
+);
 
-
-    endShot("screen");
-
-  }
+}
 );
 
 
 buttonX.addEventListener(
-  "pointercancel",
-  function(event) {
+"pointercancel",
+function(event) {
 
+event.preventDefault();
 
-    event.preventDefault();
+endShot(
+"screen"
+);
 
-
-    endShot("screen");
-
-  }
+}
 );
 
 
 buttonX.addEventListener(
-  "contextmenu",
-  function(event) {
+"contextmenu",
+function(event) {
 
+event.preventDefault();
 
-    event.preventDefault();
-
-  }
+}
 );
 
 
@@ -1603,164 +1575,130 @@ buttonX.addEventListener(
 
 function checkGamepad() {
 
-
-  const gamepads =
-    navigator.getGamepads();
-
-
-  let controller =
-    null;
+const gamepads =
+navigator.getGamepads();
 
 
-  for (
-    let i = 0;
-    i < gamepads.length;
-    i++
-  ) {
+let controller =
+null;
 
 
-    if (gamepads[i]) {
+for (
+let i = 0;
+i < gamepads.length;
+i++
+) {
+
+if (gamepads[i]) {
+
+controller =
+gamepads[i];
+
+break;
+
+}
+
+}
 
 
-      controller =
-        gamepads[i];
+if (controller) {
+
+status.innerText =
+"🎮 " +
+controller.id;
 
 
-      break;
-
-    }
-
-  }
+const xPressed =
+controller.buttons[2].pressed;
 
 
-  if (controller) {
+if (
+xPressed &&
+!gamepadWasPressed
+) {
+
+startShot(
+"gamepad"
+);
+
+}
 
 
-    status.innerText =
-      "🎮 " +
-      controller.id;
+if (
+!xPressed &&
+gamepadWasPressed
+) {
+
+endShot(
+"gamepad"
+);
+
+}
 
 
-    /*
-      Xbox:
+gamepadWasPressed =
+xPressed;
 
-      A = 0
-      B = 1
-      X = 2
-      Y = 3
-    */
+}
 
+else {
 
-    const xPressed =
-      controller.buttons[2].pressed;
+status.innerText =
+"📱 Toque no X • 🖱️ Mouse • 🎮 Controle";
 
+gamepadWasPressed =
+false;
 
-    if (
-      xPressed &&
-      !gamepadWasPressed
-    ) {
-
-
-      startShot(
-        "gamepad"
-      );
-
-    }
-
-
-    if (
-      !xPressed &&
-      gamepadWasPressed
-    ) {
-
-
-      endShot(
-        "gamepad"
-      );
-
-    }
-
-
-    gamepadWasPressed =
-      xPressed;
-
-  }
-
-
-  else {
-
-
-    status.innerText =
-      "📱 Toque no X • 🖱️ Mouse • 🎮 Controle";
-
-
-    gamepadWasPressed =
-      false;
-
-  }
+}
 
 }
 
 
 /* ========================================
-   LOOP AO VIVO
+   LOOP
 ======================================== */
 
 function update() {
 
-
-  checkGamepad();
-
-
-  if (pressing) {
+checkGamepad();
 
 
-    const current =
-      performance.now() -
-      startTime;
+if (pressing) {
+
+const current =
+performance.now() -
+startTime;
 
 
-    const ms =
-      Math.round(current);
+const ms =
+Math.round(current);
 
 
-    timer.innerText =
-      ms;
+timer.innerText =
+ms;
 
 
-    moveMarker(ms);
+moveMarker(ms);
+
+updateFill(ms);
+
+}
 
 
-    updateFill(ms);
-
-  }
-
-
-  requestAnimationFrame(
-    update
-  );
+requestAnimationFrame(
+update
+);
 
 }
 
 
 /* ========================================
-   INICIALIZAÇÃO
+   INICIAR
 ======================================== */
-
-
-/*
-  Desenha a janela inicial
-  605–640.
-*/
 
 calculateBarMax();
 
 updateGreenWindow();
-
-
-/*
-  Começa o loop.
-*/
 
 update();
 
