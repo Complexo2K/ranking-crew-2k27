@@ -18,11 +18,9 @@ body {
     background: #080808;
     color: white;
     font-family: Arial, sans-serif;
-
     display: flex;
     align-items: flex-start;
     justify-content: center;
-
     user-select: none;
     -webkit-user-select: none;
 }
@@ -55,7 +53,6 @@ h1 {
     max-width: 460px;
     margin: 0 auto 24px;
     padding: 15px;
-
     background: #111;
     border: 1px solid #333;
     border-radius: 12px;
@@ -88,16 +85,13 @@ h1 {
 .field input {
     width: 100%;
     padding: 10px;
-
     background: #080808;
     border: 1px solid #444;
     border-radius: 7px;
-
     color: white;
     font-size: 18px;
     font-weight: bold;
     text-align: center;
-
     outline: none;
 }
 
@@ -107,19 +101,16 @@ h1 {
 
 
 /* ========================================
-   BOTÕES DE CONFIGURAÇÃO
+   BOTÕES
 ======================================== */
 
 .control-button {
     width: 100%;
     margin-top: 10px;
     padding: 11px;
-
     border-radius: 7px;
-
     font-size: 14px;
     font-weight: 900;
-
     cursor: pointer;
 }
 
@@ -150,9 +141,19 @@ h1 {
     background: #7a1212;
     color: white;
     border-color: #ff3535;
+    box-shadow: 0 0 15px rgba(255,53,53,0.25);
+}
 
-    box-shadow:
-        0 0 15px rgba(255,53,53,0.25);
+.sound-button {
+    background: #102a1c;
+    color: #00ff73;
+    border: 1px solid #146d3b;
+}
+
+.sound-button.off {
+    background: #252525;
+    color: #888;
+    border-color: #444;
 }
 
 .reset-button {
@@ -197,88 +198,60 @@ h1 {
 
 .vertical-wrapper {
     position: relative;
-
     width: 210px;
     height: 340px;
-
     display: flex;
     justify-content: center;
 }
 
 .timing-bar {
     position: relative;
-
     width: 48px;
     height: 340px;
-
     background: #292929;
-
     border: 2px solid #555;
     border-radius: 10px;
-
     overflow: hidden;
 }
 
 .live-fill {
     position: absolute;
-
     bottom: 0;
     left: 0;
-
     width: 100%;
     height: 0%;
-
     background: rgba(255,255,255,0.20);
-
     z-index: 1;
 }
 
 .green-window {
     position: absolute;
-
     left: 0;
     width: 100%;
-
     background: #00d965;
-
-    box-shadow:
-        0 0 14px rgba(0,255,115,0.7);
-
+    box-shadow: 0 0 14px rgba(0,255,115,0.7);
     z-index: 2;
 }
 
 .marker {
     position: absolute;
-
     left: 65px;
-
     width: 80px;
     height: 4px;
-
     background: white;
-
-    box-shadow:
-        0 0 10px white;
-
+    box-shadow: 0 0 10px white;
     display: none;
-
     transform: translateY(-50%);
-
     z-index: 20;
-
     pointer-events: none;
 }
 
 .marker::before {
     content: "";
-
     position: absolute;
-
     left: -9px;
     top: 50%;
-
     transform: translateY(-50%);
-
     border-top: 6px solid transparent;
     border-bottom: 6px solid transparent;
     border-right: 9px solid white;
@@ -291,11 +264,8 @@ h1 {
 
 .scale-label {
     position: absolute;
-
     left: 140px;
-
     font-size: 13px;
-
     transform: translateY(-50%);
 }
 
@@ -316,17 +286,14 @@ h1 {
 
 
 /* ========================================
-   EARLY / GREEN / LATE
+   ZONAS
 ======================================== */
 
 .zone-label {
     position: absolute;
-
     right: 135px;
-
     font-size: 12px;
     font-weight: bold;
-
     transform: translateY(-50%);
 }
 
@@ -362,12 +329,7 @@ h1 {
     color: #999;
 }
 
-
-/* No hardcore, durante o arremesso */
-.timer-container.hardcore-running .timer {
-    visibility: hidden;
-}
-
+.timer-container.hardcore-running .timer,
 .timer-container.hardcore-running .ms {
     visibility: hidden;
 }
@@ -375,10 +337,8 @@ h1 {
 .timer-container.hardcore-running::after {
     content: "???";
     display: block;
-
     font-size: 60px;
     font-weight: 900;
-
     color: #555;
 }
 
@@ -390,39 +350,24 @@ h1 {
 .button-x {
     width: 110px;
     height: 110px;
-
     border-radius: 50%;
-
     margin: 18px auto 8px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: #1266d3;
-
     border: 3px solid #2780f0;
-
-    box-shadow:
-        0 0 18px rgba(18,102,211,0.35);
-
+    box-shadow: 0 0 18px rgba(18,102,211,0.35);
     font-size: 52px;
     font-weight: bold;
-
     cursor: pointer;
-
     touch-action: none;
-
-    transition:
-        transform 0.05s,
-        box-shadow 0.05s;
+    transition: transform 0.05s, box-shadow 0.05s;
 }
 
 .button-x.pressed {
     transform: scale(0.86);
-
-    box-shadow:
-        0 0 35px rgba(18,102,211,0.9);
+    box-shadow: 0 0 35px rgba(18,102,211,0.9);
 }
 
 .touch-help {
@@ -439,9 +384,7 @@ h1 {
 .result {
     font-size: 38px;
     font-weight: 900;
-
     margin-top: 12px;
-
     min-height: 48px;
 }
 
@@ -459,19 +402,14 @@ h1 {
 
 .release-info {
     margin-top: 6px;
-
     font-size: 17px;
-
     color: #aaa;
-
     min-height: 24px;
 }
 
 .window-info {
     margin-top: 10px;
-
     color: #777;
-
     font-size: 14px;
 }
 
@@ -483,54 +421,40 @@ h1 {
 .stats-section {
     width: 100%;
     max-width: 600px;
-
     margin: 28px auto 0;
 }
 
 .stats-title {
     color: #888;
-
     font-size: 13px;
-
     letter-spacing: 2px;
-
     margin-bottom: 12px;
 }
 
 .stats-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
+    grid-template-columns: repeat(4, 1fr);
     gap: 8px;
 }
 
 .stat-card {
     background: #111;
-
     border: 1px solid #2d2d2d;
     border-radius: 10px;
-
     padding: 13px 5px;
 }
 
 .stat-value {
     display: block;
-
     font-size: 24px;
     font-weight: 900;
 }
 
 .stat-label {
     display: block;
-
     margin-top: 4px;
-
     font-size: 10px;
-
     color: #777;
-
     letter-spacing: 0.5px;
 }
 
@@ -544,52 +468,38 @@ h1 {
 
 
 /* ========================================
-   ÚLTIMAS 10
+   HISTÓRICO
 ======================================== */
 
 .history-box {
     margin-top: 10px;
-
     padding: 13px;
-
     background: #111;
-
     border: 1px solid #2d2d2d;
     border-radius: 10px;
 }
 
 .history-title {
     font-size: 11px;
-
     color: #777;
-
     letter-spacing: 1px;
-
     margin-bottom: 10px;
 }
 
 .history {
     display: flex;
-
     flex-wrap: wrap;
-
     gap: 6px;
-
     justify-content: center;
-
     min-height: 30px;
 }
 
 .shot {
     padding: 6px 8px;
-
     border-radius: 6px;
-
     background: #1b1b1b;
-
     font-size: 12px;
     font-weight: bold;
-
     border: 1px solid #333;
 }
 
@@ -615,19 +525,15 @@ h1 {
 
 
 /* ========================================
-   HARDCORE INDICADOR
+   HARDCORE
 ======================================== */
 
 .hardcore-indicator {
     display: none;
-
     margin: 15px auto 0;
-
     color: #ff5353;
-
     font-size: 12px;
     font-weight: bold;
-
     letter-spacing: 2px;
 }
 
@@ -669,7 +575,6 @@ h1 {
     .button-x {
         width: 105px;
         height: 105px;
-
         font-size: 48px;
     }
 
@@ -678,16 +583,13 @@ h1 {
     }
 
     .stats-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .stat-value {
         font-size: 22px;
     }
-
 }
-
 </style>
 </head>
 
@@ -695,36 +597,30 @@ h1 {
 
 <div class="trainer">
 
-
 <h1>JUMPSHOT TIMING TRAINER</h1>
 
-
-<div
-id="status"
-class="status">
-
+<div id="status" class="status">
 🎮 Controle ou 📱 toque no X
-
 </div>
 
 
-<!-- =====================================
-     CONFIGURAÇÃO
-===================================== -->
+<!-- ÁUDIO DE GREEN -->
+<audio id="greenSound" preload="auto">
+    <source src="green.wav" type="audio/wav">
+</audio>
+
+
+<!-- CONFIGURAÇÃO -->
 
 <div class="window-settings">
-
 
 <div class="settings-title">
 CONFIGURE SUA GREEN WINDOW
 </div>
 
-
 <div class="settings-fields">
 
-
 <div class="field">
-
 <label for="greenStartInput">
 INÍCIO DO GREEN (ms)
 </label>
@@ -735,12 +631,10 @@ type="number"
 inputmode="numeric"
 min="0"
 value="605">
-
 </div>
 
 
 <div class="field">
-
 <label for="greenEndInput">
 FIM DO GREEN (ms)
 </label>
@@ -751,9 +645,7 @@ type="number"
 inputmode="numeric"
 min="1"
 value="640">
-
 </div>
-
 
 </div>
 
@@ -761,146 +653,98 @@ value="640">
 <button
 id="applyWindow"
 class="control-button apply-button">
-
 APLICAR JANELA
-
 </button>
 
 
 <button
 id="hideBarButton"
 class="control-button hide-button">
-
 👁 OCULTAR BARRA
-
 </button>
 
 
 <button
 id="hardcoreButton"
 class="control-button hardcore-button">
-
 🎯 MODO HARDCORE: OFF
-
 </button>
 
 
-<div
-id="settingsMessage"
-class="settings-message">
+<button
+id="soundButton"
+class="control-button sound-button">
+🔊 SOM DE GREEN: ON
+</button>
 
+
+<div id="settingsMessage" class="settings-message">
 Janela atual: 605–640 ms
+</div>
 
 </div>
 
 
-</div>
+<!-- BARRA -->
 
-
-<!-- =====================================
-     BARRA
-===================================== -->
-
-<div
-id="timingArea"
-class="timing-area">
-
+<div id="timingArea" class="timing-area">
 
 <div class="timing-title">
 RELEASE TIMING
 </div>
 
-
 <div class="vertical-wrapper">
 
-
-<div
-id="lateLabel"
-class="zone-label late-label">
+<div id="lateLabel" class="zone-label late-label">
 LATE
 </div>
 
-
-<div
-id="greenLabel"
-class="zone-label green-label">
+<div id="greenLabel" class="zone-label green-label">
 GREEN
 </div>
 
-
-<div
-id="earlyLabel"
-class="zone-label early-label">
+<div id="earlyLabel" class="zone-label early-label">
 EARLY
 </div>
 
 
 <div class="timing-bar">
 
+<div id="liveFill" class="live-fill"></div>
 
-<div
-id="liveFill"
-class="live-fill">
-</div>
-
-
-<div
-id="greenWindow"
-class="green-window">
-</div>
-
+<div id="greenWindow" class="green-window"></div>
 
 </div>
 
 
-<div
-id="marker"
-class="marker">
-</div>
+<div id="marker" class="marker"></div>
 
-
-<div
-id="maxLabel"
-class="scale-label label-max">
+<div id="maxLabel" class="scale-label label-max">
 750 ms
 </div>
 
-
-<div
-id="greenEndLabel"
-class="scale-label label-green-end">
+<div id="greenEndLabel" class="scale-label label-green-end">
 640
 </div>
 
-
-<div
-id="greenStartLabel"
-class="scale-label label-green-start">
+<div id="greenStartLabel" class="scale-label label-green-start">
 605
 </div>
-
 
 <div class="scale-label label-zero">
 0 ms
 </div>
 
-
 </div>
 
 </div>
 
 
-<!-- =====================================
-     TIMER
-===================================== -->
+<!-- TIMER -->
 
-<div
-id="timerContainer"
-class="timer-container">
+<div id="timerContainer" class="timer-container">
 
-<span
-id="timer"
-class="timer">
+<span id="timer" class="timer">
 0
 </span>
 
@@ -911,65 +755,38 @@ ms
 </div>
 
 
-<div
-id="hardcoreIndicator"
-class="hardcore-indicator">
-
+<div id="hardcoreIndicator" class="hardcore-indicator">
 MODO MEMÓRIA MUSCULAR
-
 </div>
 
 
-<!-- =====================================
-     BOTÃO X
-===================================== -->
+<!-- X -->
 
-<div
-id="buttonX"
-class="button-x">
+<div id="buttonX" class="button-x">
 X
 </div>
-
 
 <div class="touch-help">
 Segure e solte • Controle, mouse ou toque
 </div>
 
 
-<!-- =====================================
-     RESULTADO
-===================================== -->
+<!-- RESULTADO -->
 
-<div
-id="result"
-class="result">
-
+<div id="result" class="result">
 SEGURE X E SOLTE
-
 </div>
 
+<div id="releaseInfo" class="release-info"></div>
 
-<div
-id="releaseInfo"
-class="release-info">
-</div>
-
-
-<div
-id="windowInfo"
-class="window-info">
-
+<div id="windowInfo" class="window-info">
 GREEN WINDOW: 605–640 ms
-
 </div>
 
 
-<!-- =====================================
-     ESTATÍSTICAS
-===================================== -->
+<!-- ESTATÍSTICAS -->
 
 <div class="stats-section">
-
 
 <div class="stats-title">
 SESSÃO DE TREINO
@@ -978,15 +795,10 @@ SESSÃO DE TREINO
 
 <div class="stats-grid">
 
-
 <div class="stat-card">
 
-<span
-id="totalStat"
-class="stat-value">
-
+<span id="totalStat" class="stat-value">
 0
-
 </span>
 
 <span class="stat-label">
@@ -998,12 +810,8 @@ TENTATIVAS
 
 <div class="stat-card">
 
-<span
-id="greenPercentStat"
-class="stat-value green-stat">
-
+<span id="greenPercentStat" class="stat-value green-stat">
 0%
-
 </span>
 
 <span class="stat-label">
@@ -1015,12 +823,8 @@ GREENS
 
 <div class="stat-card">
 
-<span
-id="averageStat"
-class="stat-value">
-
+<span id="averageStat" class="stat-value">
 —
-
 </span>
 
 <span class="stat-label">
@@ -1032,12 +836,8 @@ MÉDIA
 
 <div class="stat-card">
 
-<span
-id="streakStat"
-class="stat-value streak-stat">
-
+<span id="streakStat" class="stat-value streak-stat">
 0 🔥
-
 </span>
 
 <span class="stat-label">
@@ -1046,21 +846,16 @@ STREAK
 
 </div>
 
-
 </div>
 
 
 <div class="history-box">
 
-
 <div class="history-title">
 ÚLTIMAS 10 TENTATIVAS
 </div>
 
-
-<div
-id="history"
-class="history">
+<div id="history" class="history">
 
 <span class="empty-history">
 Nenhuma tentativa ainda
@@ -1068,21 +863,16 @@ Nenhuma tentativa ainda
 
 </div>
 
-
 </div>
 
 
 <button
 id="resetSession"
 class="control-button reset-button">
-
 ZERAR SESSÃO
-
 </button>
 
-
 </div>
-
 
 </div>
 
@@ -1097,7 +887,6 @@ let GREEN_START = 605;
 let GREEN_END = 640;
 
 const BAR_MIN = 0;
-
 let BAR_MAX = 750;
 
 
@@ -1106,16 +895,14 @@ let BAR_MAX = 750;
 ======================================== */
 
 let pressing = false;
-
 let startTime = 0;
-
 let inputSource = null;
 
 let gamepadWasPressed = false;
 
 let barHidden = false;
-
 let hardcoreMode = false;
+let greenSoundEnabled = true;
 
 
 /* ========================================
@@ -1125,11 +912,9 @@ let hardcoreMode = false;
 let attempts = [];
 
 let totalShots = 0;
-
 let totalGreens = 0;
 
 let currentStreak = 0;
-
 let bestStreak = 0;
 
 
@@ -1209,6 +994,12 @@ document.getElementById("hardcoreButton");
 const hardcoreIndicator =
 document.getElementById("hardcoreIndicator");
 
+const soundButton =
+document.getElementById("soundButton");
+
+const greenSound =
+document.getElementById("greenSound");
+
 const totalStat =
 document.getElementById("totalStat");
 
@@ -1229,7 +1020,89 @@ document.getElementById("resetSession");
 
 
 /* ========================================
-   POSIÇÃO DA BARRA
+   SOM DE GREEN
+======================================== */
+
+function playGreenSound() {
+
+    if (!greenSoundEnabled) {
+        return;
+    }
+
+    try {
+
+        greenSound.pause();
+
+        greenSound.currentTime = 0;
+
+        const playPromise =
+            greenSound.play();
+
+        if (
+            playPromise !== undefined
+        ) {
+
+            playPromise.catch(
+                function(error) {
+
+                    console.log(
+                        "O navegador bloqueou o áudio até ocorrer uma interação."
+                    );
+                }
+            );
+        }
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "Erro ao tocar o som:",
+            error
+        );
+    }
+}
+
+
+soundButton.addEventListener(
+    "click",
+    function() {
+
+        greenSoundEnabled =
+            !greenSoundEnabled;
+
+
+        if (greenSoundEnabled) {
+
+            soundButton.innerText =
+                "🔊 SOM DE GREEN: ON";
+
+            soundButton.classList.remove(
+                "off"
+            );
+
+        }
+
+        else {
+
+            soundButton.innerText =
+                "🔇 SOM DE GREEN: OFF";
+
+            soundButton.classList.add(
+                "off"
+            );
+
+            greenSound.pause();
+
+            greenSound.currentTime =
+                0;
+        }
+    }
+);
+
+
+/* ========================================
+   POSIÇÃO
 ======================================== */
 
 function getPosition(ms) {
@@ -1241,6 +1114,7 @@ function getPosition(ms) {
             (BAR_MAX - BAR_MIN)
         ) * 100;
 
+
     percentage =
         Math.max(
             0,
@@ -1249,6 +1123,7 @@ function getPosition(ms) {
                 percentage
             )
         );
+
 
     return percentage;
 }
@@ -1341,7 +1216,7 @@ function updateGreenWindow() {
 
 
 /* ========================================
-   ESCALA AUTOMÁTICA
+   ESCALA
 ======================================== */
 
 function calculateBarMax() {
@@ -1366,7 +1241,7 @@ function calculateBarMax() {
 
 
 /* ========================================
-   APLICAR NOVA JANELA
+   APLICAR JANELA
 ======================================== */
 
 function applyNewWindow() {
@@ -1439,17 +1314,21 @@ function applyNewWindow() {
     timer.innerText =
         "0";
 
+
     result.className =
         "result";
 
     result.innerText =
         "SEGURE X E SOLTE";
 
+
     releaseInfo.innerText =
         "";
 
+
     marker.style.display =
         "none";
+
 
     liveFill.style.height =
         "0%";
@@ -1467,7 +1346,6 @@ greenStartInput.addEventListener(
     function(event) {
 
         if (event.key === "Enter") {
-
             applyNewWindow();
         }
     }
@@ -1479,7 +1357,6 @@ greenEndInput.addEventListener(
     function(event) {
 
         if (event.key === "Enter") {
-
             applyNewWindow();
         }
     }
@@ -1497,7 +1374,6 @@ hideBarButton.addEventListener(
         barHidden =
             !barHidden;
 
-
         updateBarVisibility();
     }
 );
@@ -1513,6 +1389,7 @@ function updateBarVisibility() {
         timingArea.classList.add(
             "hidden"
         );
+
     }
 
     else {
@@ -1531,6 +1408,7 @@ function updateBarVisibility() {
 
         hideBarButton.innerText =
             "👁 MOSTRAR BARRA";
+
     }
 
     else {
@@ -1569,6 +1447,7 @@ hardcoreButton.addEventListener(
             hardcoreIndicator.classList.add(
                 "active"
             );
+
         }
 
         else {
@@ -1664,7 +1543,8 @@ function startShot(source) {
     }
 
 
-    pressing = true;
+    pressing =
+        true;
 
     inputSource =
         source;
@@ -1702,12 +1582,6 @@ function startShot(source) {
     liveFill.style.height =
         "0%";
 
-
-    /*
-       No Hardcore:
-       cronômetro desaparece
-       enquanto estiver segurando.
-    */
 
     if (hardcoreMode) {
 
@@ -1772,9 +1646,7 @@ function endShot(source) {
     let shotResult;
 
 
-    /* =================================
-       EARLY
-    ================================= */
+    /* EARLY */
 
     if (ms < GREEN_START) {
 
@@ -1800,9 +1672,7 @@ function endShot(source) {
     }
 
 
-    /* =================================
-       GREEN
-    ================================= */
+    /* GREEN */
 
     else if (ms <= GREEN_END) {
 
@@ -1815,6 +1685,13 @@ function endShot(source) {
 
         result.innerText =
             "GREEN!";
+
+
+        /*
+            TOCA O SOM DO GREEN
+        */
+
+        playGreenSound();
 
 
         const center =
@@ -1840,9 +1717,7 @@ function endShot(source) {
     }
 
 
-    /* =================================
-       LATE
-    ================================= */
+    /* LATE */
 
     else {
 
@@ -1902,6 +1777,7 @@ function registerShot(
             bestStreak =
                 currentStreak;
         }
+
     }
 
     else {
@@ -1916,11 +1792,6 @@ function registerShot(
         result: shotResult
     });
 
-
-    /*
-       Mantém apenas as últimas
-       10 no histórico visual.
-    */
 
     if (attempts.length > 10) {
 
@@ -1963,10 +1834,6 @@ function updateStats() {
         "%";
 
 
-    /*
-       Média das últimas 10 tentativas.
-    */
-
     if (attempts.length > 0) {
 
         const total =
@@ -1992,6 +1859,7 @@ function updateStats() {
         averageStat.innerText =
             average +
             " ms";
+
     }
 
     else {
@@ -2174,6 +2042,7 @@ buttonX.addEventListener(
             buttonX.setPointerCapture(
                 event.pointerId
             );
+
         }
 
         catch (error) {}
@@ -2192,7 +2061,6 @@ buttonX.addEventListener(
 
         event.preventDefault();
 
-
         endShot(
             "screen"
         );
@@ -2205,7 +2073,6 @@ buttonX.addEventListener(
     function(event) {
 
         event.preventDefault();
-
 
         endShot(
             "screen"
@@ -2292,8 +2159,8 @@ function checkGamepad() {
 
         gamepadWasPressed =
             xPressed;
-    }
 
+    }
 
     else {
 
@@ -2326,12 +2193,6 @@ function update() {
         const ms =
             Math.round(current);
 
-
-        /*
-           No hardcore o valor continua
-           sendo calculado normalmente,
-           mas fica invisível.
-        */
 
         timer.innerText =
             ms;
