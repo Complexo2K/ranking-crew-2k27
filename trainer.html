@@ -2507,6 +2507,184 @@ center {
     }
 }
 
+
+
+/* =========================================================
+   CONFIG PANEL — MOCKUP MATCH
+   Somente painel esquerdo
+========================================================= */
+.settings-panel .panel-heading h2 {
+    font-family: "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+    font-size: 27px;
+    font-weight: 900;
+    font-stretch: condensed;
+    letter-spacing: .35px;
+    line-height: .9;
+    transform: scaleX(.82);
+    transform-origin: left center;
+    text-shadow: 0 2px 2px #000;
+}
+.settings-panel .panel-subtitle {
+    margin-top: 9px;
+    color: #b8b8b8;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 3.5px;
+}
+.settings-panel .setting-label {
+    margin: 0 0 7px 4px;
+    color: #c8c8c8;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .15px;
+    text-transform: none;
+}
+.settings-panel .field input {
+    font-family: "Arial Black", Arial, sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: -.6px;
+}
+.settings-panel .apply-button {
+    min-height: 52px;
+    justify-content: space-between;
+    padding: 0 18px 0 76px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+.settings-panel .apply-arrow {
+    font-family: Arial, sans-serif;
+    font-size: 35px;
+    font-weight: 300;
+    line-height: 1;
+}
+.settings-panel .option-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 55px;
+    padding: 0 14px 0 17px;
+    color: #e6e6e6;
+    text-align: left;
+}
+.settings-panel .option-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 0;
+}
+.settings-panel .option-label {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.25px;
+    white-space: nowrap;
+}
+.settings-panel .option-icon {
+    position: relative;
+    display: inline-block;
+    flex: 0 0 26px;
+    width: 26px;
+    height: 26px;
+    color: #fff;
+}
+/* eye */
+.settings-panel .icon-eye::before {
+    content: "";
+    position: absolute;
+    left: 2px; top: 6px;
+    width: 21px; height: 13px;
+    border: 2px solid currentColor;
+    border-radius: 70% 20% 70% 20%;
+    transform: rotate(45deg);
+    box-sizing: border-box;
+}
+.settings-panel .icon-eye::after {
+    content: "";
+    position: absolute;
+    left: 10px; top: 10px;
+    width: 6px; height: 6px;
+    background: currentColor;
+    border-radius: 50%;
+}
+/* crosshair */
+.settings-panel .icon-crosshair {
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+.settings-panel .icon-crosshair::before,
+.settings-panel .icon-crosshair::after {
+    content: "";
+    position: absolute;
+    background: currentColor;
+}
+.settings-panel .icon-crosshair::before { left: 11px; top: -5px; width: 2px; height: 32px; }
+.settings-panel .icon-crosshair::after { left: -5px; top: 11px; width: 32px; height: 2px; }
+/* speaker */
+.settings-panel .icon-sound::before {
+    content: "";
+    position: absolute;
+    left: 1px; top: 8px;
+    width: 8px; height: 10px;
+    background: currentColor;
+    clip-path: polygon(0 30%, 45% 30%, 100% 0, 100% 100%, 45% 70%, 0 70%);
+}
+.settings-panel .icon-sound::after {
+    content: "))";
+    position: absolute;
+    left: 10px; top: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -5px;
+    color: currentColor;
+}
+.settings-panel .state-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 51px;
+    width: 51px;
+    height: 35px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .6px;
+    box-sizing: border-box;
+}
+.settings-panel .state-box.off {
+    color: #bcbcbc;
+    background: linear-gradient(#242424,#121212);
+    border: 1px solid #555;
+}
+.settings-panel .state-box.on {
+    color: #00ff83;
+    background: linear-gradient(#073c25,#062619);
+    border: 1px solid #00a75b;
+    box-shadow: inset 0 0 12px rgba(0,255,115,.08);
+}
+.settings-panel .sound-button.on { color: #e6e6e6; border-color: #444; }
+.settings-panel .sound-button.off { color: #e6e6e6; }
+.settings-panel .hide-button.active,
+.settings-panel .hardcore-button.active {
+    background: linear-gradient(180deg,#171717,#090909);
+    border-color: #444;
+    box-shadow: none;
+}
+.settings-panel .settings-message {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #8d8d8d;
+}
+.settings-panel .settings-message strong { color:#fff; font-weight:700; }
 </style>
 </head>
 
@@ -2650,30 +2828,19 @@ center {
     </button>
 
 
-    <button
-        id="hideBarButton"
-        class="control-button hide-button">
-
-        👁 OCULTAR BARRA
-
+    <button id="hideBarButton" class="control-button option-button hide-button">
+        <span class="option-left"><span class="option-icon icon-eye" aria-hidden="true"></span><span class="option-label">OCULTAR BARRA</span></span>
+        <span id="hideBarState" class="state-box off">OFF</span>
     </button>
 
-
-    <button
-        id="hardcoreButton"
-        class="control-button hardcore-button">
-
-        🎯 MODO HARDCORE: OFF
-
+    <button id="hardcoreButton" class="control-button option-button hardcore-button">
+        <span class="option-left"><span class="option-icon icon-crosshair" aria-hidden="true"></span><span class="option-label">MODO HARDCORE</span></span>
+        <span id="hardcoreState" class="state-box off">OFF</span>
     </button>
 
-
-    <button
-        id="soundButton"
-        class="control-button sound-button on">
-
-        🔊 SOM DE GREEN: ON
-
+    <button id="soundButton" class="control-button option-button sound-button on">
+        <span class="option-left"><span class="option-icon icon-sound" aria-hidden="true"></span><span class="option-label">SOM DE GREEN</span></span>
+        <span id="soundState" class="state-box on">ON</span>
     </button>
 
 
@@ -3228,6 +3395,10 @@ const soundButton =
         "soundButton"
     );
 
+const hideBarState = document.getElementById("hideBarState");
+const hardcoreState = document.getElementById("hardcoreState");
+const soundState = document.getElementById("soundState");
+
 const greenSound =
     document.getElementById(
         "greenSound"
@@ -3331,8 +3502,8 @@ soundButton.addEventListener(
 
         if (greenSoundEnabled) {
 
-            soundButton.innerText =
-                "🔊 SOM DE GREEN: ON";
+            soundState.innerText = "ON";
+            soundState.className = "state-box on";
 
             soundButton.classList.add(
                 "on"
@@ -3346,8 +3517,8 @@ soundButton.addEventListener(
 
         else {
 
-            soundButton.innerText =
-                "🔇 SOM DE GREEN: OFF";
+            soundState.innerText = "OFF";
+            soundState.className = "state-box off";
 
             soundButton.classList.remove(
                 "on"
@@ -3736,8 +3907,9 @@ function updateBarVisibility() {
         );
 
 
-        hideBarButton.innerText =
-            "👁 MOSTRAR BARRA";
+        hideBarState.innerText = "ON";
+        hideBarState.className = "state-box on";
+        hideBarButton.querySelector(".option-label").innerText = "MOSTRAR BARRA";
 
     }
 
@@ -3748,8 +3920,9 @@ function updateBarVisibility() {
         );
 
 
-        hideBarButton.innerText =
-            "👁 OCULTAR BARRA";
+        hideBarState.innerText = "OFF";
+        hideBarState.className = "state-box off";
+        hideBarButton.querySelector(".option-label").innerText = "OCULTAR BARRA";
 
     }
 
@@ -3777,8 +3950,8 @@ hardcoreButton.addEventListener(
             );
 
 
-            hardcoreButton.innerText =
-                "🎯 MODO HARDCORE: ON";
+            hardcoreState.innerText = "ON";
+            hardcoreState.className = "state-box on";
 
 
             hardcoreIndicator.classList.add(
@@ -3794,8 +3967,8 @@ hardcoreButton.addEventListener(
             );
 
 
-            hardcoreButton.innerText =
-                "🎯 MODO HARDCORE: OFF";
+            hardcoreState.innerText = "OFF";
+            hardcoreState.className = "state-box off";
 
 
             hardcoreIndicator.classList.remove(
