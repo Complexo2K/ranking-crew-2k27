@@ -1,1 +1,189 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complexo 2K - Timing Trainer</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #080808;
+      color: white;
+      font-family: Arial, sans-serif;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .trainer {
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .status {
+      color: #aaa;
+      margin-bottom: 40px;
+    }
+
+    .timer {
+      font-size: 80px;
+      font-weight: 900;
+      margin: 20px 0;
+    }
+
+    .ms {
+      font-size: 22px;
+      color: #999;
+    }
+
+    .button-x {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      margin: 30px auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #1266d3;
+      font-size: 55px;
+      font-weight: bold;
+
+      transition: transform 0.05s;
+    }
+
+    .button-x.pressed {
+      transform: scale(0.85);
+    }
+
+    .result {
+      font-size: 24px;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="trainer">
+
+  <h1>JUMPSHOT TIMING TRAINER</h1>
+
+  <div id="status" class="status">
+    Conecte o controle e pressione qualquer botão
+  </div>
+
+  <div>
+    <span id="timer" class="timer">0</span>
+    <span class="ms">ms</span>
+  </div>
+
+  <div id="buttonX" class="button-x">
+    X
+  </div>
+
+  <div id="result" class="result">
+    Segure X e solte para medir
+  </div>
+
+</div>
+
+<script>
+
+let pressing = false;
+let startTime = 0;
+let lastDuration = 0;
+
+const timer = document.getElementById("timer");
+const result = document.getElementById("result");
+const status = document.getElementById("status");
+const buttonX = document.getElementById("buttonX");
+
+function update() {
+
+  const gamepads = navigator.getGamepads();
+
+  if (gamepads[0]) {
+
+    const controller = gamepads[0];
+
+    status.innerText =
+      "Controle conectado: " + controller.id;
+
+    /*
+      Xbox Gamepad API
+
+      A = 0
+      B = 1
+      X = 2
+      Y = 3
+    */
+
+    const xPressed = controller.buttons[2].pressed;
+
+    if (xPressed && !pressing) {
+
+      pressing = true;
+      startTime = performance.now();
+
+      buttonX.classList.add("pressed");
+
+      result.innerText = "SEGURANDO...";
+
+    }
+
+    if (xPressed && pressing) {
+
+      const current =
+        performance.now() - startTime;
+
+      timer.innerText =
+        Math.round(current);
+
+    }
+
+    if (!xPressed && pressing) {
+
+      pressing = false;
+
+      lastDuration =
+        performance.now() - startTime;
+
+      timer.innerText =
+        Math.round(lastDuration);
+
+      result.innerText =
+        "Você segurou X por " +
+        Math.round(lastDuration) +
+        " ms";
+
+      buttonX.classList.remove("pressed");
+
+    }
+
+  }
+
+  requestAnimationFrame(update);
+}
+
+update();
+
+</script>
+
+</body>
+</html>
