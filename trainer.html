@@ -2469,6 +2469,44 @@ center {
     filter: drop-shadow(0 5px 10px rgba(0,0,0,.9));
 }
 
+
+/* =========================================================
+   AJUSTE FINAL DO CABEÇALHO — mockup
+   Mantém somente as duas artes PNG e evita sobreposição
+========================================================= */
+.top-header {
+    min-height: 142px;
+    position: relative;
+}
+
+/* Esses textos já fazem parte da composição visual da arte */
+.main-title .small-title,
+.main-title .subtitle {
+    display: none !important;
+}
+
+.brand {
+    padding-top: 0;
+}
+
+.brand img {
+    width: clamp(205px, 17vw, 300px);
+}
+
+.main-title {
+    padding-top: 0;
+}
+
+.main-title h1.mockup-title-art img {
+    width: clamp(390px, 31vw, 560px);
+}
+
+@media (min-width: 1100px) {
+    .top-header {
+        min-height: 150px;
+    }
+}
+
 </style>
 </head>
 
