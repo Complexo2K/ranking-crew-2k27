@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Complexo 2K - Timing Trainer</title>
 
   <style>
@@ -36,13 +36,16 @@
 
     .status {
       color: #aaa;
-      margin-bottom: 40px;
+      margin-bottom: 35px;
+    }
+
+    .timer-container {
+      margin: 20px 0;
     }
 
     .timer {
       font-size: 80px;
       font-weight: 900;
-      margin: 20px 0;
     }
 
     .ms {
@@ -61,6 +64,7 @@
       justify-content: center;
 
       background: #1266d3;
+
       font-size: 55px;
       font-weight: bold;
 
@@ -72,116 +76,253 @@
     }
 
     .result {
-      font-size: 24px;
+      font-size: 34px;
+      font-weight: bold;
       margin-top: 25px;
+      min-height: 45px;
+    }
+
+    .window-info {
+      margin-top: 25px;
+      color: #888;
+      font-size: 16px;
+    }
+
+    .early {
+      color: #ffae00;
+    }
+
+    .green {
+      color: #00ff73;
+    }
+
+    .late {
+      color: #ff3535;
     }
   </style>
 </head>
 
 <body>
 
-<div class="trainer">
+  <div class="trainer">
 
-  <h1>JUMPSHOT TIMING TRAINER</h1>
+    <h1>JUMPSHOT TIMING TRAINER</h1>
 
-  <div id="status" class="status">
-    Conecte o controle e pressione qualquer botão
+    <div id="status" class="status">
+      Conecte o controle e pressione qualquer botão
+    </div>
+
+    <div class="timer-container">
+
+      <span id="timer" class="timer">
+        0
+      </span>
+
+      <span class="ms">
+        ms
+      </span>
+
+    </div>
+
+    <div id="buttonX" class="button-x">
+      X
+    </div>
+
+    <div id="result" class="result">
+      Segure X e solte para medir
+    </div>
+
+    <div class="window-info">
+      GREEN WINDOW: 620–650 ms
+    </div>
+
   </div>
 
-  <div>
-    <span id="timer" class="timer">0</span>
-    <span class="ms">ms</span>
-  </div>
-
-  <div id="buttonX" class="button-x">
-    X
-  </div>
-
-  <div id="result" class="result">
-    Segure X e solte para medir
-  </div>
-
-</div>
 
 <script>
 
-let pressing = false;
-let startTime = 0;
-let lastDuration = 0;
+  // ==========================================
+  // CONFIGURAÇÃO DA GREEN WINDOW
+  // ==========================================
 
-const timer = document.getElementById("timer");
-const result = document.getElementById("result");
-const status = document.getElementById("status");
-const buttonX = document.getElementById("buttonX");
+  const GREEN_START = 620;
+  const GREEN_END = 650;
 
-function update() {
 
-  const gamepads = navigator.getGamepads();
+  // ==========================================
+  // VARIÁVEIS
+  // ==========================================
 
-  if (gamepads[0]) {
+  let pressing = false;
+  let startTime = 0;
+  let lastDuration = 0;
 
-    const controller = gamepads[0];
 
-    status.innerText =
-      "Controle conectado: " + controller.id;
+  // ==========================================
+  // ELEMENTOS DA TELA
+  // ==========================================
 
-    /*
-      Xbox Gamepad API
+  const timer =
+    document.getElementById("timer");
 
-      A = 0
-      B = 1
-      X = 2
-      Y = 3
-    */
+  const result =
+    document.getElementById("result");
 
-    const xPressed = controller.buttons[2].pressed;
+  const status =
+    document.getElementById("status");
 
-    if (xPressed && !pressing) {
+  const buttonX =
+    document.getElementById("buttonX");
 
-      pressing = true;
-      startTime = performance.now();
 
-      buttonX.classList.add("pressed");
+  // ==========================================
+  // LOOP DO CONTROLE
+  // ==========================================
 
-      result.innerText = "SEGURANDO...";
+  function update() {
+
+    const gamepads =
+      navigator.getGamepads();
+
+    if (gamepads[0]) {
+
+      const controller =
+        gamepads[0];
+
+
+      // Mostra qual controle está conectado
+
+      status.innerText =
+        "Controle conectado: " +
+        controller.id;
+
+
+      // Xbox Gamepad API:
+      //
+      // A = 0
+      // B = 1
+      // X = 2
+      // Y = 3
+
+      const xPressed =
+        controller.buttons[2].pressed;
+
+
+      // ======================================
+      // APERTOU X
+      // ======================================
+
+      if (xPressed && !pressing) {
+
+        pressing = true;
+
+        startTime =
+          performance.now();
+
+        buttonX.classList.add("pressed");
+
+        result.className = "result";
+
+        result.innerText =
+          "SEGURANDO...";
+
+      }
+
+
+      // ======================================
+      // ENQUANTO ESTIVER SEGURANDO
+      // ======================================
+
+      if (xPressed && pressing) {
+
+        const current =
+          performance.now() - startTime;
+
+        timer.innerText =
+          Math.round(current);
+
+      }
+
+
+      // ======================================
+      // SOLTOU X
+      // ======================================
+
+      if (!xPressed && pressing) {
+
+        pressing = false;
+
+        lastDuration =
+          performance.now() - startTime;
+
+        const ms =
+          Math.round(lastDuration);
+
+        timer.innerText = ms;
+
+
+        // ====================================
+        // EARLY
+        // ====================================
+
+        if (ms < GREEN_START) {
+
+          result.className =
+            "result early";
+
+          result.innerText =
+            "EARLY";
+
+        }
+
+
+        // ====================================
+        // GREEN
+        // ====================================
+
+        else if (ms <= GREEN_END) {
+
+          result.className =
+            "result green";
+
+          result.innerText =
+            "GREEN!";
+
+        }
+
+
+        // ====================================
+        // LATE
+        // ====================================
+
+        else {
+
+          result.className =
+            "result late";
+
+          result.innerText =
+            "LATE";
+
+        }
+
+
+        buttonX.classList.remove("pressed");
+
+      }
 
     }
 
-    if (xPressed && pressing) {
 
-      const current =
-        performance.now() - startTime;
-
-      timer.innerText =
-        Math.round(current);
-
-    }
-
-    if (!xPressed && pressing) {
-
-      pressing = false;
-
-      lastDuration =
-        performance.now() - startTime;
-
-      timer.innerText =
-        Math.round(lastDuration);
-
-      result.innerText =
-        "Você segurou X por " +
-        Math.round(lastDuration) +
-        " ms";
-
-      buttonX.classList.remove("pressed");
-
-    }
+    requestAnimationFrame(update);
 
   }
 
-  requestAnimationFrame(update);
-}
 
-update();
+  // ==========================================
+  // INICIA O TRAINER
+  // ==========================================
+
+  update();
 
 </script>
 
