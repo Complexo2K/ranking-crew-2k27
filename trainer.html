@@ -2301,6 +2301,144 @@ center {
     }
 }
 
+
+
+/* =========================================================
+   V6 — FECHAMENTO DO DESKTOP / FIT 1080P
+   Compacta o bloco central para barra + ms + X + resultado
+   caberem juntos na área visível e aproxima os painéis.
+========================================================= */
+@media (min-width: 1151px) {
+    .page {
+        padding-top: 14px;
+        padding-bottom: 16px;
+    }
+
+    .top-header {
+        min-height: 122px;
+    }
+
+    .desktop-grid {
+        max-width: 1500px;
+        grid-template-columns: minmax(350px, 405px) minmax(390px, 1fr) minmax(360px, 415px);
+        gap: clamp(24px, 2.2vw, 42px);
+        margin-top: 0;
+    }
+
+    .settings-panel,
+    .stats-panel {
+        transform: translateY(0);
+    }
+
+    .center-trainer {
+        transform: translateY(-6px);
+    }
+
+    .timing-heading {
+        margin-bottom: 13px;
+        font-size: 16px;
+        letter-spacing: 5px;
+    }
+
+    .vertical-wrapper {
+        width: 380px;
+        height: clamp(365px, 42vh, 410px);
+    }
+
+    .timing-bar {
+        width: 100px;
+        height: clamp(365px, 42vh, 410px);
+        border-radius: 25px;
+    }
+
+    .timing-bar::before {
+        inset: 9px;
+        border-radius: 16px;
+    }
+
+    .vertical-wrapper::after {
+        left: calc(50% + 65px);
+    }
+
+    .marker {
+        left: 124px;
+        width: 132px;
+        height: 6px;
+    }
+
+    .scale-label {
+        left: 260px;
+        min-width: 86px;
+        font-size: 13px;
+    }
+
+    .zone-label {
+        right: 246px;
+        width: 72px;
+        font-size: 16px;
+    }
+
+    .timer-container {
+        min-height: 78px;
+        margin-top: 11px;
+    }
+
+    .timer {
+        font-size: 78px;
+        line-height: .9;
+        letter-spacing: -4px;
+    }
+
+    .ms {
+        margin-left: 8px;
+        font-size: 21px;
+    }
+
+    .timer-container.hardcore-running::after {
+        font-size: 72px;
+    }
+
+    .button-x {
+        width: 96px;
+        height: 96px;
+        margin-top: 3px;
+        border-width: 4px;
+        font-size: 48px;
+    }
+
+    .touch-help {
+        margin-top: 9px;
+        font-size: 9px;
+    }
+
+    .result {
+        min-width: 320px;
+        min-height: 68px;
+        margin-top: 8px;
+        padding: 10px 30px 7px;
+        font-size: 58px;
+    }
+
+    .result::before {
+        top: 9%;
+        bottom: 5%;
+    }
+
+    .release-info {
+        margin-top: -3px;
+        font-size: 11px;
+    }
+
+    .window-info {
+        margin-top: 5px;
+        font-size: 9px;
+    }
+
+    .footer {
+        margin-top: 8px;
+    }
+}
+
 </style>
 </head>
 
