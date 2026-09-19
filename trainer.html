@@ -7,7 +7,6 @@
 <title>Complexo 2K - Timing Trainer</title>
 
 <style>
-
 * {
   box-sizing: border-box;
 }
@@ -18,7 +17,6 @@ body {
   background: #080808;
   color: white;
   font-family: Arial, sans-serif;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,12 +30,155 @@ body {
 
 h1 {
   font-size: 32px;
-  margin-bottom: 8px;
+  margin: 0 0 8px;
 }
 
 .status {
   color: #aaa;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* =========================
+   BARRA VERTICAL
+========================= */
+
+.timing-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.timing-title {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.vertical-wrapper {
+  position: relative;
+  width: 190px;
+  height: 360px;
+  display: flex;
+  justify-content: center;
+}
+
+.timing-bar {
+  position: relative;
+  width: 48px;
+  height: 360px;
+  background: #292929;
+  border: 2px solid #555;
+  border-radius: 10px;
+  overflow: visible;
+}
+
+/*
+  Escala:
+  750 ms = topo
+  500 ms = embaixo
+
+  Green:
+  605–640 ms
+*/
+
+.green-window {
+  position: absolute;
+  top: 44%;
+  height: 14%;
+  left: 0;
+  width: 100%;
+  background: #00d965;
+  box-shadow: 0 0 12px rgba(0, 255, 115, 0.5);
+}
+
+/* MARCADOR */
+
+.marker {
+  position: absolute;
+  left: -18px;
+  width: 80px;
+  height: 4px;
+  background: white;
+  box-shadow: 0 0 10px white;
+  display: none;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.marker::after {
+  content: "";
+  position: absolute;
+  right: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 9px solid white;
+}
+
+/* NÚMEROS */
+
+.scale-label {
+  position: absolute;
+  left: 130px;
+  font-size: 13px;
+  transform: translateY(-50%);
+}
+
+.label-750 {
+  top: 0%;
+  color: #777;
+}
+
+.label-640 {
+  top: 44%;
+  color: #00ff73;
+}
+
+.label-605 {
+  top: 58%;
+  color: #00ff73;
+}
+
+.label-500 {
+  top: 100%;
+  color: #777;
+}
+
+/* EARLY / GREEN / LATE NA BARRA */
+
+.late-label {
+  position: absolute;
+  right: 125px;
+  top: 15%;
+  color: #ff3535;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.green-label {
+  position: absolute;
+  right: 120px;
+  top: 51%;
+  transform: translateY(-50%);
+  color: #00ff73;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.early-label {
+  position: absolute;
+  right: 125px;
+  top: 80%;
+  color: #ffae00;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 /* =========================
@@ -45,7 +186,7 @@ h1 {
 ========================= */
 
 .timer-container {
-  margin: 15px 0;
+  margin-top: 25px;
 }
 
 .timer {
@@ -89,10 +230,10 @@ h1 {
 ========================= */
 
 .result {
-  font-size: 34px;
-  font-weight: bold;
+  font-size: 38px;
+  font-weight: 900;
   margin-top: 15px;
-  min-height: 42px;
+  min-height: 48px;
 }
 
 .early {
@@ -107,307 +248,35 @@ h1 {
   color: #ff3535;
 }
 
-/* =========================
-   ÁREA DA BARRA
-========================= */
-
-.timing-area {
-  margin-top: 30px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.timing-title {
-  font-size: 14px;
-  color: #aaa;
-  margin-bottom: 15px;
-  letter-spacing: 2px;
-}
-
-/* Container para barra + números */
-
-.vertical-wrapper {
-  position: relative;
-
-  width: 180px;
-  height: 400px;
-
-  display: flex;
-  justify-content: center;
-}
-
-/* =========================
-   BARRA VERTICAL
-========================= */
-
-.timing-bar {
-  position: relative;
-
-  width: 48px;
-  height: 400px;
-
-  background: #292929;
-
-  border: 2px solid #555;
-  border-radius: 10px;
-
-  overflow: visible;
-}
-
-/*
-
-ESCALA:
-
-TOP
-750ms
-
-640ms
-GREEN
-605ms
-
-500ms
-BOTTOM
-
-A barra representa 500 até 750ms.
-
-Green:
-605 até 640ms.
-
-*/
-
-/* =========================
-   GREEN WINDOW
-========================= */
-
-.green-window {
-  position: absolute;
-
-  /*
-  640ms corresponde a 44%
-  vindo do topo.
-
-  605ms corresponde a 58%
-  vindo do topo.
-
-  Portanto:
-  top = 44%
-  height = 14%
-  */
-
-  top: 44%;
-  height: 14%;
-
-  left: 0;
-  width: 100%;
-
-  background: #00d965;
-
-  box-shadow:
-    0 0 12px rgba(0,255,115,0.5);
-}
-
-/* =========================
-   MARCADOR
-========================= */
-
-.marker {
-  position: absolute;
-
-  left: -18px;
-
-  width: 80px;
-  height: 4px;
-
-  background: white;
-
-  box-shadow:
-    0 0 10px white;
-
-  display: none;
-
-  transform: translateY(-50%);
-
-  z-index: 10;
-}
-
-/* Triângulo do marcador */
-
-.marker::after {
-
-  content: "";
-
-  position: absolute;
-
-  right: -9px;
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  width: 0;
-  height: 0;
-
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-
-  border-left: 9px solid white;
-}
-
-/* =========================
-   ESCALA / NÚMEROS
-========================= */
-
-.scale-label {
-  position: absolute;
-
-  left: 125px;
-
-  font-size: 13px;
-
-  transform: translateY(-50%);
-}
-
-/* 750ms */
-
-.label-750 {
-  top: 0%;
-  color: #777;
-}
-
-/* 640ms */
-
-.label-640 {
-  top: 44%;
-  color: #00ff73;
-}
-
-/* 605ms */
-
-.label-605 {
-  top: 58%;
-  color: #00ff73;
-}
-
-/* 500ms */
-
-.label-500 {
-  top: 100%;
-  color: #777;
-}
-
-/* EARLY / LATE */
-
-.late-label {
-  position: absolute;
-
-  right: 120px;
-  top: 15%;
-
-  color: #ff3535;
-
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.early-label {
-  position: absolute;
-
-  right: 120px;
-  top: 80%;
-
-  color: #ffae00;
-
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.green-label {
-  position: absolute;
-
-  right: 115px;
-  top: 51%;
-
-  transform: translateY(-50%);
-
-  color: #00ff73;
-
-  font-size: 12px;
-  font-weight: bold;
-}
-
-/* =========================
-   INFO
-========================= */
-
 .release-info {
-  margin-top: 20px;
-
-  font-size: 18px;
-
+  margin-top: 8px;
+  font-size: 17px;
   color: #aaa;
-
-  min-height: 25px;
+  min-height: 24px;
 }
 
 .window-info {
-  margin-top: 8px;
-
+  margin-top: 12px;
   color: #777;
-
   font-size: 14px;
 }
 
 </style>
 </head>
 
-
 <body>
 
 <div class="trainer">
 
-  <h1>
-    JUMPSHOT TIMING TRAINER
-  </h1>
+  <h1>JUMPSHOT TIMING TRAINER</h1>
 
   <div id="status" class="status">
     Conecte o controle e pressione qualquer botão
   </div>
 
 
-  <!-- TIMER -->
-
-  <div class="timer-container">
-
-    <span id="timer" class="timer">
-      0
-    </span>
-
-    <span class="ms">
-      ms
-    </span>
-
-  </div>
-
-
-  <!-- BOTÃO X -->
-
-  <div id="buttonX" class="button-x">
-    X
-  </div>
-
-
-  <!-- RESULTADO -->
-
-  <div id="result" class="result">
-
-    Segure X e solte para medir
-
-  </div>
-
-
   <!-- =========================
-       BARRA VERTICAL
+       1. BARRA
   ========================== -->
 
   <div class="timing-area">
@@ -416,34 +285,23 @@ Green:
       RELEASE TIMING
     </div>
 
-
     <div class="vertical-wrapper">
-
 
       <div class="late-label">
         LATE
       </div>
 
-
       <div class="green-label">
         GREEN
       </div>
-
 
       <div class="early-label">
         EARLY
       </div>
 
-
       <div class="timing-bar">
 
-        <!-- GREEN WINDOW -->
-
-        <div class="green-window">
-        </div>
-
-
-        <!-- MARCADOR -->
+        <div class="green-window"></div>
 
         <div
           id="marker"
@@ -451,9 +309,6 @@ Green:
         </div>
 
       </div>
-
-
-      <!-- ESCALA -->
 
       <div class="scale-label label-750">
         750 ms
@@ -471,62 +326,81 @@ Green:
         500 ms
       </div>
 
-
     </div>
 
   </div>
 
 
-  <!-- INFORMAÇÃO DO RELEASE -->
+  <!-- =========================
+       2. TIMER
+  ========================== -->
+
+  <div class="timer-container">
+
+    <span id="timer" class="timer">
+      0
+    </span>
+
+    <span class="ms">
+      ms
+    </span>
+
+  </div>
+
+
+  <!-- =========================
+       3. BOTÃO X
+  ========================== -->
+
+  <div id="buttonX" class="button-x">
+    X
+  </div>
+
+
+  <!-- =========================
+       4. STATUS DO RELEASE
+  ========================== -->
+
+  <div id="result" class="result">
+    SEGURE X E SOLTE
+  </div>
 
   <div
     id="releaseInfo"
     class="release-info">
   </div>
 
-
   <div class="window-info">
-
     GREEN WINDOW: 605–640 ms
-
   </div>
-
 
 </div>
 
 
 <script>
 
-/* =========================================
-   CONFIGURAÇÃO DA JANELA
-========================================= */
+/* ===============================
+   CONFIGURAÇÕES
+================================ */
 
 const GREEN_START = 605;
-
 const GREEN_END = 640;
 
-
-/* =========================================
-   ESCALA DA BARRA
-========================================= */
-
 const BAR_MIN = 500;
-
 const BAR_MAX = 750;
 
 
-/* =========================================
+/* ===============================
    VARIÁVEIS
-========================================= */
+================================ */
 
 let pressing = false;
-
 let startTime = 0;
 
 
-/* =========================================
+/* ===============================
    ELEMENTOS
-========================================= */
+================================ */
 
 const timer =
   document.getElementById("timer");
@@ -547,19 +421,11 @@ const releaseInfo =
   document.getElementById("releaseInfo");
 
 
-/* =========================================
-   POSICIONAR MARCADOR
-========================================= */
+/* ===============================
+   MARCADOR
+================================ */
 
 function moveMarker(ms) {
-
-  /*
-  Quanto MAIOR o tempo,
-  mais ALTO fica o marcador.
-
-  500ms = 100% (embaixo)
-  750ms = 0%   (em cima)
-  */
 
   let percentage =
     100 -
@@ -568,119 +434,87 @@ function moveMarker(ms) {
       (BAR_MAX - BAR_MIN)
     ) * 100;
 
-
-  /* Não deixa o marcador
-     sair da barra */
-
   if (percentage < 0) {
-
     percentage = 0;
-
   }
-
 
   if (percentage > 100) {
-
     percentage = 100;
-
   }
-
 
   marker.style.top =
     percentage + "%";
 
-
   marker.style.display =
     "block";
-
 }
 
 
-/* =========================================
-   LOOP PRINCIPAL
-========================================= */
+/* ===============================
+   CONTROLE
+================================ */
 
 function update() {
-
 
   const gamepads =
     navigator.getGamepads();
 
-
   if (gamepads[0]) {
-
 
     const controller =
       gamepads[0];
-
 
     status.innerText =
       "Controle conectado: " +
       controller.id;
 
-
     /*
-    GAMEPAD API - XBOX
+      Xbox Gamepad API
 
-    A = 0
-    B = 1
-    X = 2
-    Y = 3
+      A = 0
+      B = 1
+      X = 2
+      Y = 3
     */
-
 
     const xPressed =
       controller.buttons[2].pressed;
 
 
-
-    /* =====================================
+    /* =========================
        APERTOU X
-    ===================================== */
+    ========================== */
 
-    if (
-      xPressed &&
-      !pressing
-    ) {
-
+    if (xPressed && !pressing) {
 
       pressing = true;
 
-
       startTime =
         performance.now();
-
 
       buttonX.classList.add(
         "pressed"
       );
 
-
       result.className =
         "result";
-
 
       result.innerText =
         "SEGURANDO...";
 
+      releaseInfo.innerText = "";
     }
 
 
+    /* =========================
+       SEGURANDO X
+    ========================== */
 
-    /* =====================================
-       ENQUANTO SEGURA X
-    ===================================== */
-
-    if (
-      xPressed &&
-      pressing
-    ) {
-
+    if (xPressed && pressing) {
 
       const current =
         performance.now() -
         startTime;
-
 
       timer.innerText =
         Math.round(current);
@@ -688,154 +522,96 @@ function update() {
     }
 
 
-
-    /* =====================================
+    /* =========================
        SOLTOU X
-    ===================================== */
+    ========================== */
 
-    if (
-      !xPressed &&
-      pressing
-    ) {
-
+    if (!xPressed && pressing) {
 
       pressing = false;
-
 
       const duration =
         performance.now() -
         startTime;
 
-
       const ms =
         Math.round(duration);
 
-
-      timer.innerText =
-        ms;
-
-
-      /* COLOCA MARCADOR NA BARRA */
+      timer.innerText = ms;
 
       moveMarker(ms);
 
 
+      /* EARLY */
 
-      /* =================================
-         EARLY
-      ================================= */
-
-      if (
-        ms < GREEN_START
-      ) {
-
+      if (ms < GREEN_START) {
 
         result.className =
           "result early";
 
-
         result.innerText =
           "EARLY";
-
 
         const difference =
           GREEN_START - ms;
 
-
         releaseInfo.innerText =
           difference +
           " ms antes da janela";
-
       }
 
 
+      /* GREEN */
 
-      /* =================================
-         GREEN
-      ================================= */
-
-      else if (
-        ms <= GREEN_END
-      ) {
-
+      else if (ms <= GREEN_END) {
 
         result.className =
           "result green";
 
-
         result.innerText =
           "GREEN!";
 
-
         const center =
-          (
-            GREEN_START +
-            GREEN_END
-          ) / 2;
-
+          (GREEN_START + GREEN_END) / 2;
 
         const difference =
           Math.round(
-            Math.abs(
-              ms - center
-            )
+            Math.abs(ms - center)
           );
-
 
         releaseInfo.innerText =
           "Dentro da janela • " +
           difference +
           " ms do centro";
-
       }
 
 
-
-      /* =================================
-         LATE
-      ================================= */
+      /* LATE */
 
       else {
-
 
         result.className =
           "result late";
 
-
         result.innerText =
           "LATE";
-
 
         const difference =
           ms - GREEN_END;
 
-
         releaseInfo.innerText =
           difference +
           " ms depois da janela";
-
       }
-
 
       buttonX.classList.remove(
         "pressed"
       );
-
     }
-
   }
 
-
-  requestAnimationFrame(
-    update
-  );
-
+  requestAnimationFrame(update);
 }
-
-
-/* =========================================
-   INICIAR TRAINER
-========================================= */
 
 update();
 
