@@ -1274,6 +1274,293 @@ center {
 
 
 /* =========================================================
+   MOCKUP SKIN — PAINÉIS / TIPOGRAFIA / HISTÓRICO
+========================================================= */
+
+.panel {
+    background:
+        linear-gradient(135deg, rgba(255,255,255,.025), transparent 30%),
+        repeating-linear-gradient(135deg, rgba(255,255,255,.018) 0 1px, transparent 1px 6px),
+        linear-gradient(180deg, rgba(16,16,16,.97), rgba(5,5,5,.96));
+    border: 1px solid rgba(190,190,190,.72);
+    border-radius: 0;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%);
+    box-shadow: 0 20px 55px rgba(0,0,0,.78), inset 0 0 0 1px rgba(255,255,255,.025);
+}
+
+.panel::before {
+    height: 2px;
+    width: 118px;
+    left: 18px;
+    background: #e51e30;
+    box-shadow: 0 0 8px rgba(229,30,48,.3);
+}
+
+.panel::after {
+    background:
+        repeating-linear-gradient(135deg, rgba(255,255,255,.014) 0 1px, transparent 1px 5px),
+        radial-gradient(circle at 25% 15%, rgba(255,255,255,.025), transparent 38%);
+}
+
+.settings-panel,
+.stats-panel {
+    padding: 27px 20px 24px;
+}
+
+.panel-heading {
+    align-items: flex-start;
+    gap: 11px;
+    margin-bottom: 18px;
+}
+
+.panel-heading-line {
+    width: 5px;
+    height: 25px;
+    margin-top: 2px;
+    background: #ef2637;
+    transform: skewX(-13deg);
+}
+
+.heading-copy { min-width: 0; }
+
+.panel-heading h2 {
+    margin: 0;
+    font-family: Impact, "Arial Narrow", Arial, sans-serif;
+    font-size: 25px;
+    line-height: .95;
+    font-style: normal;
+    font-weight: 900;
+    letter-spacing: .6px;
+    transform: scaleX(.92);
+    transform-origin: left center;
+    text-shadow: 0 2px 2px #000;
+}
+
+.panel-subtitle {
+    margin-top: 8px;
+    color: #aaa;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    white-space: nowrap;
+}
+
+.setting-label {
+    margin: 0 0 7px 5px;
+    color: #bbb;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: .5px;
+}
+
+.field {
+    padding: 11px 10px 10px;
+    border: 1px solid #3b3b3b;
+    background: linear-gradient(180deg, rgba(25,25,25,.9), rgba(8,8,8,.92));
+}
+
+.field input {
+    height: 49px;
+    border: 1px solid #666;
+    border-radius: 7px;
+    background: #070707;
+    font-family: Impact, "Arial Narrow", Arial, sans-serif;
+    font-size: 26px;
+    letter-spacing: 1px;
+}
+
+.settings-fields { gap: 8px; }
+
+.control-button {
+    min-height: 52px;
+    border-radius: 7px;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.1px;
+}
+
+.apply-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 10px;
+    color: white;
+    background: linear-gradient(100deg, #bd141e, #f12635 52%, #a80d17);
+    border: 1px solid #ff5260;
+    box-shadow: inset 0 0 20px rgba(255,255,255,.06), 0 0 10px rgba(225,24,40,.18);
+}
+
+.apply-arrow {
+    font-size: 32px;
+    line-height: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.hide-button,
+.hardcore-button,
+.sound-button,
+.reset-button {
+    text-align: left;
+    padding-left: 22px;
+    background: linear-gradient(180deg, #171717, #090909);
+    border-color: #444;
+}
+
+.sound-button.on {
+    color: #00ff73;
+    border-color: #116d3c;
+}
+
+.settings-message {
+    margin-top: 10px;
+    padding: 14px 0 2px;
+    border-top: 1px solid #292929;
+    letter-spacing: 1.5px;
+}
+
+.stats-grid {
+    gap: 8px;
+    margin-bottom: 9px;
+}
+
+.stat-card {
+    min-height: 93px;
+    align-items: flex-start;
+    padding-left: 20px;
+    border-radius: 7px;
+    border-color: #3f3f3f;
+    background: linear-gradient(180deg, #171717, #0a0a0a);
+}
+
+.stat-value {
+    font-family: Impact, "Arial Narrow", Arial, sans-serif;
+    font-size: 42px;
+    font-style: normal;
+    letter-spacing: 1px;
+}
+
+.stat-label {
+    order: -1;
+    margin: 0 0 7px;
+    color: #aaa;
+    font-size: 9px;
+    letter-spacing: 1.3px;
+}
+
+.green-stat { color: #00f278; }
+.streak-stat { color: #ffb000; }
+
+.best-streak-row {
+    min-height: 53px;
+    margin: 8px 0 0;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #444;
+    border-radius: 7px;
+    background: linear-gradient(180deg, #161616, #090909);
+    color: #bbb;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.best-streak-row strong {
+    color: #ffb000;
+    font-family: Impact, "Arial Narrow", Arial, sans-serif;
+    font-size: 25px;
+    letter-spacing: 1px;
+}
+
+.history-box {
+    margin-top: 14px;
+    padding-top: 15px;
+    border-top: 1px solid #3a3a3a;
+}
+
+.history-title {
+    color: #ddd;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.history {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+    min-height: 105px;
+    align-items: end;
+}
+
+.shot {
+    min-width: 0;
+    max-width: none;
+    height: 98px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    border: 0 !important;
+    background: transparent !important;
+}
+
+.mini-track {
+    position: relative;
+    width: 21px;
+    height: 72px;
+    overflow: hidden;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background: linear-gradient(180deg, #1c1c1c, #080808);
+    box-shadow: inset 0 0 7px #000;
+}
+
+.mini-track::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 7px;
+    bottom: 7px;
+    width: 2px;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,.10);
+}
+
+.mini-glow {
+    position: absolute;
+    left: 50%;
+    width: 7px;
+    height: 19px;
+    transform: translate(-50%, 50%);
+    border-radius: 8px;
+    background: currentColor;
+    box-shadow: 0 0 8px currentColor, 0 0 14px currentColor;
+}
+
+.green-shot .mini-glow { color: #00f278; }
+.early-shot .mini-glow { color: #ffad0d; }
+.late-shot .mini-glow { color: #ff2636; }
+
+.mini-value {
+    color: #ddd;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-size: 8px;
+    font-weight: 900;
+}
+
+.empty-history { grid-column: 1 / -1; }
+
+.reset-button {
+    text-align: center;
+    margin-top: 12px;
+}
+
+/* =========================================================
    TELAS MENORES DE DESKTOP
 
    IMPORTANTE:
@@ -1327,6 +1614,231 @@ center {
 
     .page {
         min-width: 1000px;
+    }
+}
+
+
+/* =========================================================
+   DESKTOP V2 — COMPOSIÇÃO / ESCALA
+   Mantém toda a lógica existente e aproxima o HUD do mockup.
+========================================================= */
+@media (min-width: 1151px) {
+    .page {
+        padding: 18px clamp(28px, 3vw, 58px) 28px;
+    }
+
+    .top-header {
+        min-height: 112px;
+        align-items: start;
+    }
+
+    .brand {
+        font-size: 27px;
+    }
+
+    .main-title h1 {
+        font-size: clamp(48px, 4.2vw, 72px);
+    }
+
+    .main-title .small-title {
+        font-size: 12px;
+        letter-spacing: 6px;
+    }
+
+    .main-title .subtitle {
+        font-size: 11px;
+        letter-spacing: 5px;
+    }
+
+    .desktop-grid {
+        max-width: 1660px;
+        margin-top: -4px;
+        grid-template-columns: minmax(360px, 430px) minmax(420px, 1fr) minmax(370px, 440px);
+        gap: clamp(42px, 4.3vw, 82px);
+        align-items: center;
+    }
+
+    .settings-panel,
+    .stats-panel {
+        min-height: 570px;
+        padding: 30px 28px 28px;
+    }
+
+    .panel-heading {
+        margin-bottom: 29px;
+    }
+
+    .panel-heading-line {
+        width: 6px;
+        height: 34px;
+    }
+
+    .panel-heading h2 {
+        font-size: 25px;
+    }
+
+    .setting-label {
+        font-size: 11px;
+    }
+
+    .field input {
+        height: 61px;
+        font-size: 27px;
+    }
+
+    .control-button {
+        min-height: 50px;
+        margin-top: 13px;
+        font-size: 12px;
+    }
+
+    .settings-message {
+        margin-top: 22px;
+        padding-top: 17px;
+        font-size: 10px;
+    }
+
+    .center-trainer {
+        align-self: center;
+        transform: translateY(-2px);
+    }
+
+    .timing-heading {
+        margin-bottom: 15px;
+        font-size: 17px;
+        letter-spacing: 2.5px;
+    }
+
+    .vertical-wrapper {
+        width: 350px;
+        height: 475px;
+    }
+
+    .timing-bar {
+        width: 64px;
+        height: 475px;
+        border-width: 2px;
+    }
+
+    .zone-label {
+        right: 218px;
+        font-size: 13px;
+    }
+
+    .scale-label {
+        left: 224px;
+        font-size: 13px;
+    }
+
+    .marker {
+        left: 195px;
+        width: 92px;
+        height: 4px;
+    }
+
+    .marker::before {
+        left: -12px;
+        border-top-width: 7px;
+        border-bottom-width: 7px;
+        border-right-width: 12px;
+    }
+
+    .timer-container {
+        min-height: 83px;
+        margin-top: 13px;
+    }
+
+    .timer {
+        font-size: 76px;
+        letter-spacing: -4px;
+    }
+
+    .ms {
+        margin-left: 9px;
+        font-size: 21px;
+    }
+
+    .timer-container.hardcore-running::after {
+        font-size: 70px;
+    }
+
+    .button-x {
+        width: 96px;
+        height: 96px;
+        margin-top: 9px;
+        font-size: 46px;
+        border-width: 4px;
+    }
+
+    .touch-help {
+        margin-top: 10px;
+        font-size: 10px;
+        letter-spacing: .25px;
+    }
+
+    .result {
+        min-height: 58px;
+        margin-top: 12px;
+        font-size: 48px;
+    }
+
+    .release-info {
+        margin-top: 4px;
+        font-size: 12px;
+    }
+
+    .window-info {
+        margin-top: 7px;
+        font-size: 10px;
+    }
+
+    .stats-grid {
+        gap: 11px;
+        margin-bottom: 22px;
+    }
+
+    .stat-card {
+        min-height: 94px;
+    }
+
+    .stat-value {
+        font-size: 36px;
+    }
+
+    .stat-label {
+        margin-top: 9px;
+        font-size: 10px;
+    }
+
+    .history-box {
+        margin-top: 12px;
+        padding-top: 19px;
+    }
+
+    .history-title {
+        margin-bottom: 15px;
+        font-size: 11px;
+    }
+
+    .history {
+        gap: 8px;
+        min-height: 88px;
+    }
+
+    .shot {
+        min-width: 58px;
+        max-width: 72px;
+        padding: 9px 5px;
+        font-size: 11px;
+    }
+
+    .reset-button {
+        margin-top: 19px;
+    }
+
+    .footer {
+        max-width: 1660px;
+        margin-top: 12px;
     }
 }
 
@@ -1410,9 +1922,10 @@ center {
 
         <div class="panel-heading-line"></div>
 
-        <h2>
-            CONFIGURAÇÃO
-        </h2>
+        <div class="heading-copy">
+            <h2>CONFIGURAÇÃO</h2>
+            <div class="panel-subtitle">AJUSTE SUA GREEN WINDOW</div>
+        </div>
 
     </div>
 
@@ -1426,7 +1939,7 @@ center {
                 class="setting-label"
                 for="greenStartInput">
 
-                INÍCIO DO GREEN
+                INÍCIO (ms)
 
             </label>
 
@@ -1446,7 +1959,7 @@ center {
                 class="setting-label"
                 for="greenEndInput">
 
-                FIM DO GREEN
+                FIM (ms)
 
             </label>
 
@@ -1467,7 +1980,7 @@ center {
         id="applyWindow"
         class="control-button apply-button">
 
-        APLICAR JANELA
+        <span>APLICAR JANELA</span><span class="apply-arrow">›</span>
 
     </button>
 
@@ -1718,9 +2231,10 @@ center {
 
         <div class="panel-heading-line"></div>
 
-        <h2>
-            SESSÃO DE <span>TREINO</span>
-        </h2>
+        <div class="heading-copy">
+            <h2>SESSÃO DE <span>TREINO</span></h2>
+            <div class="panel-subtitle">ACOMPANHE SUA EVOLUÇÃO</div>
+        </div>
 
     </div>
 
@@ -1810,6 +2324,12 @@ center {
 
     </div>
 
+
+
+    <div class="best-streak-row">
+        <span>MELHOR STREAK</span>
+        <strong id="bestStreakStat">0 👑</strong>
+    </div>
 
 
     <div class="history-box">
@@ -2066,6 +2586,11 @@ const averageStat =
 const streakStat =
     document.getElementById(
         "streakStat"
+    );
+
+const bestStreakStat =
+    document.getElementById(
+        "bestStreakStat"
     );
 
 const history =
@@ -3109,6 +3634,10 @@ function updateStats() {
         bestStreak;
 
 
+    bestStreakStat.innerText =
+        bestStreak + " 👑";
+
+
     updateHistory();
 
 }
@@ -3199,9 +3728,24 @@ function updateHistory() {
             }
 
 
-            item.innerText =
-                shot.ms +
-                " ms";
+            const miniTrack = document.createElement("div");
+            miniTrack.className = "mini-track";
+
+            const miniGlow = document.createElement("div");
+            miniGlow.className = "mini-glow";
+
+            let pct = ((shot.ms - 450) / 300) * 100;
+            pct = Math.max(8, Math.min(92, pct));
+            miniGlow.style.bottom = pct + "%";
+
+            miniTrack.appendChild(miniGlow);
+
+            const miniValue = document.createElement("div");
+            miniValue.className = "mini-value";
+            miniValue.innerText = shot.ms;
+
+            item.appendChild(miniTrack);
+            item.appendChild(miniValue);
 
 
             history.appendChild(
