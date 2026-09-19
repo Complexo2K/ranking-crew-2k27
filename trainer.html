@@ -2439,6 +2439,36 @@ center {
     }
 }
 
+
+/* =========================================================
+   LOGOS DO MOCKUP — arte exata extraída da referência
+   Somente COMPLEXO 2K e JUMPSHOT TRAINER
+========================================================= */
+.brand img {
+    display: block;
+    width: clamp(220px, 19vw, 340px);
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 9px rgba(0,0,0,.9));
+}
+
+.main-title h1.mockup-title-art {
+    margin: 0;
+    line-height: 1;
+    font-size: 0;
+    text-shadow: none;
+}
+
+.main-title h1.mockup-title-art img {
+    display: block;
+    width: clamp(410px, 36vw, 650px);
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,.9));
+}
+
 </style>
 </head>
 
@@ -2466,7 +2496,7 @@ center {
 <header class="top-header">
 
     <div class="brand">
-        COMPLEXO <span>2K</span>
+        <img src="complexo2k-logo.png" alt="Complexo 2K">
     </div>
 
 
@@ -2476,8 +2506,8 @@ center {
             COMPLEXO 2K LAB
         </div>
 
-        <h1>
-            JUMPSHOT <span>TRAINER</span>
+        <h1 class="mockup-title-art">
+            <img src="jumpshot-trainer-logo.png" alt="Jumpshot Trainer">
         </h1>
 
         <div class="subtitle">
