@@ -3104,6 +3104,52 @@ center {
     }
 }
 
+
+/* =========================================================
+   MOBILE — PASSO 4: CORREÇÃO DE LARGURA DA CONFIGURAÇÃO
+   Corrige apenas o overflow lateral do painel aberto.
+   Desktop e demais áreas permanecem inalterados.
+========================================================= */
+@media (max-width: 850px) {
+    .settings-panel:not(.mobile-collapsed) .panel-content > :not(.panel-heading) {
+        width: calc(100% - 48px);
+        max-width: calc(100% - 48px);
+        margin-left: 24px;
+        margin-right: 24px;
+        box-sizing: border-box;
+    }
+
+    .settings-panel:not(.mobile-collapsed) .settings-fields {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .settings-panel:not(.mobile-collapsed) .field,
+    .settings-panel:not(.mobile-collapsed) .control-button {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .settings-panel:not(.mobile-collapsed) .apply-button {
+        padding-left: 24px;
+        padding-right: 18px;
+    }
+
+    .settings-panel:not(.mobile-collapsed) .option-button {
+        padding-left: 17px;
+        padding-right: 14px;
+    }
+
+    .settings-panel:not(.mobile-collapsed) .option-left {
+        flex: 1 1 auto;
+        overflow: hidden;
+    }
+
+    .settings-panel:not(.mobile-collapsed) .state-box {
+        flex: 0 0 51px;
+        margin-left: 10px;
+    }
+}
+
 </style>
 </head>
 
