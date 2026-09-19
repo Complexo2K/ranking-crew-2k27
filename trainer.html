@@ -3022,6 +3022,88 @@ center {
     .hardcore-indicator { font-size: 7px; }
 }
 
+
+
+/* =========================================================
+   MOBILE — PASSO 3: PAINÉIS RETRÁTEIS
+   Configuração e Sessão ficam fechadas por padrão no celular.
+   Desktop permanece exatamente com o comportamento anterior.
+========================================================= */
+@media (max-width: 850px) {
+    .settings-panel,
+    .stats-panel {
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .settings-panel .panel-content,
+    .stats-panel .panel-content {
+        width: 100%;
+    }
+
+    .settings-panel .panel-heading,
+    .stats-panel .panel-heading {
+        position: relative;
+        min-height: 76px;
+        margin: 0;
+        padding: 18px 58px 17px 24px;
+        align-items: center;
+        cursor: pointer;
+        touch-action: manipulation;
+    }
+
+    .settings-panel .panel-heading-line,
+    .stats-panel .panel-heading-line {
+        flex: 0 0 auto;
+        margin-top: 0;
+    }
+
+    .settings-panel .panel-heading::after,
+    .stats-panel .panel-heading::after {
+        content: "⌄";
+        position: absolute;
+        right: 23px;
+        top: 50%;
+        transform: translateY(-54%) rotate(180deg);
+        color: #fff;
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1;
+        transition: transform .18s ease;
+    }
+
+    .settings-panel.mobile-collapsed .panel-heading::after,
+    .stats-panel.mobile-collapsed .panel-heading::after {
+        transform: translateY(-54%) rotate(0deg);
+    }
+
+    .settings-panel.mobile-collapsed .panel-content > :not(.panel-heading),
+    .stats-panel.mobile-collapsed .panel-content > :not(.panel-heading) {
+        display: none !important;
+    }
+
+    .settings-panel.mobile-collapsed,
+    .stats-panel.mobile-collapsed {
+        min-height: 0;
+    }
+
+    .settings-panel:not(.mobile-collapsed) .panel-content > :not(.panel-heading),
+    .stats-panel:not(.mobile-collapsed) .panel-content > :not(.panel-heading) {
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+
+    .settings-panel:not(.mobile-collapsed) .settings-message,
+    .stats-panel:not(.mobile-collapsed) .reset-button {
+        margin-bottom: 24px;
+    }
+
+    .desktop-grid {
+        gap: 16px;
+    }
+}
+
 </style>
 </head>
 
@@ -5214,6 +5296,63 @@ updateGreenWindow();
 updateStats();
 
 update();
+
+
+
+/* =========================================================
+   MOBILE — PASSO 3: ABRIR / FECHAR PAINÉIS
+========================================================= */
+(function setupMobileAccordion() {
+    const panels = [
+        document.querySelector('.settings-panel'),
+        document.querySelector('.stats-panel')
+    ].filter(Boolean);
+
+    function isMobile() {
+        return window.matchMedia('(max-width: 850px)').matches;
+    }
+
+    panels.forEach((panel) => {
+        const heading = panel.querySelector('.panel-heading');
+        if (!heading) return;
+
+        heading.setAttribute('role', 'button');
+        heading.setAttribute('tabindex', '0');
+        heading.setAttribute('aria-expanded', 'false');
+
+        const toggle = () => {
+            if (!isMobile()) return;
+            const collapsed = panel.classList.toggle('mobile-collapsed');
+            heading.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+        };
+
+        heading.addEventListener('click', toggle);
+        heading.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggle();
+            }
+        });
+    });
+
+    function syncPanels() {
+        panels.forEach((panel) => {
+            const heading = panel.querySelector('.panel-heading');
+            if (isMobile()) {
+                if (!panel.dataset.mobileInitialized) {
+                    panel.classList.add('mobile-collapsed');
+                    panel.dataset.mobileInitialized = '1';
+                }
+                heading?.setAttribute('aria-expanded', panel.classList.contains('mobile-collapsed') ? 'false' : 'true');
+            } else {
+                heading?.setAttribute('aria-expanded', 'true');
+            }
+        });
+    }
+
+    syncPanels();
+    window.addEventListener('resize', syncPanels);
+})();
 
 </script>
 
