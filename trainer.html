@@ -7,43 +7,42 @@
 <title>Complexo 2K - Timing Trainer</title>
 
 <style>
-
 * {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  background: #080808;
-  color: white;
-  font-family: Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    background: #080808;
+    color: white;
+    font-family: Arial, sans-serif;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 
-  user-select: none;
-  -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .trainer {
-  width: 92%;
-  max-width: 700px;
-  text-align: center;
-  padding: 20px 0 30px;
+    width: 92%;
+    max-width: 720px;
+    text-align: center;
+    padding: 22px 0 40px;
 }
 
 h1 {
-  font-size: 30px;
-  margin: 0 0 8px;
+    font-size: 30px;
+    margin: 0 0 8px;
 }
 
 .status {
-  color: #aaa;
-  margin-bottom: 18px;
-  font-size: 14px;
+    color: #aaa;
+    margin-bottom: 18px;
+    font-size: 14px;
 }
 
 
@@ -52,115 +51,125 @@ h1 {
 ======================================== */
 
 .window-settings {
-  width: 100%;
-  max-width: 430px;
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto 24px;
+    padding: 15px;
 
-  margin: 0 auto 25px;
-  padding: 15px;
-
-  background: #111;
-
-  border: 1px solid #333;
-  border-radius: 12px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 12px;
 }
 
 .settings-title {
-  font-size: 13px;
-  color: #aaa;
-  letter-spacing: 1px;
-  margin-bottom: 12px;
+    font-size: 13px;
+    color: #aaa;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
 }
 
 .settings-fields {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
+    display: flex;
+    gap: 10px;
 }
 
 .field {
-  flex: 1;
-  text-align: left;
+    flex: 1;
+    text-align: left;
 }
 
 .field label {
-  display: block;
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 5px;
+    display: block;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
 }
 
 .field input {
-  width: 100%;
-  padding: 10px;
+    width: 100%;
+    padding: 10px;
 
-  background: #080808;
+    background: #080808;
+    border: 1px solid #444;
+    border-radius: 7px;
 
-  border: 1px solid #444;
-  border-radius: 7px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
 
-  color: white;
-
-  font-size: 18px;
-  font-weight: bold;
-
-  text-align: center;
-
-  outline: none;
+    outline: none;
 }
 
 .field input:focus {
-  border-color: #00ff73;
+    border-color: #00ff73;
 }
 
 
 /* ========================================
-   BOTÕES
+   BOTÕES DE CONFIGURAÇÃO
 ======================================== */
 
-.apply-button,
-.hide-button {
+.control-button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 11px;
 
-  width: 100%;
+    border-radius: 7px;
 
-  margin-top: 12px;
+    font-size: 14px;
+    font-weight: 900;
 
-  padding: 11px;
-
-  border: none;
-  border-radius: 7px;
-
-  font-size: 14px;
-  font-weight: 900;
-
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .apply-button {
-  background: #00c85a;
-  color: #001b0c;
+    border: none;
+    background: #00c85a;
+    color: #001b0c;
 }
 
 .hide-button {
-  background: #252525;
-  color: white;
-  border: 1px solid #444;
+    background: #252525;
+    color: white;
+    border: 1px solid #444;
 }
 
 .hide-button.active {
-  background: #8b1515;
-  border-color: #ff3535;
+    background: #5d1515;
+    border-color: #ff3535;
 }
 
-.apply-button:active,
-.hide-button:active {
-  transform: scale(0.98);
+.hardcore-button {
+    background: #151515;
+    color: #bbb;
+    border: 1px solid #444;
+}
+
+.hardcore-button.active {
+    background: #7a1212;
+    color: white;
+    border-color: #ff3535;
+
+    box-shadow:
+        0 0 15px rgba(255,53,53,0.25);
+}
+
+.reset-button {
+    background: transparent;
+    color: #888;
+    border: 1px solid #333;
+}
+
+.control-button:active {
+    transform: scale(0.98);
 }
 
 .settings-message {
-  margin-top: 8px;
-  min-height: 18px;
-  color: #888;
-  font-size: 12px;
+    margin-top: 10px;
+    min-height: 18px;
+    color: #888;
+    font-size: 12px;
 }
 
 
@@ -169,152 +178,110 @@ h1 {
 ======================================== */
 
 .timing-area {
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  margin-top: 10px;
-
-  transition:
-    opacity 0.2s,
-    max-height 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
 }
-
-
-/*
-Quando o modo memória estiver ativo,
-a área da barra desaparece.
-*/
 
 .timing-area.hidden {
-
-  display: none;
-
+    display: none;
 }
 
-
 .timing-title {
-
-  font-size: 14px;
-
-  color: #aaa;
-
-  margin-bottom: 12px;
-
-  letter-spacing: 2px;
-
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
 }
 
 .vertical-wrapper {
+    position: relative;
 
-  position: relative;
+    width: 210px;
+    height: 340px;
 
-  width: 210px;
-  height: 340px;
-
-  display: flex;
-  justify-content: center;
-
+    display: flex;
+    justify-content: center;
 }
 
 .timing-bar {
+    position: relative;
 
-  position: relative;
+    width: 48px;
+    height: 340px;
 
-  width: 48px;
-  height: 340px;
+    background: #292929;
 
-  background: #292929;
+    border: 2px solid #555;
+    border-radius: 10px;
 
-  border: 2px solid #555;
-  border-radius: 10px;
-
-  overflow: hidden;
-
+    overflow: hidden;
 }
-
-
-/* preenchimento */
 
 .live-fill {
+    position: absolute;
 
-  position: absolute;
+    bottom: 0;
+    left: 0;
 
-  bottom: 0;
-  left: 0;
+    width: 100%;
+    height: 0%;
 
-  width: 100%;
-  height: 0%;
+    background: rgba(255,255,255,0.20);
 
-  background: rgba(255,255,255,0.20);
-
-  z-index: 1;
-
+    z-index: 1;
 }
-
-
-/* GREEN */
 
 .green-window {
+    position: absolute;
 
-  position: absolute;
+    left: 0;
+    width: 100%;
 
-  left: 0;
+    background: #00d965;
 
-  width: 100%;
+    box-shadow:
+        0 0 14px rgba(0,255,115,0.7);
 
-  background: #00d965;
-
-  box-shadow:
-    0 0 14px rgba(0,255,115,0.7);
-
-  z-index: 2;
-
+    z-index: 2;
 }
 
-
-/* MARCADOR */
-
 .marker {
+    position: absolute;
 
-  position: absolute;
+    left: 65px;
 
-  left: 65px;
+    width: 80px;
+    height: 4px;
 
-  width: 80px;
-  height: 4px;
+    background: white;
 
-  background: white;
+    box-shadow:
+        0 0 10px white;
 
-  box-shadow:
-    0 0 10px white;
+    display: none;
 
-  display: none;
+    transform: translateY(-50%);
 
-  transform: translateY(-50%);
+    z-index: 20;
 
-  z-index: 20;
-
-  pointer-events: none;
-
+    pointer-events: none;
 }
 
 .marker::before {
+    content: "";
 
-  content: "";
+    position: absolute;
 
-  position: absolute;
+    left: -9px;
+    top: 50%;
 
-  left: -9px;
-  top: 50%;
+    transform: translateY(-50%);
 
-  transform: translateY(-50%);
-
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-  border-right: 9px solid white;
-
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 9px solid white;
 }
 
 
@@ -323,71 +290,56 @@ a área da barra desaparece.
 ======================================== */
 
 .scale-label {
+    position: absolute;
 
-  position: absolute;
+    left: 140px;
 
-  left: 140px;
+    font-size: 13px;
 
-  font-size: 13px;
-
-  transform: translateY(-50%);
-
+    transform: translateY(-50%);
 }
 
 .label-max {
-
-  top: 0%;
-  color: #777;
-
+    top: 0%;
+    color: #777;
 }
 
-.label-green-end {
-
-  color: #00ff73;
-
-}
-
+.label-green-end,
 .label-green-start {
-
-  color: #00ff73;
-
+    color: #00ff73;
 }
 
 .label-zero {
-
-  top: 100%;
-  color: #777;
-
+    top: 100%;
+    color: #777;
 }
 
 
 /* ========================================
-   ZONAS
+   EARLY / GREEN / LATE
 ======================================== */
 
 .zone-label {
+    position: absolute;
 
-  position: absolute;
+    right: 135px;
 
-  right: 135px;
+    font-size: 12px;
+    font-weight: bold;
 
-  font-size: 12px;
-  font-weight: bold;
-
-  transform: translateY(-50%);
-
+    transform: translateY(-50%);
 }
 
 .late-label {
-  color: #ff3535;
+    color: #ff3535;
 }
 
 .green-label {
-  color: #00ff73;
+    color: #00ff73;
 }
 
 .early-label {
-  color: #ffae00;
+    color: #ffae00;
 }
 
 
@@ -396,17 +348,38 @@ a área da barra desaparece.
 ======================================== */
 
 .timer-container {
-  margin-top: 22px;
+    margin-top: 22px;
+    min-height: 82px;
 }
 
 .timer {
-  font-size: 68px;
-  font-weight: 900;
+    font-size: 68px;
+    font-weight: 900;
 }
 
 .ms {
-  font-size: 22px;
-  color: #999;
+    font-size: 22px;
+    color: #999;
+}
+
+
+/* No hardcore, durante o arremesso */
+.timer-container.hardcore-running .timer {
+    visibility: hidden;
+}
+
+.timer-container.hardcore-running .ms {
+    visibility: hidden;
+}
+
+.timer-container.hardcore-running::after {
+    content: "???";
+    display: block;
+
+    font-size: 60px;
+    font-weight: 900;
+
+    color: #555;
 }
 
 
@@ -415,55 +388,47 @@ a área da barra desaparece.
 ======================================== */
 
 .button-x {
+    width: 110px;
+    height: 110px;
 
-  width: 110px;
-  height: 110px;
+    border-radius: 50%;
 
-  border-radius: 50%;
+    margin: 18px auto 8px;
 
-  margin: 18px auto 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    background: #1266d3;
 
-  background: #1266d3;
+    border: 3px solid #2780f0;
 
-  border: 3px solid #2780f0;
+    box-shadow:
+        0 0 18px rgba(18,102,211,0.35);
 
-  box-shadow:
-    0 0 18px rgba(18,102,211,0.35);
+    font-size: 52px;
+    font-weight: bold;
 
-  font-size: 52px;
-  font-weight: bold;
+    cursor: pointer;
 
-  cursor: pointer;
+    touch-action: none;
 
-  touch-action: none;
-
-  transition:
-    transform 0.05s,
-    box-shadow 0.05s;
-
+    transition:
+        transform 0.05s,
+        box-shadow 0.05s;
 }
 
 .button-x.pressed {
+    transform: scale(0.86);
 
-  transform: scale(0.86);
-
-  box-shadow:
-    0 0 35px rgba(18,102,211,0.9);
-
+    box-shadow:
+        0 0 35px rgba(18,102,211,0.9);
 }
 
 .touch-help {
-
-  font-size: 13px;
-
-  color: #777;
-
-  margin-bottom: 10px;
-
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 10px;
 }
 
 
@@ -472,117 +437,266 @@ a área da barra desaparece.
 ======================================== */
 
 .result {
+    font-size: 38px;
+    font-weight: 900;
 
-  font-size: 38px;
-  font-weight: 900;
+    margin-top: 12px;
 
-  margin-top: 12px;
-
-  min-height: 48px;
-
+    min-height: 48px;
 }
 
 .early {
-  color: #ffae00;
+    color: #ffae00;
 }
 
 .green {
-  color: #00ff73;
+    color: #00ff73;
 }
 
 .late {
-  color: #ff3535;
+    color: #ff3535;
 }
 
 .release-info {
+    margin-top: 6px;
 
-  margin-top: 6px;
+    font-size: 17px;
 
-  font-size: 17px;
+    color: #aaa;
 
-  color: #aaa;
-
-  min-height: 24px;
-
+    min-height: 24px;
 }
 
 .window-info {
+    margin-top: 10px;
 
-  margin-top: 12px;
+    color: #777;
 
-  color: #777;
-
-  font-size: 14px;
-
+    font-size: 14px;
 }
 
 
 /* ========================================
-   CELULAR
+   ESTATÍSTICAS
+======================================== */
+
+.stats-section {
+    width: 100%;
+    max-width: 600px;
+
+    margin: 28px auto 0;
+}
+
+.stats-title {
+    color: #888;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+}
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 8px;
+}
+
+.stat-card {
+    background: #111;
+
+    border: 1px solid #2d2d2d;
+    border-radius: 10px;
+
+    padding: 13px 5px;
+}
+
+.stat-value {
+    display: block;
+
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.stat-label {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 10px;
+
+    color: #777;
+
+    letter-spacing: 0.5px;
+}
+
+.green-stat {
+    color: #00ff73;
+}
+
+.streak-stat {
+    color: #ffae00;
+}
+
+
+/* ========================================
+   ÚLTIMAS 10
+======================================== */
+
+.history-box {
+    margin-top: 10px;
+
+    padding: 13px;
+
+    background: #111;
+
+    border: 1px solid #2d2d2d;
+    border-radius: 10px;
+}
+
+.history-title {
+    font-size: 11px;
+
+    color: #777;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 10px;
+}
+
+.history {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    justify-content: center;
+
+    min-height: 30px;
+}
+
+.shot {
+    padding: 6px 8px;
+
+    border-radius: 6px;
+
+    background: #1b1b1b;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    border: 1px solid #333;
+}
+
+.shot.green-shot {
+    color: #00ff73;
+    border-color: #126e3a;
+}
+
+.shot.early-shot {
+    color: #ffae00;
+    border-color: #795d16;
+}
+
+.shot.late-shot {
+    color: #ff5353;
+    border-color: #7b2424;
+}
+
+.empty-history {
+    color: #555;
+    font-size: 12px;
+}
+
+
+/* ========================================
+   HARDCORE INDICADOR
+======================================== */
+
+.hardcore-indicator {
+    display: none;
+
+    margin: 15px auto 0;
+
+    color: #ff5353;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+.hardcore-indicator.active {
+    display: block;
+}
+
+
+/* ========================================
+   MOBILE
 ======================================== */
 
 @media (max-width: 600px) {
 
-  body {
-    align-items: flex-start;
-  }
+    .trainer {
+        padding-top: 15px;
+    }
 
-  .trainer {
-    padding-top: 15px;
-  }
+    h1 {
+        font-size: 22px;
+    }
 
-  h1 {
-    font-size: 22px;
-  }
+    .status {
+        font-size: 12px;
+    }
 
-  .status {
-    font-size: 12px;
-    margin-bottom: 12px;
-  }
+    .vertical-wrapper {
+        height: 280px;
+    }
 
-  .window-settings {
-    margin-bottom: 20px;
-  }
+    .timing-bar {
+        height: 280px;
+    }
 
-  .vertical-wrapper {
-    height: 280px;
-  }
+    .timer {
+        font-size: 55px;
+    }
 
-  .timing-bar {
-    height: 280px;
-  }
+    .button-x {
+        width: 105px;
+        height: 105px;
 
-  .timer {
-    font-size: 55px;
-  }
+        font-size: 48px;
+    }
 
-  .button-x {
+    .result {
+        font-size: 32px;
+    }
 
-    width: 105px;
-    height: 105px;
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
 
-    font-size: 48px;
-
-  }
-
-  .result {
-    font-size: 32px;
-  }
+    .stat-value {
+        font-size: 22px;
+    }
 
 }
 
 </style>
 </head>
 
-
 <body>
 
 <div class="trainer">
 
 
-<h1>
-JUMPSHOT TIMING TRAINER
-</h1>
+<h1>JUMPSHOT TIMING TRAINER</h1>
 
 
 <div
@@ -594,17 +708,15 @@ class="status">
 </div>
 
 
-<!-- =================================
+<!-- =====================================
      CONFIGURAÇÃO
-================================= -->
+===================================== -->
 
 <div class="window-settings">
 
 
 <div class="settings-title">
-
 CONFIGURE SUA GREEN WINDOW
-
 </div>
 
 
@@ -614,9 +726,7 @@ CONFIGURE SUA GREEN WINDOW
 <div class="field">
 
 <label for="greenStartInput">
-
 INÍCIO DO GREEN (ms)
-
 </label>
 
 <input
@@ -632,9 +742,7 @@ value="605">
 <div class="field">
 
 <label for="greenEndInput">
-
 FIM DO GREEN (ms)
-
 </label>
 
 <input
@@ -652,22 +760,27 @@ value="640">
 
 <button
 id="applyWindow"
-class="apply-button"
-type="button">
+class="control-button apply-button">
 
 APLICAR JANELA
 
 </button>
 
 
-<!-- NOVO BOTÃO -->
-
 <button
 id="hideBarButton"
-class="hide-button"
-type="button">
+class="control-button hide-button">
 
 👁 OCULTAR BARRA
+
+</button>
+
+
+<button
+id="hardcoreButton"
+class="control-button hardcore-button">
+
+🎯 MODO HARDCORE: OFF
 
 </button>
 
@@ -684,9 +797,9 @@ Janela atual: 605–640 ms
 </div>
 
 
-<!-- =================================
+<!-- =====================================
      BARRA
-================================= -->
+===================================== -->
 
 <div
 id="timingArea"
@@ -694,9 +807,7 @@ class="timing-area">
 
 
 <div class="timing-title">
-
 RELEASE TIMING
-
 </div>
 
 
@@ -706,27 +817,21 @@ RELEASE TIMING
 <div
 id="lateLabel"
 class="zone-label late-label">
-
 LATE
-
 </div>
 
 
 <div
 id="greenLabel"
 class="zone-label green-label">
-
 GREEN
-
 </div>
 
 
 <div
 id="earlyLabel"
 class="zone-label early-label">
-
 EARLY
-
 </div>
 
 
@@ -757,92 +862,83 @@ class="marker">
 <div
 id="maxLabel"
 class="scale-label label-max">
-
 750 ms
-
 </div>
 
 
 <div
 id="greenEndLabel"
 class="scale-label label-green-end">
-
 640
-
 </div>
 
 
 <div
 id="greenStartLabel"
 class="scale-label label-green-start">
-
 605
+</div>
+
+
+<div class="scale-label label-zero">
+0 ms
+</div>
+
 
 </div>
 
+</div>
+
+
+<!-- =====================================
+     TIMER
+===================================== -->
 
 <div
-class="scale-label label-zero">
-
-0 ms
-
-</div>
-
-
-</div>
-
-</div>
-
-
-<!-- =================================
-     TIMER
-================================= -->
-
-<div class="timer-container">
-
+id="timerContainer"
+class="timer-container">
 
 <span
 id="timer"
 class="timer">
-
 0
-
 </span>
-
 
 <span class="ms">
-
 ms
-
 </span>
-
 
 </div>
 
 
-<!-- =================================
+<div
+id="hardcoreIndicator"
+class="hardcore-indicator">
+
+MODO MEMÓRIA MUSCULAR
+
+</div>
+
+
+<!-- =====================================
      BOTÃO X
-================================= -->
+===================================== -->
 
 <div
 id="buttonX"
 class="button-x">
-
 X
-
 </div>
 
 
 <div class="touch-help">
-
 Segure e solte • Controle, mouse ou toque
-
 </div>
 
 
-<!-- =================================
+<!-- =====================================
      RESULTADO
-================================= -->
+===================================== -->
 
 <div
 id="result"
@@ -868,6 +964,126 @@ GREEN WINDOW: 605–640 ms
 </div>
 
 
+<!-- =====================================
+     ESTATÍSTICAS
+===================================== -->
+
+<div class="stats-section">
+
+
+<div class="stats-title">
+SESSÃO DE TREINO
+</div>
+
+
+<div class="stats-grid">
+
+
+<div class="stat-card">
+
+<span
+id="totalStat"
+class="stat-value">
+
+0
+
+</span>
+
+<span class="stat-label">
+TENTATIVAS
+</span>
+
+</div>
+
+
+<div class="stat-card">
+
+<span
+id="greenPercentStat"
+class="stat-value green-stat">
+
+0%
+
+</span>
+
+<span class="stat-label">
+GREENS
+</span>
+
+</div>
+
+
+<div class="stat-card">
+
+<span
+id="averageStat"
+class="stat-value">
+
+—
+
+</span>
+
+<span class="stat-label">
+MÉDIA
+</span>
+
+</div>
+
+
+<div class="stat-card">
+
+<span
+id="streakStat"
+class="stat-value streak-stat">
+
+0 🔥
+
+</span>
+
+<span class="stat-label">
+STREAK
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="history-box">
+
+
+<div class="history-title">
+ÚLTIMAS 10 TENTATIVAS
+</div>
+
+
+<div
+id="history"
+class="history">
+
+<span class="empty-history">
+Nenhuma tentativa ainda
+</span>
+
+</div>
+
+
+</div>
+
+
+<button
+id="resetSession"
+class="control-button reset-button">
+
+ZERAR SESSÃO
+
+</button>
+
+
+</div>
+
+
 </div>
 
 
@@ -878,7 +1094,6 @@ GREEN WINDOW: 605–640 ms
 ======================================== */
 
 let GREEN_START = 605;
-
 let GREEN_END = 640;
 
 const BAR_MIN = 0;
@@ -900,6 +1115,23 @@ let gamepadWasPressed = false;
 
 let barHidden = false;
 
+let hardcoreMode = false;
+
+
+/* ========================================
+   ESTATÍSTICAS
+======================================== */
+
+let attempts = [];
+
+let totalShots = 0;
+
+let totalGreens = 0;
+
+let currentStreak = 0;
+
+let bestStreak = 0;
+
 
 /* ========================================
    ELEMENTOS
@@ -907,6 +1139,9 @@ let barHidden = false;
 
 const timer =
 document.getElementById("timer");
+
+const timerContainer =
+document.getElementById("timerContainer");
 
 const result =
 document.getElementById("result");
@@ -968,151 +1203,140 @@ document.getElementById("timingArea");
 const hideBarButton =
 document.getElementById("hideBarButton");
 
+const hardcoreButton =
+document.getElementById("hardcoreButton");
 
-/* ========================================
-   OCULTAR / MOSTRAR BARRA
-======================================== */
+const hardcoreIndicator =
+document.getElementById("hardcoreIndicator");
 
-hideBarButton.addEventListener(
-"click",
-function() {
+const totalStat =
+document.getElementById("totalStat");
 
-barHidden = !barHidden;
+const greenPercentStat =
+document.getElementById("greenPercentStat");
 
+const averageStat =
+document.getElementById("averageStat");
 
-if (barHidden) {
+const streakStat =
+document.getElementById("streakStat");
 
-timingArea.classList.add(
-"hidden"
-);
+const history =
+document.getElementById("history");
 
-hideBarButton.classList.add(
-"active"
-);
-
-hideBarButton.innerText =
-"👁 MOSTRAR BARRA";
-
-}
-
-else {
-
-timingArea.classList.remove(
-"hidden"
-);
-
-hideBarButton.classList.remove(
-"active"
-);
-
-hideBarButton.innerText =
-"👁 OCULTAR BARRA";
-
-}
-
-}
-);
+const resetSession =
+document.getElementById("resetSession");
 
 
 /* ========================================
-   POSIÇÃO
+   POSIÇÃO DA BARRA
 ======================================== */
 
 function getPosition(ms) {
 
-let percentage =
-100 -
-(
-(ms - BAR_MIN) /
-(BAR_MAX - BAR_MIN)
-) * 100;
+    let percentage =
+        100 -
+        (
+            (ms - BAR_MIN) /
+            (BAR_MAX - BAR_MIN)
+        ) * 100;
 
-if (percentage < 0)
-percentage = 0;
+    percentage =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                percentage
+            )
+        );
 
-if (percentage > 100)
-percentage = 100;
-
-return percentage;
-
+    return percentage;
 }
 
 
 /* ========================================
-   DESENHAR GREEN WINDOW
+   GREEN WINDOW
 ======================================== */
 
 function updateGreenWindow() {
 
-const endPosition =
-getPosition(GREEN_END);
+    const endPosition =
+        getPosition(GREEN_END);
 
-const startPosition =
-getPosition(GREEN_START);
+    const startPosition =
+        getPosition(GREEN_START);
 
-const windowHeight =
-startPosition - endPosition;
-
-
-greenWindow.style.top =
-endPosition + "%";
-
-greenWindow.style.height =
-windowHeight + "%";
+    const windowHeight =
+        startPosition -
+        endPosition;
 
 
-greenEndLabel.style.top =
-endPosition + "%";
+    greenWindow.style.top =
+        endPosition + "%";
 
-greenEndLabel.innerText =
-GREEN_END;
-
-
-greenStartLabel.style.top =
-startPosition + "%";
-
-greenStartLabel.innerText =
-GREEN_START;
+    greenWindow.style.height =
+        windowHeight + "%";
 
 
-maxLabel.innerText =
-BAR_MAX + " ms";
+    greenEndLabel.style.top =
+        endPosition + "%";
+
+    greenEndLabel.innerText =
+        GREEN_END;
 
 
-const greenCenter =
-(endPosition + startPosition) / 2;
+    greenStartLabel.style.top =
+        startPosition + "%";
+
+    greenStartLabel.innerText =
+        GREEN_START;
 
 
-greenLabel.style.top =
-greenCenter + "%";
+    maxLabel.innerText =
+        BAR_MAX + " ms";
 
 
-lateLabel.style.top =
-(endPosition / 2) + "%";
+    const greenCenter =
+        (
+            endPosition +
+            startPosition
+        ) / 2;
 
 
-earlyLabel.style.top =
-(
-startPosition +
-(100 - startPosition) / 2
-) + "%";
+    greenLabel.style.top =
+        greenCenter + "%";
 
 
-windowInfo.innerText =
-"GREEN WINDOW: " +
-GREEN_START +
-"–" +
-GREEN_END +
-" ms";
+    lateLabel.style.top =
+        (
+            endPosition / 2
+        ) + "%";
 
 
-settingsMessage.innerText =
-"Janela atual: " +
-GREEN_START +
-"–" +
-GREEN_END +
-" ms";
+    earlyLabel.style.top =
+        (
+            startPosition +
+            (
+                100 -
+                startPosition
+            ) / 2
+        ) + "%";
 
+
+    windowInfo.innerText =
+        "GREEN WINDOW: " +
+        GREEN_START +
+        "–" +
+        GREEN_END +
+        " ms";
+
+
+    settingsMessage.innerText =
+        "Janela atual: " +
+        GREEN_START +
+        "–" +
+        GREEN_END +
+        " ms";
 }
 
 
@@ -1122,154 +1346,252 @@ GREEN_END +
 
 function calculateBarMax() {
 
-if (GREEN_END <= 700) {
+    if (GREEN_END <= 700) {
 
-BAR_MAX = 750;
+        BAR_MAX = 750;
 
-return;
-
-}
-
-
-const desiredMax =
-GREEN_END + 100;
+        return;
+    }
 
 
-BAR_MAX =
-Math.ceil(
-desiredMax / 50
-) * 50;
+    const desiredMax =
+        GREEN_END + 100;
 
+
+    BAR_MAX =
+        Math.ceil(
+            desiredMax / 50
+        ) * 50;
 }
 
 
 /* ========================================
-   APLICAR JANELA
+   APLICAR NOVA JANELA
 ======================================== */
 
 function applyNewWindow() {
 
-const newStart =
-Number(
-greenStartInput.value
-);
+    const newStart =
+        Number(
+            greenStartInput.value
+        );
 
-const newEnd =
-Number(
-greenEndInput.value
-);
-
-
-if (
-!Number.isFinite(newStart) ||
-!Number.isFinite(newEnd)
-) {
-
-settingsMessage.innerText =
-"Digite valores válidos.";
-
-return;
-
-}
+    const newEnd =
+        Number(
+            greenEndInput.value
+        );
 
 
-if (
-newStart < 0 ||
-newEnd <= 0
-) {
+    if (
+        !Number.isFinite(newStart) ||
+        !Number.isFinite(newEnd)
+    ) {
 
-settingsMessage.innerText =
-"Os valores precisam ser positivos.";
+        settingsMessage.innerText =
+            "Digite valores válidos.";
 
-return;
-
-}
-
-
-if (newStart >= newEnd) {
-
-settingsMessage.innerText =
-"O início precisa ser menor que o fim.";
-
-return;
-
-}
+        return;
+    }
 
 
-if (newEnd > 3000) {
+    if (
+        newStart < 0 ||
+        newEnd <= 0
+    ) {
 
-settingsMessage.innerText =
-"Use uma janela abaixo de 3000 ms.";
+        settingsMessage.innerText =
+            "Os valores precisam ser positivos.";
 
-return;
-
-}
-
-
-GREEN_START =
-Math.round(newStart);
-
-GREEN_END =
-Math.round(newEnd);
+        return;
+    }
 
 
-calculateBarMax();
+    if (newStart >= newEnd) {
 
-updateGreenWindow();
+        settingsMessage.innerText =
+            "O início precisa ser menor que o fim.";
+
+        return;
+    }
 
 
-timer.innerText =
-"0";
+    if (newEnd > 3000) {
 
-result.className =
-"result";
+        settingsMessage.innerText =
+            "Use uma janela abaixo de 3000 ms.";
 
-result.innerText =
-"SEGURE X E SOLTE";
+        return;
+    }
 
-releaseInfo.innerText =
-"";
 
-marker.style.display =
-"none";
+    GREEN_START =
+        Math.round(newStart);
 
-liveFill.style.height =
-"0%";
+    GREEN_END =
+        Math.round(newEnd);
 
+
+    calculateBarMax();
+
+    updateGreenWindow();
+
+
+    timer.innerText =
+        "0";
+
+    result.className =
+        "result";
+
+    result.innerText =
+        "SEGURE X E SOLTE";
+
+    releaseInfo.innerText =
+        "";
+
+    marker.style.display =
+        "none";
+
+    liveFill.style.height =
+        "0%";
 }
 
 
 applyWindow.addEventListener(
-"click",
-applyNewWindow
+    "click",
+    applyNewWindow
 );
 
 
 greenStartInput.addEventListener(
-"keydown",
-function(event) {
+    "keydown",
+    function(event) {
 
-if (event.key === "Enter") {
+        if (event.key === "Enter") {
 
-applyNewWindow();
-
-}
-
-}
+            applyNewWindow();
+        }
+    }
 );
 
 
 greenEndInput.addEventListener(
-"keydown",
-function(event) {
+    "keydown",
+    function(event) {
 
-if (event.key === "Enter") {
+        if (event.key === "Enter") {
 
-applyNewWindow();
+            applyNewWindow();
+        }
+    }
+);
 
+
+/* ========================================
+   OCULTAR BARRA
+======================================== */
+
+hideBarButton.addEventListener(
+    "click",
+    function() {
+
+        barHidden =
+            !barHidden;
+
+
+        updateBarVisibility();
+    }
+);
+
+
+function updateBarVisibility() {
+
+    if (
+        barHidden ||
+        hardcoreMode
+    ) {
+
+        timingArea.classList.add(
+            "hidden"
+        );
+    }
+
+    else {
+
+        timingArea.classList.remove(
+            "hidden"
+        );
+    }
+
+
+    if (barHidden) {
+
+        hideBarButton.classList.add(
+            "active"
+        );
+
+        hideBarButton.innerText =
+            "👁 MOSTRAR BARRA";
+    }
+
+    else {
+
+        hideBarButton.classList.remove(
+            "active"
+        );
+
+        hideBarButton.innerText =
+            "👁 OCULTAR BARRA";
+    }
 }
 
-}
+
+/* ========================================
+   HARDCORE
+======================================== */
+
+hardcoreButton.addEventListener(
+    "click",
+    function() {
+
+        hardcoreMode =
+            !hardcoreMode;
+
+
+        if (hardcoreMode) {
+
+            hardcoreButton.classList.add(
+                "active"
+            );
+
+            hardcoreButton.innerText =
+                "🎯 MODO HARDCORE: ON";
+
+            hardcoreIndicator.classList.add(
+                "active"
+            );
+        }
+
+        else {
+
+            hardcoreButton.classList.remove(
+                "active"
+            );
+
+            hardcoreButton.innerText =
+                "🎯 MODO HARDCORE: OFF";
+
+            hardcoreIndicator.classList.remove(
+                "active"
+            );
+
+            timerContainer.classList.remove(
+                "hardcore-running"
+            );
+        }
+
+
+        updateBarVisibility();
+    }
 );
 
 
@@ -1279,15 +1601,14 @@ applyNewWindow();
 
 function moveMarker(ms) {
 
-const position =
-getPosition(ms);
+    const position =
+        getPosition(ms);
 
-marker.style.top =
-position + "%";
+    marker.style.top =
+        position + "%";
 
-marker.style.display =
-"block";
-
+    marker.style.display =
+        "block";
 }
 
 
@@ -1297,275 +1618,608 @@ marker.style.display =
 
 function updateFill(ms) {
 
-let fill =
-(
-(ms - BAR_MIN) /
-(BAR_MAX - BAR_MIN)
-) * 100;
+    let fill =
+        (
+            (ms - BAR_MIN) /
+            (BAR_MAX - BAR_MIN)
+        ) * 100;
 
-if (fill < 0)
-fill = 0;
 
-if (fill > 100)
-fill = 100;
+    fill =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                fill
+            )
+        );
 
-liveFill.style.height =
-fill + "%";
 
+    liveFill.style.height =
+        fill + "%";
 }
 
 
 /* ========================================
-   COMEÇAR
+   COMEÇAR ARREMESSO
 ======================================== */
 
 function startShot(source) {
 
-if (pressing)
-return;
+    if (pressing) {
+        return;
+    }
 
 
-const activeElement =
-document.activeElement;
+    const activeElement =
+        document.activeElement;
 
 
-if (
-activeElement === greenStartInput ||
-activeElement === greenEndInput
-) {
+    if (
+        activeElement === greenStartInput ||
+        activeElement === greenEndInput
+    ) {
 
-activeElement.blur();
-
-}
-
-
-pressing = true;
-
-inputSource =
-source;
-
-startTime =
-performance.now();
+        activeElement.blur();
+    }
 
 
-timer.innerText =
-"0";
+    pressing = true;
+
+    inputSource =
+        source;
+
+    startTime =
+        performance.now();
 
 
-buttonX.classList.add(
-"pressed"
-);
+    timer.innerText =
+        "0";
 
 
-result.className =
-"result";
-
-result.innerText =
-"SEGURANDO...";
+    buttonX.classList.add(
+        "pressed"
+    );
 
 
-releaseInfo.innerText =
-"";
+    result.className =
+        "result";
+
+    result.innerText =
+        "SEGURANDO...";
 
 
-marker.style.display =
-"block";
+    releaseInfo.innerText =
+        "";
 
 
-moveMarker(0);
+    marker.style.display =
+        "block";
 
 
-liveFill.style.height =
-"0%";
+    moveMarker(0);
 
+    liveFill.style.height =
+        "0%";
+
+
+    /*
+       No Hardcore:
+       cronômetro desaparece
+       enquanto estiver segurando.
+    */
+
+    if (hardcoreMode) {
+
+        timerContainer.classList.add(
+            "hardcore-running"
+        );
+    }
 }
 
 
 /* ========================================
-   FINALIZAR
+   FINALIZAR ARREMESSO
 ======================================== */
 
 function endShot(source) {
 
-if (!pressing)
-return;
-
-if (inputSource !== source)
-return;
+    if (!pressing) {
+        return;
+    }
 
 
-const duration =
-performance.now() -
-startTime;
+    if (inputSource !== source) {
+        return;
+    }
 
 
-const ms =
-Math.round(duration);
+    const duration =
+        performance.now() -
+        startTime;
 
 
-pressing =
-false;
-
-inputSource =
-null;
+    const ms =
+        Math.round(duration);
 
 
-timer.innerText =
-ms;
+    pressing =
+        false;
+
+    inputSource =
+        null;
 
 
-moveMarker(ms);
-
-updateFill(ms);
-
-
-buttonX.classList.remove(
-"pressed"
-);
+    timerContainer.classList.remove(
+        "hardcore-running"
+    );
 
 
-/* EARLY */
-
-if (ms < GREEN_START) {
-
-result.className =
-"result early";
-
-result.innerText =
-"EARLY";
+    timer.innerText =
+        ms;
 
 
-const difference =
-GREEN_START - ms;
+    moveMarker(ms);
+
+    updateFill(ms);
 
 
-releaseInfo.innerText =
-difference +
-" ms antes da janela";
-
-}
+    buttonX.classList.remove(
+        "pressed"
+    );
 
 
-/* GREEN */
-
-else if (ms <= GREEN_END) {
-
-result.className =
-"result green";
-
-result.innerText =
-"GREEN!";
+    let shotResult;
 
 
-const center =
-(GREEN_START + GREEN_END) / 2;
+    /* =================================
+       EARLY
+    ================================= */
+
+    if (ms < GREEN_START) {
+
+        shotResult =
+            "early";
 
 
-const difference =
-Math.round(
-Math.abs(
-ms - center
-)
-);
+        result.className =
+            "result early";
+
+        result.innerText =
+            "EARLY";
 
 
-releaseInfo.innerText =
-"Dentro da janela • " +
-difference +
-" ms do centro";
-
-}
+        const difference =
+            GREEN_START -
+            ms;
 
 
-/* LATE */
-
-else {
-
-result.className =
-"result late";
-
-result.innerText =
-"LATE";
+        releaseInfo.innerText =
+            difference +
+            " ms antes da janela";
+    }
 
 
-const difference =
-ms - GREEN_END;
+    /* =================================
+       GREEN
+    ================================= */
+
+    else if (ms <= GREEN_END) {
+
+        shotResult =
+            "green";
 
 
-releaseInfo.innerText =
-difference +
-" ms depois da janela";
+        result.className =
+            "result green";
 
-}
+        result.innerText =
+            "GREEN!";
 
+
+        const center =
+            (
+                GREEN_START +
+                GREEN_END
+            ) / 2;
+
+
+        const difference =
+            Math.round(
+                Math.abs(
+                    ms -
+                    center
+                )
+            );
+
+
+        releaseInfo.innerText =
+            "Dentro da janela • " +
+            difference +
+            " ms do centro";
+    }
+
+
+    /* =================================
+       LATE
+    ================================= */
+
+    else {
+
+        shotResult =
+            "late";
+
+
+        result.className =
+            "result late";
+
+        result.innerText =
+            "LATE";
+
+
+        const difference =
+            ms -
+            GREEN_END;
+
+
+        releaseInfo.innerText =
+            difference +
+            " ms depois da janela";
+    }
+
+
+    registerShot(
+        ms,
+        shotResult
+    );
 }
 
 
 /* ========================================
-   CELULAR + MOUSE
+   REGISTRAR TENTATIVA
+======================================== */
+
+function registerShot(
+    ms,
+    shotResult
+) {
+
+    totalShots++;
+
+
+    if (shotResult === "green") {
+
+        totalGreens++;
+
+        currentStreak++;
+
+
+        if (
+            currentStreak >
+            bestStreak
+        ) {
+
+            bestStreak =
+                currentStreak;
+        }
+    }
+
+    else {
+
+        currentStreak =
+            0;
+    }
+
+
+    attempts.push({
+        ms: ms,
+        result: shotResult
+    });
+
+
+    /*
+       Mantém apenas as últimas
+       10 no histórico visual.
+    */
+
+    if (attempts.length > 10) {
+
+        attempts.shift();
+    }
+
+
+    updateStats();
+}
+
+
+/* ========================================
+   ESTATÍSTICAS
+======================================== */
+
+function updateStats() {
+
+    totalStat.innerText =
+        totalShots;
+
+
+    let greenPercentage =
+        0;
+
+
+    if (totalShots > 0) {
+
+        greenPercentage =
+            Math.round(
+                (
+                    totalGreens /
+                    totalShots
+                ) * 100
+            );
+    }
+
+
+    greenPercentStat.innerText =
+        greenPercentage +
+        "%";
+
+
+    /*
+       Média das últimas 10 tentativas.
+    */
+
+    if (attempts.length > 0) {
+
+        const total =
+            attempts.reduce(
+                function(sum, shot) {
+
+                    return (
+                        sum +
+                        shot.ms
+                    );
+                },
+                0
+            );
+
+
+        const average =
+            Math.round(
+                total /
+                attempts.length
+            );
+
+
+        averageStat.innerText =
+            average +
+            " ms";
+    }
+
+    else {
+
+        averageStat.innerText =
+            "—";
+    }
+
+
+    streakStat.innerText =
+        currentStreak +
+        " 🔥";
+
+
+    streakStat.title =
+        "Melhor streak: " +
+        bestStreak;
+
+
+    updateHistory();
+}
+
+
+/* ========================================
+   HISTÓRICO
+======================================== */
+
+function updateHistory() {
+
+    history.innerHTML =
+        "";
+
+
+    if (attempts.length === 0) {
+
+        const empty =
+            document.createElement(
+                "span"
+            );
+
+
+        empty.className =
+            "empty-history";
+
+
+        empty.innerText =
+            "Nenhuma tentativa ainda";
+
+
+        history.appendChild(
+            empty
+        );
+
+
+        return;
+    }
+
+
+    attempts.forEach(
+        function(shot) {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "shot";
+
+
+            if (
+                shot.result ===
+                "green"
+            ) {
+
+                item.classList.add(
+                    "green-shot"
+                );
+            }
+
+
+            else if (
+                shot.result ===
+                "early"
+            ) {
+
+                item.classList.add(
+                    "early-shot"
+                );
+            }
+
+
+            else {
+
+                item.classList.add(
+                    "late-shot"
+                );
+            }
+
+
+            item.innerText =
+                shot.ms +
+                " ms";
+
+
+            history.appendChild(
+                item
+            );
+        }
+    );
+}
+
+
+/* ========================================
+   ZERAR SESSÃO
+======================================== */
+
+resetSession.addEventListener(
+    "click",
+    function() {
+
+        attempts =
+            [];
+
+        totalShots =
+            0;
+
+        totalGreens =
+            0;
+
+        currentStreak =
+            0;
+
+        bestStreak =
+            0;
+
+
+        timer.innerText =
+            "0";
+
+
+        result.className =
+            "result";
+
+        result.innerText =
+            "SEGURE X E SOLTE";
+
+
+        releaseInfo.innerText =
+            "";
+
+
+        marker.style.display =
+            "none";
+
+
+        liveFill.style.height =
+            "0%";
+
+
+        updateStats();
+    }
+);
+
+
+/* ========================================
+   MOUSE + TOUCH
 ======================================== */
 
 buttonX.addEventListener(
-"pointerdown",
-function(event) {
+    "pointerdown",
+    function(event) {
 
-event.preventDefault();
-
-
-try {
-
-buttonX.setPointerCapture(
-event.pointerId
-);
-
-}
-
-catch (error) {}
+        event.preventDefault();
 
 
-startShot(
-"screen"
-);
+        try {
 
-}
-);
+            buttonX.setPointerCapture(
+                event.pointerId
+            );
+        }
+
+        catch (error) {}
 
 
-buttonX.addEventListener(
-"pointerup",
-function(event) {
-
-event.preventDefault();
-
-endShot(
-"screen"
-);
-
-}
+        startShot(
+            "screen"
+        );
+    }
 );
 
 
 buttonX.addEventListener(
-"pointercancel",
-function(event) {
+    "pointerup",
+    function(event) {
 
-event.preventDefault();
+        event.preventDefault();
 
-endShot(
-"screen"
-);
 
-}
+        endShot(
+            "screen"
+        );
+    }
 );
 
 
 buttonX.addEventListener(
-"contextmenu",
-function(event) {
+    "pointercancel",
+    function(event) {
 
-event.preventDefault();
+        event.preventDefault();
 
-}
+
+        endShot(
+            "screen"
+        );
+    }
+);
+
+
+buttonX.addEventListener(
+    "contextmenu",
+    function(event) {
+
+        event.preventDefault();
+    }
 );
 
 
@@ -1575,82 +2229,81 @@ event.preventDefault();
 
 function checkGamepad() {
 
-const gamepads =
-navigator.getGamepads();
+    const gamepads =
+        navigator.getGamepads();
 
 
-let controller =
-null;
+    let controller =
+        null;
 
 
-for (
-let i = 0;
-i < gamepads.length;
-i++
-) {
+    for (
+        let i = 0;
+        i < gamepads.length;
+        i++
+    ) {
 
-if (gamepads[i]) {
+        if (gamepads[i]) {
 
-controller =
-gamepads[i];
+            controller =
+                gamepads[i];
 
-break;
-
-}
-
-}
+            break;
+        }
+    }
 
 
-if (controller) {
+    if (controller) {
 
-status.innerText =
-"🎮 " +
-controller.id;
-
-
-const xPressed =
-controller.buttons[2].pressed;
+        status.innerText =
+            "🎮 " +
+            controller.id;
 
 
-if (
-xPressed &&
-!gamepadWasPressed
-) {
+        /*
+           Xbox X = botão 2
+        */
 
-startShot(
-"gamepad"
-);
-
-}
+        const xPressed =
+            controller.buttons[2].pressed;
 
 
-if (
-!xPressed &&
-gamepadWasPressed
-) {
+        if (
+            xPressed &&
+            !gamepadWasPressed
+        ) {
 
-endShot(
-"gamepad"
-);
+            startShot(
+                "gamepad"
+            );
+        }
 
-}
+
+        if (
+            !xPressed &&
+            gamepadWasPressed
+        ) {
+
+            endShot(
+                "gamepad"
+            );
+        }
 
 
-gamepadWasPressed =
-xPressed;
+        gamepadWasPressed =
+            xPressed;
+    }
 
-}
 
-else {
+    else {
 
-status.innerText =
-"📱 Toque no X • 🖱️ Mouse • 🎮 Controle";
+        status.innerText =
+            "📱 Toque no X • 🖱️ Mouse • 🎮 Controle";
 
-gamepadWasPressed =
-false;
 
-}
-
+        gamepadWasPressed =
+            false;
+    }
 }
 
 
@@ -1660,45 +2313,51 @@ false;
 
 function update() {
 
-checkGamepad();
+    checkGamepad();
 
 
-if (pressing) {
+    if (pressing) {
 
-const current =
-performance.now() -
-startTime;
-
-
-const ms =
-Math.round(current);
+        const current =
+            performance.now() -
+            startTime;
 
 
-timer.innerText =
-ms;
+        const ms =
+            Math.round(current);
 
 
-moveMarker(ms);
+        /*
+           No hardcore o valor continua
+           sendo calculado normalmente,
+           mas fica invisível.
+        */
 
-updateFill(ms);
+        timer.innerText =
+            ms;
 
-}
+
+        moveMarker(ms);
+
+        updateFill(ms);
+    }
 
 
-requestAnimationFrame(
-update
-);
-
+    requestAnimationFrame(
+        update
+    );
 }
 
 
 /* ========================================
-   INICIAR
+   INICIALIZAÇÃO
 ======================================== */
 
 calculateBarMax();
 
 updateGreenWindow();
+
+updateStats();
 
 update();
 
