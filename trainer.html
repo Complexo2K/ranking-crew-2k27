@@ -4,290 +4,758 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Complexo 2K - Timing Trainer</title>
+<title>Complexo 2K - Jumpshot Trainer</title>
 
 <style>
+
+/* =========================================================
+   BASE
+========================================================= */
+
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
 
-html {
+html,
+body {
+    margin: 0;
+    width: 100%;
     min-height: 100%;
 }
 
 body {
-    margin: 0;
     min-height: 100vh;
 
     background:
         linear-gradient(
-            rgba(0, 0, 0, 0.18),
-            rgba(0, 0, 0, 0.28)
+            rgba(0, 0, 0, 0.12),
+            rgba(0, 0, 0, 0.30)
         ),
         url("trainer-bg.png");
 
     background-size: cover;
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
 
     color: white;
-    font-family: Arial, sans-serif;
-
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
 
     user-select: none;
     -webkit-user-select: none;
+
+    overflow-x: hidden;
 }
 
-.trainer {
-    width: 92%;
-    max-width: 720px;
+
+/* =========================================================
+   PÁGINA
+========================================================= */
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+
+    padding:
+        25px
+        clamp(25px, 4vw, 75px)
+        45px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+.top-header {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: start;
+
+    min-height: 125px;
+}
+
+.brand {
+    padding-top: 7px;
+
+    font-size: 25px;
+    font-weight: 1000;
+    font-style: italic;
+
+    letter-spacing: -1px;
+
+    text-shadow:
+        0 3px 8px #000,
+        0 0 18px rgba(255,0,0,.3);
+}
+
+.brand span {
+    color: #e21d2f;
+}
+
+.main-title {
     text-align: center;
-    padding: 22px 0 40px;
 }
 
-h1 {
-    font-size: 30px;
-    margin: 0 0 8px;
-    text-shadow: 0 2px 8px #000;
+.main-title .small-title {
+    color: #d7d7d7;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 3px;
 }
 
-.status {
-    color: #aaa;
-    margin-bottom: 18px;
-    font-size: 14px;
+.main-title h1 {
+    margin: 0;
+
+    font-size:
+        clamp(34px, 4vw, 61px);
+
+    line-height: .9;
+
+    font-weight: 1000;
+    font-style: italic;
+
+    letter-spacing: -3px;
+
+    text-shadow:
+        0 4px 9px #000,
+        0 0 18px rgba(255,255,255,.1);
+}
+
+.main-title h1 span {
+    color: #ef2535;
+}
+
+.main-title .subtitle {
+    margin-top: 8px;
+
+    color: #ccc;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 4px;
+}
+
+.connection {
+    justify-self: end;
+
+    padding-top: 8px;
+
+    text-align: right;
+
+    color: #bbb;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    max-width: 300px;
+
     text-shadow: 0 2px 5px #000;
 }
 
+.connection::before {
+    content: "";
 
-/* CONFIGURAÇÃO */
+    display: inline-block;
 
-.window-settings {
-    width: 100%;
-    max-width: 460px;
-    margin: 0 auto 24px;
-    padding: 15px;
-    background: rgba(17,17,17,0.94);
-    border: 1px solid #333;
-    border-radius: 12px;
-    backdrop-filter: blur(4px);
+    width: 7px;
+    height: 7px;
+
+    margin-right: 7px;
+
+    border-radius: 50%;
+
+    background: #00ff73;
+
+    box-shadow:
+        0 0 8px #00ff73;
 }
 
-.settings-title {
-    font-size: 13px;
-    color: #aaa;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
+
+/* =========================================================
+   LAYOUT PRINCIPAL
+========================================================= */
+
+.desktop-grid {
+    width: 100%;
+    max-width: 1540px;
+
+    margin: 5px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(290px, 360px)
+        minmax(360px, 1fr)
+        minmax(310px, 390px);
+
+    gap: clamp(30px, 5vw, 90px);
+
+    align-items: center;
+
+    flex: 1;
+}
+
+
+/* =========================================================
+   PAINEL BASE
+========================================================= */
+
+.panel {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,20,20,.96),
+            rgba(7,7,7,.93)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.28);
+
+    box-shadow:
+        0 18px 50px rgba(0,0,0,.72),
+        inset 0 1px 0 rgba(255,255,255,.06);
+
+    backdrop-filter: blur(8px);
+
+    overflow: hidden;
+}
+
+.panel::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #e51e30 0%,
+            #e51e30 38%,
+            transparent 38%
+        );
+}
+
+.panel::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        repeating-linear-gradient(
+            135deg,
+            rgba(255,255,255,.012) 0px,
+            rgba(255,255,255,.012) 2px,
+            transparent 2px,
+            transparent 8px
+        );
+}
+
+.panel-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   PAINEL ESQUERDO
+========================================================= */
+
+.settings-panel {
+    padding: 24px 22px 25px;
+
+    min-height: 500px;
+
+    align-self: center;
+}
+
+.panel-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 24px;
+}
+
+.panel-heading-line {
+    width: 5px;
+    height: 29px;
+
+    background: #e51e30;
+
+    transform: skewX(-14deg);
+}
+
+.panel-heading h2 {
+    margin: 0;
+
+    font-size: 21px;
+    font-weight: 1000;
+
+    font-style: italic;
+
+    letter-spacing: -.5px;
+}
+
+.panel-heading h2 span {
+    color: #e51e30;
+}
+
+.setting-label {
+    display: block;
+
+    color: #a5a5a5;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 1.2px;
+
+    margin-bottom: 7px;
 }
 
 .settings-fields {
-    display: flex;
-    gap: 10px;
-}
+    display: grid;
 
-.field {
-    flex: 1;
-    text-align: left;
-}
+    grid-template-columns:
+        1fr 1fr;
 
-.field label {
-    display: block;
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 5px;
+    gap: 12px;
 }
 
 .field input {
     width: 100%;
-    padding: 10px;
-    background: #080808;
-    border: 1px solid #444;
-    border-radius: 7px;
+
+    height: 53px;
+
+    border:
+        1px solid #555;
+
+    background:
+        linear-gradient(
+            #161616,
+            #090909
+        );
+
     color: white;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
+
     outline: none;
+
+    text-align: center;
+
+    font-size: 22px;
+    font-weight: 1000;
+
+    border-radius: 2px;
+
+    box-shadow:
+        inset 0 0 15px rgba(0,0,0,.65);
 }
 
 .field input:focus {
     border-color: #00ff73;
+
+    box-shadow:
+        0 0 12px rgba(0,255,115,.18),
+        inset 0 0 15px rgba(0,0,0,.65);
 }
 
 
-/* BOTÕES */
+/* =========================================================
+   BOTÕES
+========================================================= */
 
 .control-button {
+    position: relative;
+
     width: 100%;
-    margin-top: 10px;
-    padding: 11px;
-    border-radius: 7px;
-    font-size: 14px;
-    font-weight: 900;
+
+    min-height: 45px;
+
+    margin-top: 11px;
+
+    padding: 10px 13px;
+
     cursor: pointer;
-}
 
-.apply-button {
-    border: none;
-    background: #00c85a;
-    color: #001b0c;
-}
-
-.hide-button {
-    background: #252525;
     color: white;
-    border: 1px solid #444;
+
+    font-size: 11px;
+    font-weight: 1000;
+
+    letter-spacing: .7px;
+
+    border-radius: 2px;
+
+    transition:
+        transform .08s,
+        filter .08s,
+        box-shadow .08s;
 }
 
-.hide-button.active {
-    background: #5d1515;
-    border-color: #ff3535;
-}
-
-.hardcore-button {
-    background: #151515;
-    color: #bbb;
-    border: 1px solid #444;
-}
-
-.hardcore-button.active {
-    background: #7a1212;
-    color: white;
-    border-color: #ff3535;
-    box-shadow: 0 0 15px rgba(255,53,53,0.25);
-}
-
-.sound-button {
-    background: #102a1c;
-    color: #00ff73;
-    border: 1px solid #146d3b;
-}
-
-.sound-button.off {
-    background: #252525;
-    color: #888;
-    border-color: #444;
-}
-
-.reset-button {
-    background: rgba(10,10,10,0.92);
-    color: #aaa;
-    border: 1px solid #444;
+.control-button:hover {
+    filter: brightness(1.12);
 }
 
 .control-button:active {
-    transform: scale(0.98);
+    transform: scale(.98);
+}
+
+.apply-button {
+    margin-top: 17px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #08c95d,
+            #00a64c
+        );
+
+    border:
+        1px solid #1aff80;
+
+    color: #001d0c;
+
+    box-shadow:
+        0 0 14px rgba(0,255,115,.14);
+}
+
+.hide-button {
+    background:
+        linear-gradient(
+            #242424,
+            #101010
+        );
+
+    border:
+        1px solid #505050;
+}
+
+.hide-button.active {
+    background:
+        linear-gradient(
+            #5b1717,
+            #260909
+        );
+
+    border-color: #ef2535;
+}
+
+.hardcore-button {
+    background:
+        linear-gradient(
+            #242424,
+            #101010
+        );
+
+    border:
+        1px solid #505050;
+}
+
+.hardcore-button.active {
+    background:
+        linear-gradient(
+            #851822,
+            #35090d
+        );
+
+    border-color: #ff3547;
+
+    box-shadow:
+        0 0 13px rgba(255,53,71,.22);
+}
+
+.sound-button {
+    background:
+        linear-gradient(
+            #242424,
+            #101010
+        );
+
+    border:
+        1px solid #505050;
+}
+
+.sound-button.on {
+    color: #00ff73;
+
+    border-color:
+        rgba(0,255,115,.55);
+}
+
+.sound-button.off {
+    color: #888;
 }
 
 .settings-message {
-    margin-top: 10px;
-    min-height: 18px;
-    color: #888;
-    font-size: 12px;
+    margin-top: 18px;
+
+    padding-top: 13px;
+
+    border-top:
+        1px solid #303030;
+
+    color: #777;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: .5px;
+
+    text-align: center;
 }
 
 
-/* BARRA */
+/* =========================================================
+   CENTRO
+========================================================= */
+
+center {
+    display: block;
+}
+
+.center-trainer {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+.timing-heading {
+    margin-bottom: 13px;
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: 1000;
+
+    font-style: italic;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 3px 8px #000;
+}
+
+.timing-heading span {
+    color: #e51e30;
+}
+
+
+/* =========================================================
+   BARRA
+========================================================= */
 
 .timing-area {
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
-    margin-top: 10px;
+
+    transition:
+        opacity .2s;
 }
 
 .timing-area.hidden {
     display: none;
 }
 
-.timing-title {
-    font-size: 14px;
-    color: #aaa;
-    margin-bottom: 12px;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 5px #000;
-}
-
 .vertical-wrapper {
     position: relative;
-    width: 210px;
-    height: 340px;
+
+    width: 280px;
+    height: 355px;
+
     display: flex;
+
     justify-content: center;
 }
 
 .timing-bar {
     position: relative;
-    width: 48px;
-    height: 340px;
-    background: #292929;
-    border: 2px solid #555;
-    border-radius: 10px;
+
+    width: 52px;
+    height: 355px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #151515,
+            #3a3a3a,
+            #151515
+        );
+
+    border:
+        2px solid #777;
+
+    border-radius: 3px;
+
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,.8);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.8),
+        inset 0 0 12px rgba(0,0,0,.8);
+}
+
+.timing-bar::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 10;
+
+    pointer-events: none;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 14px,
+            rgba(255,255,255,.05) 15px
+        );
 }
 
 .live-fill {
     position: absolute;
+
     bottom: 0;
     left: 0;
+
     width: 100%;
     height: 0%;
-    background: rgba(255,255,255,0.20);
+
+    background:
+        linear-gradient(
+            0deg,
+            rgba(255,255,255,.1),
+            rgba(255,255,255,.30)
+        );
+
     z-index: 1;
 }
 
 .green-window {
     position: absolute;
+
     left: 0;
+
     width: 100%;
-    background: #00d965;
-    box-shadow: 0 0 14px rgba(0,255,115,0.7);
-    z-index: 2;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00b94e,
+            #00ff73,
+            #00b94e
+        );
+
+    box-shadow:
+        0 0 18px rgba(0,255,115,.75);
+
+    z-index: 3;
 }
 
 .marker {
     position: absolute;
-    left: 65px;
-    width: 80px;
-    height: 4px;
+
+    left: 156px;
+
+    width: 72px;
+    height: 3px;
+
     background: white;
-    box-shadow: 0 0 10px white;
+
     display: none;
-    transform: translateY(-50%);
+
+    transform:
+        translateY(-50%);
+
+    box-shadow:
+        0 0 9px white;
+
     z-index: 20;
+
     pointer-events: none;
 }
 
 .marker::before {
     content: "";
+
     position: absolute;
-    left: -9px;
+
+    left: -10px;
     top: 50%;
-    transform: translateY(-50%);
-    border-top: 6px solid transparent;
-    border-bottom: 6px solid transparent;
-    border-right: 9px solid white;
+
+    transform:
+        translateY(-50%);
+
+    border-top:
+        6px solid transparent;
+
+    border-bottom:
+        6px solid transparent;
+
+    border-right:
+        10px solid white;
 }
 
 
-/* ESCALA */
+/* =========================================================
+   LABELS DA BARRA
+========================================================= */
 
 .scale-label {
     position: absolute;
-    left: 140px;
-    font-size: 13px;
-    transform: translateY(-50%);
-    text-shadow: 0 2px 4px #000;
+
+    left: 184px;
+
+    transform:
+        translateY(-50%);
+
+    color: #b7b7b7;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    text-shadow:
+        0 2px 4px #000;
 }
 
 .label-max {
     top: 0%;
-    color: #aaa;
 }
 
 .label-green-end,
@@ -297,23 +765,29 @@ h1 {
 
 .label-zero {
     top: 100%;
-    color: #aaa;
 }
-
-
-/* ZONAS */
 
 .zone-label {
     position: absolute;
-    right: 135px;
-    font-size: 12px;
-    font-weight: bold;
-    transform: translateY(-50%);
-    text-shadow: 0 2px 4px #000;
+
+    right: 175px;
+
+    transform:
+        translateY(-50%);
+
+    font-size: 11px;
+    font-weight: 1000;
+
+    font-style: italic;
+
+    letter-spacing: .7px;
+
+    text-shadow:
+        0 2px 4px #000;
 }
 
 .late-label {
-    color: #ff3535;
+    color: #ff3344;
 }
 
 .green-label {
@@ -321,235 +795,226 @@ h1 {
 }
 
 .early-label {
-    color: #ffae00;
+    color: #ffb21d;
 }
 
 
-/* TIMER */
+/* =========================================================
+   TIMER
+========================================================= */
 
 .timer-container {
-    margin-top: 22px;
-    min-height: 82px;
+    min-height: 67px;
+
+    margin-top: 9px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: baseline;
 }
 
 .timer {
-    font-size: 68px;
-    font-weight: 900;
-    text-shadow: 0 4px 12px #000;
+    font-size: 55px;
+
+    line-height: 1;
+
+    font-weight: 1000;
+
+    font-style: italic;
+
+    letter-spacing: -3px;
+
+    text-shadow:
+        0 4px 10px #000;
 }
 
 .ms {
-    font-size: 22px;
-    color: #ccc;
-    text-shadow: 0 2px 5px #000;
+    margin-left: 7px;
+
+    color: #bbb;
+
+    font-size: 18px;
+
+    font-weight: 900;
 }
 
-.timer-container.hardcore-running .timer,
-.timer-container.hardcore-running .ms {
+.timer-container.hardcore-running
+.timer,
+.timer-container.hardcore-running
+.ms {
     visibility: hidden;
 }
 
 .timer-container.hardcore-running::after {
     content: "???";
-    display: block;
-    font-size: 60px;
-    font-weight: 900;
-    color: #777;
+
+    font-size: 52px;
+
+    font-weight: 1000;
+
+    font-style: italic;
+
+    color: #aaa;
 }
 
 
-/* BOTÃO X */
+/* =========================================================
+   BOTÃO X
+========================================================= */
 
 .button-x {
-    width: 110px;
-    height: 110px;
+    width: 78px;
+    height: 78px;
+
+    margin: 8px auto 5px;
+
     border-radius: 50%;
-    margin: 18px auto 8px;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
-    background: #1266d3;
-    border: 3px solid #2780f0;
-    box-shadow:
-        0 0 18px rgba(18,102,211,0.55),
-        0 5px 15px rgba(0,0,0,.7);
-    font-size: 52px;
-    font-weight: bold;
+
+    background:
+        radial-gradient(
+            circle at 40% 35%,
+            #3187ff,
+            #1266d3 52%,
+            #073d8b
+        );
+
+    border:
+        3px solid #4a9cff;
+
+    color: white;
+
+    font-size: 37px;
+    font-weight: 1000;
+
     cursor: pointer;
+
     touch-action: none;
-    transition: transform 0.05s, box-shadow 0.05s;
+
+    box-shadow:
+        0 0 22px rgba(18,102,211,.58),
+        0 7px 20px rgba(0,0,0,.75);
+
+    transition:
+        transform .05s,
+        box-shadow .05s;
 }
 
 .button-x.pressed {
-    transform: scale(0.86);
-    box-shadow: 0 0 35px rgba(18,102,211,0.9);
+    transform:
+        scale(.85);
+
+    box-shadow:
+        0 0 37px rgba(18,102,211,.95);
 }
 
 .touch-help {
-    font-size: 13px;
-    color: #aaa;
-    margin-bottom: 10px;
-    text-shadow: 0 2px 5px #000;
+    margin-top: 7px;
+
+    color: #a8a8a8;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-shadow:
+        0 2px 4px #000;
 }
 
 
-/* RESULTADO */
+/* =========================================================
+   RESULTADO
+========================================================= */
 
 .result {
-    font-size: 38px;
-    font-weight: 900;
-    margin-top: 12px;
-    min-height: 48px;
-    text-shadow: 0 3px 8px #000;
+    min-height: 43px;
+
+    margin-top: 9px;
+
+    font-size: 33px;
+
+    line-height: 1;
+
+    font-weight: 1000;
+
+    font-style: italic;
+
+    text-shadow:
+        0 4px 10px #000;
 }
 
-.early {
-    color: #ffae00;
+.result.early {
+    color: #ffb21d;
 }
 
-.green {
+.result.green {
     color: #00ff73;
+
+    text-shadow:
+        0 0 15px rgba(0,255,115,.65),
+        0 4px 10px #000;
 }
 
-.late {
-    color: #ff3535;
+.result.late {
+    color: #ff3547;
 }
 
 .release-info {
-    margin-top: 6px;
-    font-size: 17px;
-    color: #ddd;
-    min-height: 24px;
-    text-shadow: 0 2px 5px #000;
+    min-height: 20px;
+
+    margin-top: 4px;
+
+    color: #c3c3c3;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    text-shadow:
+        0 2px 4px #000;
 }
 
 .window-info {
-    margin-top: 10px;
-    color: #aaa;
-    font-size: 14px;
-    text-shadow: 0 2px 5px #000;
-}
+    margin-top: 5px;
 
+    color: #898989;
 
-/* ESTATÍSTICAS */
+    font-size: 9px;
 
-.stats-section {
-    width: 100%;
-    max-width: 600px;
-    margin: 28px auto 0;
-}
-
-.stats-title {
-    color: #bbb;
-    font-size: 13px;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
-    text-shadow: 0 2px 5px #000;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-}
-
-.stat-card {
-    background: rgba(17,17,17,0.94);
-    border: 1px solid #444;
-    border-radius: 10px;
-    padding: 13px 5px;
-    backdrop-filter: blur(4px);
-}
-
-.stat-value {
-    display: block;
-    font-size: 24px;
     font-weight: 900;
-}
 
-.stat-label {
-    display: block;
-    margin-top: 4px;
-    font-size: 10px;
-    color: #888;
-    letter-spacing: 0.5px;
-}
-
-.green-stat {
-    color: #00ff73;
-}
-
-.streak-stat {
-    color: #ffae00;
-}
-
-
-/* HISTÓRICO */
-
-.history-box {
-    margin-top: 10px;
-    padding: 13px;
-    background: rgba(17,17,17,0.94);
-    border: 1px solid #444;
-    border-radius: 10px;
-    backdrop-filter: blur(4px);
-}
-
-.history-title {
-    font-size: 11px;
-    color: #aaa;
     letter-spacing: 1px;
-    margin-bottom: 10px;
-}
 
-.history {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    justify-content: center;
-    min-height: 30px;
-}
-
-.shot {
-    padding: 6px 8px;
-    border-radius: 6px;
-    background: #1b1b1b;
-    font-size: 12px;
-    font-weight: bold;
-    border: 1px solid #333;
-}
-
-.shot.green-shot {
-    color: #00ff73;
-    border-color: #126e3a;
-}
-
-.shot.early-shot {
-    color: #ffae00;
-    border-color: #795d16;
-}
-
-.shot.late-shot {
-    color: #ff5353;
-    border-color: #7b2424;
-}
-
-.empty-history {
-    color: #777;
-    font-size: 12px;
+    text-shadow:
+        0 2px 4px #000;
 }
 
 
-/* HARDCORE */
+/* =========================================================
+   HARDCORE
+========================================================= */
 
 .hardcore-indicator {
     display: none;
-    margin: 15px auto 0;
-    color: #ff5353;
-    font-size: 12px;
-    font-weight: bold;
+
+    margin: 7px 0 0;
+
+    color: #ff3547;
+
+    font-size: 9px;
+
+    font-weight: 1000;
+
     letter-spacing: 2px;
-    text-shadow: 0 2px 5px #000;
+
+    text-shadow:
+        0 2px 4px #000;
 }
 
 .hardcore-indicator.active {
@@ -557,907 +1022,2478 @@ h1 {
 }
 
 
-/* MOBILE */
+/* =========================================================
+   PAINEL DIREITO
+========================================================= */
 
-@media (max-width: 600px) {
+.stats-panel {
+    min-height: 500px;
 
-    body {
-        background-position: center center;
-        background-attachment: scroll;
+    padding: 24px 22px 22px;
+
+    align-self: center;
+}
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 8px;
+
+    margin-bottom: 17px;
+}
+
+.stat-card {
+    min-height: 77px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #191919,
+            #0b0b0b
+        );
+
+    border:
+        1px solid #383838;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.stat-value {
+    display: block;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    font-weight: 1000;
+
+    font-style: italic;
+}
+
+.stat-label {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #777;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+.green-stat {
+    color: #00ff73;
+
+    text-shadow:
+        0 0 10px rgba(0,255,115,.28);
+}
+
+.streak-stat {
+    color: #ffb21d;
+}
+
+
+/* =========================================================
+   HISTÓRICO
+========================================================= */
+
+.history-box {
+    margin-top: 9px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid #303030;
+}
+
+.history-title {
+    margin-bottom: 12px;
+
+    color: #aaa;
+
+    font-size: 10px;
+
+    font-weight: 1000;
+
+    letter-spacing: 1.5px;
+}
+
+.history {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    min-height: 73px;
+}
+
+.shot {
+    flex:
+        1 0 calc(20% - 6px);
+
+    min-width: 50px;
+
+    max-width: 64px;
+
+    padding: 7px 4px;
+
+    background: #151515;
+
+    border:
+        1px solid #333;
+
+    font-size: 10px;
+
+    font-weight: 1000;
+
+    text-align: center;
+}
+
+.shot.green-shot {
+    color: #00ff73;
+
+    border-color: #147842;
+
+    background:
+        linear-gradient(
+            #12271b,
+            #0b1710
+        );
+}
+
+.shot.early-shot {
+    color: #ffb21d;
+
+    border-color: #7a5c18;
+
+    background:
+        linear-gradient(
+            #29210e,
+            #171207
+        );
+}
+
+.shot.late-shot {
+    color: #ff5353;
+
+    border-color: #812b2b;
+
+    background:
+        linear-gradient(
+            #2b1212,
+            #170909
+        );
+}
+
+.empty-history {
+    width: 100%;
+
+    padding:
+        15px 0;
+
+    color: #555;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+.reset-button {
+    margin-top: 16px;
+
+    background:
+        linear-gradient(
+            #181818,
+            #090909
+        );
+
+    border:
+        1px solid #555;
+
+    color: #ddd;
+}
+
+
+/* =========================================================
+   RODAPÉ
+========================================================= */
+
+.footer {
+    width: 100%;
+
+    max-width: 1540px;
+
+    margin: 20px auto 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    color: rgba(255,255,255,.55);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 2px 5px #000;
+}
+
+.footer strong {
+    color: white;
+}
+
+.footer-accent {
+    color: #e51e30;
+}
+
+
+/* =========================================================
+   TELAS MENORES DE DESKTOP
+
+   IMPORTANTE:
+   ISTO AINDA NÃO É NOSSO LAYOUT MOBILE FINAL.
+========================================================= */
+
+@media (max-width: 1150px) {
+
+    .page {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
-    .trainer {
-        padding-top: 15px;
-    }
+    .desktop-grid {
+        gap: 22px;
 
-    h1 {
-        font-size: 22px;
-    }
-
-    .status {
-        font-size: 12px;
+        grid-template-columns:
+            minmax(250px, 310px)
+            minmax(300px, 1fr)
+            minmax(260px, 320px);
     }
 
     .vertical-wrapper {
-        height: 280px;
+        width: 240px;
     }
 
-    .timing-bar {
-        height: 280px;
+    .zone-label {
+        right: 150px;
     }
 
-    .timer {
-        font-size: 55px;
+    .scale-label {
+        left: 158px;
     }
 
-    .button-x {
-        width: 105px;
-        height: 105px;
-        font-size: 48px;
-    }
-
-    .result {
-        font-size: 32px;
-    }
-
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .stat-value {
-        font-size: 22px;
+    .marker {
+        left: 135px;
     }
 }
+
+
+/*
+   MOBILE FINAL SERÁ FEITO NO FIM DO PROJETO.
+   Por enquanto apenas impedimos quebra total em tela pequena.
+*/
+
+@media (max-width: 850px) {
+
+    body {
+        overflow-x: auto;
+    }
+
+    .page {
+        min-width: 1000px;
+    }
+}
+
 </style>
 </head>
 
+
 <body>
 
-<div class="trainer">
+<audio
+    id="greenSound"
+    preload="auto">
 
-<h1>JUMPSHOT TIMING TRAINER</h1>
+    <source
+        src="green.wav"
+        type="audio/wav">
 
-<div id="status" class="status">
-🎮 Controle ou 📱 toque no X
-</div>
-
-<audio id="greenSound" preload="auto">
-    <source src="green.wav" type="audio/wav">
 </audio>
 
 
-<div class="window-settings">
+<div class="page">
 
-<div class="settings-title">
-CONFIGURE SUA GREEN WINDOW
+
+<!-- ======================================================
+     CABEÇALHO
+====================================================== -->
+
+<header class="top-header">
+
+    <div class="brand">
+        COMPLEXO <span>2K</span>
+    </div>
+
+
+    <div class="main-title">
+
+        <div class="small-title">
+            COMPLEXO 2K LAB
+        </div>
+
+        <h1>
+            JUMPSHOT <span>TRAINER</span>
+        </h1>
+
+        <div class="subtitle">
+            RELEASE TIMING LAB
+        </div>
+
+    </div>
+
+
+    <div
+        id="status"
+        class="connection">
+
+        CONTROLE NÃO CONECTADO
+
+    </div>
+
+</header>
+
+
+
+<!-- ======================================================
+     3 COLUNAS
+====================================================== -->
+
+<main class="desktop-grid">
+
+
+<!-- ======================================================
+     ESQUERDA
+====================================================== -->
+
+<section class="panel settings-panel">
+
+<div class="panel-content">
+
+
+    <div class="panel-heading">
+
+        <div class="panel-heading-line"></div>
+
+        <h2>
+            CONFIGURAÇÃO
+        </h2>
+
+    </div>
+
+
+    <div class="settings-fields">
+
+
+        <div class="field">
+
+            <label
+                class="setting-label"
+                for="greenStartInput">
+
+                INÍCIO DO GREEN
+
+            </label>
+
+            <input
+                id="greenStartInput"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                value="605">
+
+        </div>
+
+
+        <div class="field">
+
+            <label
+                class="setting-label"
+                for="greenEndInput">
+
+                FIM DO GREEN
+
+            </label>
+
+            <input
+                id="greenEndInput"
+                type="number"
+                inputmode="numeric"
+                min="1"
+                value="640">
+
+        </div>
+
+
+    </div>
+
+
+    <button
+        id="applyWindow"
+        class="control-button apply-button">
+
+        APLICAR JANELA
+
+    </button>
+
+
+    <button
+        id="hideBarButton"
+        class="control-button hide-button">
+
+        👁 OCULTAR BARRA
+
+    </button>
+
+
+    <button
+        id="hardcoreButton"
+        class="control-button hardcore-button">
+
+        🎯 MODO HARDCORE: OFF
+
+    </button>
+
+
+    <button
+        id="soundButton"
+        class="control-button sound-button on">
+
+        🔊 SOM DE GREEN: ON
+
+    </button>
+
+
+    <div
+        id="settingsMessage"
+        class="settings-message">
+
+        JANELA ATUAL:
+        605–640 MS
+
+    </div>
+
+
 </div>
 
-<div class="settings-fields">
+</section>
 
-<div class="field">
-<label for="greenStartInput">
-INÍCIO DO GREEN (ms)
-</label>
-<input id="greenStartInput" type="number" inputmode="numeric" min="0" value="605">
+
+
+<!-- ======================================================
+     CENTRO
+====================================================== -->
+
+<section class="center-trainer">
+
+
+    <div class="timing-heading">
+        RELEASE <span>TIMING</span>
+    </div>
+
+
+    <div
+        id="timingArea"
+        class="timing-area">
+
+
+        <div class="vertical-wrapper">
+
+
+            <div
+                id="lateLabel"
+                class="zone-label late-label">
+
+                LATE
+
+            </div>
+
+
+            <div
+                id="greenLabel"
+                class="zone-label green-label">
+
+                GREEN
+
+            </div>
+
+
+            <div
+                id="earlyLabel"
+                class="zone-label early-label">
+
+                EARLY
+
+            </div>
+
+
+
+            <div class="timing-bar">
+
+                <div
+                    id="liveFill"
+                    class="live-fill">
+                </div>
+
+
+                <div
+                    id="greenWindow"
+                    class="green-window">
+                </div>
+
+            </div>
+
+
+
+            <div
+                id="marker"
+                class="marker">
+            </div>
+
+
+
+            <div
+                id="maxLabel"
+                class="scale-label label-max">
+
+                750 ms
+
+            </div>
+
+
+            <div
+                id="greenEndLabel"
+                class="scale-label label-green-end">
+
+                640
+
+            </div>
+
+
+            <div
+                id="greenStartLabel"
+                class="scale-label label-green-start">
+
+                605
+
+            </div>
+
+
+            <div
+                class="scale-label label-zero">
+
+                0 ms
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <div
+        id="timerContainer"
+        class="timer-container">
+
+        <span
+            id="timer"
+            class="timer">
+
+            0
+
+        </span>
+
+        <span class="ms">
+            ms
+        </span>
+
+    </div>
+
+
+
+    <div
+        id="hardcoreIndicator"
+        class="hardcore-indicator">
+
+        MODO MEMÓRIA MUSCULAR
+
+    </div>
+
+
+
+    <div
+        id="buttonX"
+        class="button-x">
+
+        X
+
+    </div>
+
+
+    <div class="touch-help">
+
+        SEGURE E SOLTE •
+        CONTROLE, MOUSE OU TOQUE
+
+    </div>
+
+
+
+    <div
+        id="result"
+        class="result">
+
+        SEGURE X E SOLTE
+
+    </div>
+
+
+    <div
+        id="releaseInfo"
+        class="release-info">
+    </div>
+
+
+    <div
+        id="windowInfo"
+        class="window-info">
+
+        GREEN WINDOW:
+        605–640 MS
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ======================================================
+     DIREITA
+====================================================== -->
+
+<section class="panel stats-panel">
+
+<div class="panel-content">
+
+
+    <div class="panel-heading">
+
+        <div class="panel-heading-line"></div>
+
+        <h2>
+            SESSÃO DE <span>TREINO</span>
+        </h2>
+
+    </div>
+
+
+
+    <div class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <span
+                id="totalStat"
+                class="stat-value">
+
+                0
+
+            </span>
+
+            <span class="stat-label">
+
+                TENTATIVAS
+
+            </span>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <span
+                id="greenPercentStat"
+                class="stat-value green-stat">
+
+                0%
+
+            </span>
+
+            <span class="stat-label">
+
+                GREEN
+
+            </span>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <span
+                id="averageStat"
+                class="stat-value">
+
+                —
+
+            </span>
+
+            <span class="stat-label">
+
+                MÉDIA
+
+            </span>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <span
+                id="streakStat"
+                class="stat-value streak-stat">
+
+                0 🔥
+
+            </span>
+
+            <span class="stat-label">
+
+                STREAK
+
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="history-box">
+
+
+        <div class="history-title">
+
+            ÚLTIMAS 10 TENTATIVAS
+
+        </div>
+
+
+        <div
+            id="history"
+            class="history">
+
+            <span class="empty-history">
+
+                NENHUMA TENTATIVA AINDA
+
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <button
+        id="resetSession"
+        class="control-button reset-button">
+
+        ↻ ZERAR SESSÃO
+
+    </button>
+
+
 </div>
 
-<div class="field">
-<label for="greenEndInput">
-FIM DO GREEN (ms)
-</label>
-<input id="greenEndInput" type="number" inputmode="numeric" min="1" value="640">
-</div>
-
-</div>
-
-<button id="applyWindow" class="control-button apply-button">
-APLICAR JANELA
-</button>
-
-<button id="hideBarButton" class="control-button hide-button">
-👁 OCULTAR BARRA
-</button>
-
-<button id="hardcoreButton" class="control-button hardcore-button">
-🎯 MODO HARDCORE: OFF
-</button>
-
-<button id="soundButton" class="control-button sound-button">
-🔊 SOM DE GREEN: ON
-</button>
-
-<div id="settingsMessage" class="settings-message">
-Janela atual: 605–640 ms
-</div>
-
-</div>
+</section>
 
 
-<div id="timingArea" class="timing-area">
-
-<div class="timing-title">
-RELEASE TIMING
-</div>
-
-<div class="vertical-wrapper">
-
-<div id="lateLabel" class="zone-label late-label">LATE</div>
-<div id="greenLabel" class="zone-label green-label">GREEN</div>
-<div id="earlyLabel" class="zone-label early-label">EARLY</div>
-
-<div class="timing-bar">
-<div id="liveFill" class="live-fill"></div>
-<div id="greenWindow" class="green-window"></div>
-</div>
-
-<div id="marker" class="marker"></div>
-
-<div id="maxLabel" class="scale-label label-max">750 ms</div>
-<div id="greenEndLabel" class="scale-label label-green-end">640</div>
-<div id="greenStartLabel" class="scale-label label-green-start">605</div>
-<div class="scale-label label-zero">0 ms</div>
-
-</div>
-</div>
+</main>
 
 
-<div id="timerContainer" class="timer-container">
-<span id="timer" class="timer">0</span>
-<span class="ms">ms</span>
-</div>
 
-<div id="hardcoreIndicator" class="hardcore-indicator">
-MODO MEMÓRIA MUSCULAR
-</div>
+<!-- ======================================================
+     RODAPÉ
+====================================================== -->
 
-<div id="buttonX" class="button-x">
-X
-</div>
+<footer class="footer">
 
-<div class="touch-help">
-Segure e solte • Controle, mouse ou toque
-</div>
-
-<div id="result" class="result">
-SEGURE X E SOLTE
-</div>
-
-<div id="releaseInfo" class="release-info"></div>
-
-<div id="windowInfo" class="window-info">
-GREEN WINDOW: 605–640 ms
-</div>
+    <div>
+        <strong>DISCIPLINA</strong>
+        GERA RESULTADO
+    </div>
 
 
-<div class="stats-section">
+    <div>
+        COMPLEXO
+        <span class="footer-accent">
+            2K
+        </span>
+        • TIMING LAB
+    </div>
 
-<div class="stats-title">
-SESSÃO DE TREINO
-</div>
+</footer>
 
-<div class="stats-grid">
-
-<div class="stat-card">
-<span id="totalStat" class="stat-value">0</span>
-<span class="stat-label">TENTATIVAS</span>
-</div>
-
-<div class="stat-card">
-<span id="greenPercentStat" class="stat-value green-stat">0%</span>
-<span class="stat-label">GREENS</span>
-</div>
-
-<div class="stat-card">
-<span id="averageStat" class="stat-value">—</span>
-<span class="stat-label">MÉDIA</span>
-</div>
-
-<div class="stat-card">
-<span id="streakStat" class="stat-value streak-stat">0 🔥</span>
-<span class="stat-label">STREAK</span>
-</div>
 
 </div>
 
-<div class="history-box">
-
-<div class="history-title">
-ÚLTIMAS 10 TENTATIVAS
-</div>
-
-<div id="history" class="history">
-<span class="empty-history">
-Nenhuma tentativa ainda
-</span>
-</div>
-
-</div>
-
-<button id="resetSession" class="control-button reset-button">
-ZERAR SESSÃO
-</button>
-
-</div>
-</div>
 
 
 <script>
+
+/* =========================================================
+   CONFIGURAÇÃO
+========================================================= */
 
 let GREEN_START = 605;
 let GREEN_END = 640;
 
 const BAR_MIN = 0;
+
 let BAR_MAX = 750;
 
+
+/* =========================================================
+   ESTADO
+========================================================= */
+
 let pressing = false;
+
 let startTime = 0;
+
 let inputSource = null;
 
 let gamepadWasPressed = false;
 
 let barHidden = false;
+
 let hardcoreMode = false;
+
 let greenSoundEnabled = true;
 
+
+/* =========================================================
+   ESTATÍSTICAS
+========================================================= */
+
 let attempts = [];
+
 let totalShots = 0;
+
 let totalGreens = 0;
+
 let currentStreak = 0;
+
 let bestStreak = 0;
 
 
-const timer = document.getElementById("timer");
-const timerContainer = document.getElementById("timerContainer");
-const result = document.getElementById("result");
-const status = document.getElementById("status");
-const buttonX = document.getElementById("buttonX");
-const marker = document.getElementById("marker");
-const liveFill = document.getElementById("liveFill");
-const releaseInfo = document.getElementById("releaseInfo");
-const greenWindow = document.getElementById("greenWindow");
+/* =========================================================
+   ELEMENTOS
+========================================================= */
 
-const greenStartInput = document.getElementById("greenStartInput");
-const greenEndInput = document.getElementById("greenEndInput");
-const applyWindow = document.getElementById("applyWindow");
+const timer =
+    document.getElementById("timer");
 
-const settingsMessage = document.getElementById("settingsMessage");
-const windowInfo = document.getElementById("windowInfo");
+const timerContainer =
+    document.getElementById("timerContainer");
 
-const maxLabel = document.getElementById("maxLabel");
-const greenStartLabel = document.getElementById("greenStartLabel");
-const greenEndLabel = document.getElementById("greenEndLabel");
+const result =
+    document.getElementById("result");
 
-const earlyLabel = document.getElementById("earlyLabel");
-const greenLabel = document.getElementById("greenLabel");
-const lateLabel = document.getElementById("lateLabel");
+const status =
+    document.getElementById("status");
 
-const timingArea = document.getElementById("timingArea");
-const hideBarButton = document.getElementById("hideBarButton");
-const hardcoreButton = document.getElementById("hardcoreButton");
-const hardcoreIndicator = document.getElementById("hardcoreIndicator");
+const buttonX =
+    document.getElementById("buttonX");
 
-const soundButton = document.getElementById("soundButton");
-const greenSound = document.getElementById("greenSound");
+const marker =
+    document.getElementById("marker");
 
-const totalStat = document.getElementById("totalStat");
-const greenPercentStat = document.getElementById("greenPercentStat");
-const averageStat = document.getElementById("averageStat");
-const streakStat = document.getElementById("streakStat");
+const liveFill =
+    document.getElementById("liveFill");
 
-const history = document.getElementById("history");
-const resetSession = document.getElementById("resetSession");
+const releaseInfo =
+    document.getElementById("releaseInfo");
 
+const greenWindow =
+    document.getElementById("greenWindow");
+
+const greenStartInput =
+    document.getElementById(
+        "greenStartInput"
+    );
+
+const greenEndInput =
+    document.getElementById(
+        "greenEndInput"
+    );
+
+const applyWindow =
+    document.getElementById(
+        "applyWindow"
+    );
+
+const settingsMessage =
+    document.getElementById(
+        "settingsMessage"
+    );
+
+const windowInfo =
+    document.getElementById(
+        "windowInfo"
+    );
+
+const maxLabel =
+    document.getElementById(
+        "maxLabel"
+    );
+
+const greenStartLabel =
+    document.getElementById(
+        "greenStartLabel"
+    );
+
+const greenEndLabel =
+    document.getElementById(
+        "greenEndLabel"
+    );
+
+const earlyLabel =
+    document.getElementById(
+        "earlyLabel"
+    );
+
+const greenLabel =
+    document.getElementById(
+        "greenLabel"
+    );
+
+const lateLabel =
+    document.getElementById(
+        "lateLabel"
+    );
+
+const timingArea =
+    document.getElementById(
+        "timingArea"
+    );
+
+const hideBarButton =
+    document.getElementById(
+        "hideBarButton"
+    );
+
+const hardcoreButton =
+    document.getElementById(
+        "hardcoreButton"
+    );
+
+const hardcoreIndicator =
+    document.getElementById(
+        "hardcoreIndicator"
+    );
+
+const soundButton =
+    document.getElementById(
+        "soundButton"
+    );
+
+const greenSound =
+    document.getElementById(
+        "greenSound"
+    );
+
+const totalStat =
+    document.getElementById(
+        "totalStat"
+    );
+
+const greenPercentStat =
+    document.getElementById(
+        "greenPercentStat"
+    );
+
+const averageStat =
+    document.getElementById(
+        "averageStat"
+    );
+
+const streakStat =
+    document.getElementById(
+        "streakStat"
+    );
+
+const history =
+    document.getElementById(
+        "history"
+    );
+
+const resetSession =
+    document.getElementById(
+        "resetSession"
+    );
+
+
+/* =========================================================
+   SOM DE GREEN
+========================================================= */
 
 function playGreenSound() {
 
-    if (!greenSoundEnabled) return;
+    if (!greenSoundEnabled) {
+        return;
+    }
+
 
     try {
+
         greenSound.pause();
+
         greenSound.currentTime = 0;
 
-        const playPromise = greenSound.play();
 
-        if (playPromise !== undefined) {
-            playPromise.catch(function(error) {
-                console.log("O navegador bloqueou o áudio até ocorrer uma interação.");
-            });
+        const playPromise =
+            greenSound.play();
+
+
+        if (
+            playPromise !== undefined
+        ) {
+
+            playPromise.catch(
+                function(error) {
+
+                    console.log(
+                        "Áudio aguardando interação do navegador."
+                    );
+
+                }
+            );
         }
 
-    } catch (error) {
-        console.log("Erro ao tocar o som:", error);
     }
+
+    catch (error) {
+
+        console.log(
+            "Erro ao tocar o som:",
+            error
+        );
+
+    }
+
 }
 
 
-soundButton.addEventListener("click", function() {
 
-    greenSoundEnabled = !greenSoundEnabled;
+soundButton.addEventListener(
+    "click",
+    function() {
 
-    if (greenSoundEnabled) {
+        greenSoundEnabled =
+            !greenSoundEnabled;
 
-        soundButton.innerText = "🔊 SOM DE GREEN: ON";
-        soundButton.classList.remove("off");
 
-    } else {
+        if (greenSoundEnabled) {
 
-        soundButton.innerText = "🔇 SOM DE GREEN: OFF";
-        soundButton.classList.add("off");
+            soundButton.innerText =
+                "🔊 SOM DE GREEN: ON";
 
-        greenSound.pause();
-        greenSound.currentTime = 0;
+            soundButton.classList.add(
+                "on"
+            );
+
+            soundButton.classList.remove(
+                "off"
+            );
+
+        }
+
+        else {
+
+            soundButton.innerText =
+                "🔇 SOM DE GREEN: OFF";
+
+            soundButton.classList.remove(
+                "on"
+            );
+
+            soundButton.classList.add(
+                "off"
+            );
+
+
+            greenSound.pause();
+
+            greenSound.currentTime =
+                0;
+
+        }
+
     }
-});
+);
 
+
+/* =========================================================
+   POSIÇÃO NA BARRA
+========================================================= */
 
 function getPosition(ms) {
 
     let percentage =
         100 -
-        ((ms - BAR_MIN) / (BAR_MAX - BAR_MIN)) * 100;
+        (
+            (ms - BAR_MIN) /
+            (BAR_MAX - BAR_MIN)
+        ) * 100;
 
-    percentage = Math.max(0, Math.min(100, percentage));
+
+    percentage =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                percentage
+            )
+        );
+
 
     return percentage;
+
 }
 
 
+/* =========================================================
+   GREEN WINDOW
+========================================================= */
+
 function updateGreenWindow() {
 
-    const endPosition = getPosition(GREEN_END);
-    const startPosition = getPosition(GREEN_START);
+    const endPosition =
+        getPosition(
+            GREEN_END
+        );
 
-    const windowHeight = startPosition - endPosition;
 
-    greenWindow.style.top = endPosition + "%";
-    greenWindow.style.height = windowHeight + "%";
+    const startPosition =
+        getPosition(
+            GREEN_START
+        );
 
-    greenEndLabel.style.top = endPosition + "%";
-    greenEndLabel.innerText = GREEN_END;
 
-    greenStartLabel.style.top = startPosition + "%";
-    greenStartLabel.innerText = GREEN_START;
+    const windowHeight =
+        startPosition -
+        endPosition;
 
-    maxLabel.innerText = BAR_MAX + " ms";
 
-    const greenCenter = (endPosition + startPosition) / 2;
+    greenWindow.style.top =
+        endPosition + "%";
 
-    greenLabel.style.top = greenCenter + "%";
-    lateLabel.style.top = (endPosition / 2) + "%";
+
+    greenWindow.style.height =
+        windowHeight + "%";
+
+
+    greenEndLabel.style.top =
+        endPosition + "%";
+
+
+    greenEndLabel.innerText =
+        GREEN_END;
+
+
+    greenStartLabel.style.top =
+        startPosition + "%";
+
+
+    greenStartLabel.innerText =
+        GREEN_START;
+
+
+    maxLabel.innerText =
+        BAR_MAX +
+        " ms";
+
+
+    const greenCenter =
+        (
+            endPosition +
+            startPosition
+        ) / 2;
+
+
+    greenLabel.style.top =
+        greenCenter +
+        "%";
+
+
+    lateLabel.style.top =
+        (
+            endPosition /
+            2
+        ) + "%";
+
 
     earlyLabel.style.top =
-        (startPosition + (100 - startPosition) / 2) + "%";
+        (
+            startPosition +
+            (
+                100 -
+                startPosition
+            ) / 2
+        ) + "%";
+
 
     windowInfo.innerText =
         "GREEN WINDOW: " +
         GREEN_START +
         "–" +
         GREEN_END +
-        " ms";
+        " MS";
+
 
     settingsMessage.innerText =
-        "Janela atual: " +
+        "JANELA ATUAL: " +
         GREEN_START +
         "–" +
         GREEN_END +
-        " ms";
+        " MS";
+
 }
 
+
+/* =========================================================
+   ESCALA DA BARRA
+========================================================= */
 
 function calculateBarMax() {
 
-    if (GREEN_END <= 700) {
-        BAR_MAX = 750;
+    if (
+        GREEN_END <= 700
+    ) {
+
+        BAR_MAX =
+            750;
+
         return;
+
     }
 
-    const desiredMax = GREEN_END + 100;
+
+    const desiredMax =
+        GREEN_END +
+        100;
+
 
     BAR_MAX =
-        Math.ceil(desiredMax / 50) * 50;
+        Math.ceil(
+            desiredMax /
+            50
+        ) * 50;
+
 }
 
+
+/* =========================================================
+   APLICAR NOVA JANELA
+========================================================= */
 
 function applyNewWindow() {
 
-    const newStart = Number(greenStartInput.value);
-    const newEnd = Number(greenEndInput.value);
+    const newStart =
+        Number(
+            greenStartInput.value
+        );
 
-    if (!Number.isFinite(newStart) || !Number.isFinite(newEnd)) {
-        settingsMessage.innerText = "Digite valores válidos.";
+
+    const newEnd =
+        Number(
+            greenEndInput.value
+        );
+
+
+    if (
+        !Number.isFinite(
+            newStart
+        ) ||
+        !Number.isFinite(
+            newEnd
+        )
+    ) {
+
+        settingsMessage.innerText =
+            "DIGITE VALORES VÁLIDOS";
+
         return;
+
     }
 
-    if (newStart < 0 || newEnd <= 0) {
-        settingsMessage.innerText = "Os valores precisam ser positivos.";
+
+    if (
+        newStart < 0 ||
+        newEnd <= 0
+    ) {
+
+        settingsMessage.innerText =
+            "OS VALORES PRECISAM SER POSITIVOS";
+
         return;
+
     }
 
-    if (newStart >= newEnd) {
-        settingsMessage.innerText = "O início precisa ser menor que o fim.";
+
+    if (
+        newStart >=
+        newEnd
+    ) {
+
+        settingsMessage.innerText =
+            "O INÍCIO PRECISA SER MENOR QUE O FIM";
+
         return;
+
     }
 
-    if (newEnd > 3000) {
-        settingsMessage.innerText = "Use uma janela abaixo de 3000 ms.";
+
+    if (
+        newEnd > 3000
+    ) {
+
+        settingsMessage.innerText =
+            "USE UMA JANELA ABAIXO DE 3000 MS";
+
         return;
+
     }
 
-    GREEN_START = Math.round(newStart);
-    GREEN_END = Math.round(newEnd);
+
+    GREEN_START =
+        Math.round(
+            newStart
+        );
+
+
+    GREEN_END =
+        Math.round(
+            newEnd
+        );
+
 
     calculateBarMax();
+
     updateGreenWindow();
 
-    timer.innerText = "0";
 
-    result.className = "result";
-    result.innerText = "SEGURE X E SOLTE";
+    timer.innerText =
+        "0";
 
-    releaseInfo.innerText = "";
 
-    marker.style.display = "none";
-    liveFill.style.height = "0%";
+    result.className =
+        "result";
+
+
+    result.innerText =
+        "SEGURE X E SOLTE";
+
+
+    releaseInfo.innerText =
+        "";
+
+
+    marker.style.display =
+        "none";
+
+
+    liveFill.style.height =
+        "0%";
+
 }
 
 
-applyWindow.addEventListener("click", applyNewWindow);
 
-greenStartInput.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        applyNewWindow();
+applyWindow.addEventListener(
+    "click",
+    applyNewWindow
+);
+
+
+
+greenStartInput.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key ===
+            "Enter"
+        ) {
+
+            applyNewWindow();
+
+        }
+
     }
-});
+);
 
-greenEndInput.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        applyNewWindow();
+
+
+greenEndInput.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key ===
+            "Enter"
+        ) {
+
+            applyNewWindow();
+
+        }
+
     }
-});
+);
 
 
-hideBarButton.addEventListener("click", function() {
+/* =========================================================
+   OCULTAR BARRA
+========================================================= */
 
-    barHidden = !barHidden;
+hideBarButton.addEventListener(
+    "click",
+    function() {
 
-    updateBarVisibility();
-});
+        barHidden =
+            !barHidden;
+
+
+        updateBarVisibility();
+
+    }
+);
+
 
 
 function updateBarVisibility() {
 
-    if (barHidden || hardcoreMode) {
-        timingArea.classList.add("hidden");
-    } else {
-        timingArea.classList.remove("hidden");
+    if (
+        barHidden ||
+        hardcoreMode
+    ) {
+
+        timingArea.classList.add(
+            "hidden"
+        );
+
     }
+
+    else {
+
+        timingArea.classList.remove(
+            "hidden"
+        );
+
+    }
+
 
     if (barHidden) {
 
-        hideBarButton.classList.add("active");
-        hideBarButton.innerText = "👁 MOSTRAR BARRA";
+        hideBarButton.classList.add(
+            "active"
+        );
 
-    } else {
 
-        hideBarButton.classList.remove("active");
-        hideBarButton.innerText = "👁 OCULTAR BARRA";
+        hideBarButton.innerText =
+            "👁 MOSTRAR BARRA";
+
     }
+
+    else {
+
+        hideBarButton.classList.remove(
+            "active"
+        );
+
+
+        hideBarButton.innerText =
+            "👁 OCULTAR BARRA";
+
+    }
+
 }
 
 
-hardcoreButton.addEventListener("click", function() {
+/* =========================================================
+   HARDCORE
+========================================================= */
 
-    hardcoreMode = !hardcoreMode;
+hardcoreButton.addEventListener(
+    "click",
+    function() {
 
-    if (hardcoreMode) {
+        hardcoreMode =
+            !hardcoreMode;
 
-        hardcoreButton.classList.add("active");
-        hardcoreButton.innerText = "🎯 MODO HARDCORE: ON";
-        hardcoreIndicator.classList.add("active");
 
-    } else {
+        if (
+            hardcoreMode
+        ) {
 
-        hardcoreButton.classList.remove("active");
-        hardcoreButton.innerText = "🎯 MODO HARDCORE: OFF";
-        hardcoreIndicator.classList.remove("active");
-        timerContainer.classList.remove("hardcore-running");
+            hardcoreButton.classList.add(
+                "active"
+            );
+
+
+            hardcoreButton.innerText =
+                "🎯 MODO HARDCORE: ON";
+
+
+            hardcoreIndicator.classList.add(
+                "active"
+            );
+
+        }
+
+        else {
+
+            hardcoreButton.classList.remove(
+                "active"
+            );
+
+
+            hardcoreButton.innerText =
+                "🎯 MODO HARDCORE: OFF";
+
+
+            hardcoreIndicator.classList.remove(
+                "active"
+            );
+
+
+            timerContainer.classList.remove(
+                "hardcore-running"
+            );
+
+        }
+
+
+        updateBarVisibility();
+
     }
+);
 
-    updateBarVisibility();
-});
 
+/* =========================================================
+   MARCADOR
+========================================================= */
 
 function moveMarker(ms) {
 
-    const position = getPosition(ms);
+    const position =
+        getPosition(
+            ms
+        );
 
-    marker.style.top = position + "%";
-    marker.style.display = "block";
+
+    marker.style.top =
+        position +
+        "%";
+
+
+    marker.style.display =
+        "block";
+
 }
 
+
+/* =========================================================
+   PREENCHIMENTO
+========================================================= */
 
 function updateFill(ms) {
 
     let fill =
-        ((ms - BAR_MIN) / (BAR_MAX - BAR_MIN)) * 100;
+        (
+            (ms - BAR_MIN) /
+            (BAR_MAX - BAR_MIN)
+        ) * 100;
 
-    fill = Math.max(0, Math.min(100, fill));
 
-    liveFill.style.height = fill + "%";
+    fill =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                fill
+            )
+        );
+
+
+    liveFill.style.height =
+        fill +
+        "%";
+
 }
 
+
+/* =========================================================
+   INICIAR ARREMESSO
+========================================================= */
 
 function startShot(source) {
 
-    if (pressing) return;
+    if (
+        pressing
+    ) {
 
-    const activeElement = document.activeElement;
+        return;
+
+    }
+
+
+    const activeElement =
+        document.activeElement;
+
 
     if (
-        activeElement === greenStartInput ||
-        activeElement === greenEndInput
+        activeElement ===
+            greenStartInput ||
+        activeElement ===
+            greenEndInput
     ) {
+
         activeElement.blur();
+
     }
 
-    pressing = true;
-    inputSource = source;
-    startTime = performance.now();
 
-    timer.innerText = "0";
+    pressing =
+        true;
 
-    buttonX.classList.add("pressed");
 
-    result.className = "result";
-    result.innerText = "SEGURANDO...";
+    inputSource =
+        source;
 
-    releaseInfo.innerText = "";
 
-    marker.style.display = "block";
+    startTime =
+        performance.now();
 
-    moveMarker(0);
 
-    liveFill.style.height = "0%";
+    timer.innerText =
+        "0";
 
-    if (hardcoreMode) {
-        timerContainer.classList.add("hardcore-running");
+
+    buttonX.classList.add(
+        "pressed"
+    );
+
+
+    result.className =
+        "result";
+
+
+    result.innerText =
+        "SEGURANDO...";
+
+
+    releaseInfo.innerText =
+        "";
+
+
+    marker.style.display =
+        "block";
+
+
+    moveMarker(
+        0
+    );
+
+
+    liveFill.style.height =
+        "0%";
+
+
+    if (
+        hardcoreMode
+    ) {
+
+        timerContainer.classList.add(
+            "hardcore-running"
+        );
+
     }
+
 }
 
+
+/* =========================================================
+   FINALIZAR ARREMESSO
+========================================================= */
 
 function endShot(source) {
 
-    if (!pressing) return;
-    if (inputSource !== source) return;
+    if (
+        !pressing
+    ) {
 
-    const duration = performance.now() - startTime;
-    const ms = Math.round(duration);
+        return;
 
-    pressing = false;
-    inputSource = null;
+    }
 
-    timerContainer.classList.remove("hardcore-running");
 
-    timer.innerText = ms;
+    if (
+        inputSource !==
+        source
+    ) {
 
-    moveMarker(ms);
-    updateFill(ms);
+        return;
 
-    buttonX.classList.remove("pressed");
+    }
+
+
+    const duration =
+        performance.now() -
+        startTime;
+
+
+    const ms =
+        Math.round(
+            duration
+        );
+
+
+    pressing =
+        false;
+
+
+    inputSource =
+        null;
+
+
+    timerContainer.classList.remove(
+        "hardcore-running"
+    );
+
+
+    timer.innerText =
+        ms;
+
+
+    moveMarker(
+        ms
+    );
+
+
+    updateFill(
+        ms
+    );
+
+
+    buttonX.classList.remove(
+        "pressed"
+    );
+
 
     let shotResult;
 
-    if (ms < GREEN_START) {
 
-        shotResult = "early";
+    /* EARLY */
 
-        result.className = "result early";
-        result.innerText = "EARLY";
+    if (
+        ms <
+        GREEN_START
+    ) {
+
+        shotResult =
+            "early";
+
+
+        result.className =
+            "result early";
+
+
+        result.innerText =
+            "EARLY";
+
+
+        const difference =
+            GREEN_START -
+            ms;
+
 
         releaseInfo.innerText =
-            (GREEN_START - ms) +
-            " ms antes da janela";
+            difference +
+            " MS ANTES DA JANELA";
 
-    } else if (ms <= GREEN_END) {
+    }
 
-        shotResult = "green";
 
-        result.className = "result green";
-        result.innerText = "GREEN!";
+    /* GREEN */
+
+    else if (
+        ms <=
+        GREEN_END
+    ) {
+
+        shotResult =
+            "green";
+
+
+        result.className =
+            "result green";
+
+
+        result.innerText =
+            "GREEN!";
+
 
         playGreenSound();
 
+
         const center =
-            (GREEN_START + GREEN_END) / 2;
+            (
+                GREEN_START +
+                GREEN_END
+            ) / 2;
+
 
         const difference =
-            Math.round(Math.abs(ms - center));
+            Math.round(
+                Math.abs(
+                    ms -
+                    center
+                )
+            );
+
 
         releaseInfo.innerText =
-            "Dentro da janela • " +
+            "DENTRO DA JANELA • " +
             difference +
-            " ms do centro";
+            " MS DO CENTRO";
 
-    } else {
-
-        shotResult = "late";
-
-        result.className = "result late";
-        result.innerText = "LATE";
-
-        releaseInfo.innerText =
-            (ms - GREEN_END) +
-            " ms depois da janela";
     }
 
-    registerShot(ms, shotResult);
+
+    /* LATE */
+
+    else {
+
+        shotResult =
+            "late";
+
+
+        result.className =
+            "result late";
+
+
+        result.innerText =
+            "LATE";
+
+
+        const difference =
+            ms -
+            GREEN_END;
+
+
+        releaseInfo.innerText =
+            difference +
+            " MS DEPOIS DA JANELA";
+
+    }
+
+
+    registerShot(
+        ms,
+        shotResult
+    );
+
 }
 
 
-function registerShot(ms, shotResult) {
+/* =========================================================
+   REGISTRAR
+========================================================= */
+
+function registerShot(
+    ms,
+    shotResult
+) {
 
     totalShots++;
 
-    if (shotResult === "green") {
+
+    if (
+        shotResult ===
+        "green"
+    ) {
 
         totalGreens++;
+
+
         currentStreak++;
 
-        if (currentStreak > bestStreak) {
-            bestStreak = currentStreak;
+
+        if (
+            currentStreak >
+            bestStreak
+        ) {
+
+            bestStreak =
+                currentStreak;
+
         }
 
-    } else {
-
-        currentStreak = 0;
     }
+
+    else {
+
+        currentStreak =
+            0;
+
+    }
+
 
     attempts.push({
+
         ms: ms,
-        result: shotResult
+
+        result:
+            shotResult
+
     });
 
-    if (attempts.length > 10) {
+
+    if (
+        attempts.length >
+        10
+    ) {
+
         attempts.shift();
+
     }
 
+
     updateStats();
+
 }
 
 
+/* =========================================================
+   ESTATÍSTICAS
+========================================================= */
+
 function updateStats() {
 
-    totalStat.innerText = totalShots;
+    totalStat.innerText =
+        totalShots;
 
-    let greenPercentage = 0;
 
-    if (totalShots > 0) {
+    let greenPercentage =
+        0;
+
+
+    if (
+        totalShots >
+        0
+    ) {
 
         greenPercentage =
             Math.round(
-                (totalGreens / totalShots) * 100
+                (
+                    totalGreens /
+                    totalShots
+                ) * 100
             );
+
     }
+
 
     greenPercentStat.innerText =
-        greenPercentage + "%";
+        greenPercentage +
+        "%";
 
-    if (attempts.length > 0) {
+
+    if (
+        attempts.length >
+        0
+    ) {
 
         const total =
-            attempts.reduce(function(sum, shot) {
-                return sum + shot.ms;
-            }, 0);
+            attempts.reduce(
+                function(
+                    sum,
+                    shot
+                ) {
+
+                    return (
+                        sum +
+                        shot.ms
+                    );
+
+                },
+                0
+            );
+
 
         const average =
-            Math.round(total / attempts.length);
+            Math.round(
+                total /
+                attempts.length
+            );
+
 
         averageStat.innerText =
-            average + " ms";
+            average +
+            " ms";
 
-    } else {
-
-        averageStat.innerText = "—";
     }
 
+    else {
+
+        averageStat.innerText =
+            "—";
+
+    }
+
+
     streakStat.innerText =
-        currentStreak + " 🔥";
+        currentStreak +
+        " 🔥";
+
 
     streakStat.title =
         "Melhor streak: " +
         bestStreak;
 
+
     updateHistory();
+
 }
 
 
+/* =========================================================
+   HISTÓRICO
+========================================================= */
+
 function updateHistory() {
 
-    history.innerHTML = "";
+    history.innerHTML =
+        "";
 
-    if (attempts.length === 0) {
+
+    if (
+        attempts.length ===
+        0
+    ) {
 
         const empty =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
+
 
         empty.className =
             "empty-history";
 
-        empty.innerText =
-            "Nenhuma tentativa ainda";
 
-        history.appendChild(empty);
+        empty.innerText =
+            "NENHUMA TENTATIVA AINDA";
+
+
+        history.appendChild(
+            empty
+        );
+
 
         return;
+
     }
 
-    attempts.forEach(function(shot) {
 
-        const item =
-            document.createElement("div");
+    attempts.forEach(
+        function(shot) {
 
-        item.className = "shot";
+            const item =
+                document.createElement(
+                    "div"
+                );
 
-        if (shot.result === "green") {
 
-            item.classList.add("green-shot");
+            item.className =
+                "shot";
 
-        } else if (shot.result === "early") {
 
-            item.classList.add("early-shot");
+            if (
+                shot.result ===
+                "green"
+            ) {
 
-        } else {
+                item.classList.add(
+                    "green-shot"
+                );
 
-            item.classList.add("late-shot");
+            }
+
+
+            else if (
+                shot.result ===
+                "early"
+            ) {
+
+                item.classList.add(
+                    "early-shot"
+                );
+
+            }
+
+
+            else {
+
+                item.classList.add(
+                    "late-shot"
+                );
+
+            }
+
+
+            item.innerText =
+                shot.ms +
+                " ms";
+
+
+            history.appendChild(
+                item
+            );
+
         }
+    );
 
-        item.innerText =
-            shot.ms + " ms";
-
-        history.appendChild(item);
-    });
 }
 
 
-resetSession.addEventListener("click", function() {
+/* =========================================================
+   ZERAR SESSÃO
+========================================================= */
 
-    attempts = [];
+resetSession.addEventListener(
+    "click",
+    function() {
 
-    totalShots = 0;
-    totalGreens = 0;
-
-    currentStreak = 0;
-    bestStreak = 0;
-
-    timer.innerText = "0";
-
-    result.className = "result";
-    result.innerText = "SEGURE X E SOLTE";
-
-    releaseInfo.innerText = "";
-
-    marker.style.display = "none";
-    liveFill.style.height = "0%";
-
-    updateStats();
-});
+        attempts =
+            [];
 
 
-buttonX.addEventListener("pointerdown", function(event) {
-
-    event.preventDefault();
-
-    try {
-        buttonX.setPointerCapture(event.pointerId);
-    } catch (error) {}
-
-    startShot("screen");
-});
+        totalShots =
+            0;
 
 
-buttonX.addEventListener("pointerup", function(event) {
-
-    event.preventDefault();
-
-    endShot("screen");
-});
+        totalGreens =
+            0;
 
 
-buttonX.addEventListener("pointercancel", function(event) {
-
-    event.preventDefault();
-
-    endShot("screen");
-});
+        currentStreak =
+            0;
 
 
-buttonX.addEventListener("contextmenu", function(event) {
-    event.preventDefault();
-});
+        bestStreak =
+            0;
 
+
+        timer.innerText =
+            "0";
+
+
+        result.className =
+            "result";
+
+
+        result.innerText =
+            "SEGURE X E SOLTE";
+
+
+        releaseInfo.innerText =
+            "";
+
+
+        marker.style.display =
+            "none";
+
+
+        liveFill.style.height =
+            "0%";
+
+
+        updateStats();
+
+    }
+);
+
+
+/* =========================================================
+   MOUSE / TOUCH
+========================================================= */
+
+buttonX.addEventListener(
+    "pointerdown",
+    function(event) {
+
+        event.preventDefault();
+
+
+        try {
+
+            buttonX.setPointerCapture(
+                event.pointerId
+            );
+
+        }
+
+        catch(error) {}
+
+
+        startShot(
+            "screen"
+        );
+
+    }
+);
+
+
+
+buttonX.addEventListener(
+    "pointerup",
+    function(event) {
+
+        event.preventDefault();
+
+
+        endShot(
+            "screen"
+        );
+
+    }
+);
+
+
+
+buttonX.addEventListener(
+    "pointercancel",
+    function(event) {
+
+        event.preventDefault();
+
+
+        endShot(
+            "screen"
+        );
+
+    }
+);
+
+
+
+buttonX.addEventListener(
+    "contextmenu",
+    function(event) {
+
+        event.preventDefault();
+
+    }
+);
+
+
+/* =========================================================
+   CONTROLE
+========================================================= */
 
 function checkGamepad() {
 
     const gamepads =
         navigator.getGamepads();
 
-    let controller = null;
 
-    for (let i = 0; i < gamepads.length; i++) {
+    let controller =
+        null;
 
-        if (gamepads[i]) {
 
-            controller = gamepads[i];
+    for (
+        let i = 0;
+        i < gamepads.length;
+        i++
+    ) {
+
+        if (
+            gamepads[i]
+        ) {
+
+            controller =
+                gamepads[i];
+
             break;
+
         }
+
     }
 
-    if (controller) {
+
+    if (
+        controller
+    ) {
 
         status.innerText =
-            "🎮 " + controller.id;
+            "CONECTADO • " +
+            controller.id;
+
 
         const xPressed =
-            controller.buttons[2].pressed;
+            controller
+                .buttons[2]
+                .pressed;
+
 
         if (
             xPressed &&
             !gamepadWasPressed
         ) {
 
-            startShot("gamepad");
+            startShot(
+                "gamepad"
+            );
+
         }
+
 
         if (
             !xPressed &&
             gamepadWasPressed
         ) {
 
-            endShot("gamepad");
+            endShot(
+                "gamepad"
+            );
+
         }
+
 
         gamepadWasPressed =
             xPressed;
 
-    } else {
+    }
+
+    else {
 
         status.innerText =
-            "📱 Toque no X • 🖱️ Mouse • 🎮 Controle";
+            "CONTROLE NÃO CONECTADO";
+
 
         gamepadWasPressed =
             false;
+
     }
+
 }
 
+
+/* =========================================================
+   LOOP
+========================================================= */
 
 function update() {
 
     checkGamepad();
 
-    if (pressing) {
+
+    if (
+        pressing
+    ) {
 
         const current =
             performance.now() -
             startTime;
 
+
         const ms =
-            Math.round(current);
+            Math.round(
+                current
+            );
+
 
         timer.innerText =
             ms;
 
-        moveMarker(ms);
 
-        updateFill(ms);
+        moveMarker(
+            ms
+        );
+
+
+        updateFill(
+            ms
+        );
+
     }
 
-    requestAnimationFrame(update);
+
+    requestAnimationFrame(
+        update
+    );
+
 }
 
 
+/* =========================================================
+   INICIALIZAÇÃO
+========================================================= */
+
 calculateBarMax();
+
 updateGreenWindow();
+
 updateStats();
+
 update();
 
 </script>
