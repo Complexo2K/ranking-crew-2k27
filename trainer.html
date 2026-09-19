@@ -114,13 +114,9 @@
 
     <div class="timer-container">
 
-      <span id="timer" class="timer">
-        0
-      </span>
+      <span id="timer" class="timer">0</span>
 
-      <span class="ms">
-        ms
-      </span>
+      <span class="ms">ms</span>
 
     </div>
 
@@ -133,7 +129,7 @@
     </div>
 
     <div class="window-info">
-      GREEN WINDOW: 620–650 ms
+      GREEN WINDOW: 605–640 ms
     </div>
 
   </div>
@@ -142,11 +138,11 @@
 <script>
 
   // ==========================================
-  // CONFIGURAÇÃO DA GREEN WINDOW
+  // GREEN WINDOW
   // ==========================================
 
-  const GREEN_START = 620;
-  const GREEN_END = 650;
+  const GREEN_START = 605;
+  const GREEN_END = 640;
 
 
   // ==========================================
@@ -159,7 +155,7 @@
 
 
   // ==========================================
-  // ELEMENTOS DA TELA
+  // ELEMENTOS
   // ==========================================
 
   const timer =
@@ -189,15 +185,12 @@
       const controller =
         gamepads[0];
 
-
-      // Mostra qual controle está conectado
-
       status.innerText =
         "Controle conectado: " +
         controller.id;
 
 
-      // Xbox Gamepad API:
+      // Xbox Gamepad API
       //
       // A = 0
       // B = 1
@@ -221,7 +214,8 @@
 
         buttonX.classList.add("pressed");
 
-        result.className = "result";
+        result.className =
+          "result";
 
         result.innerText =
           "SEGURANDO...";
@@ -230,7 +224,7 @@
 
 
       // ======================================
-      // ENQUANTO ESTIVER SEGURANDO
+      // SEGURANDO X
       // ======================================
 
       if (xPressed && pressing) {
@@ -261,10 +255,7 @@
         timer.innerText = ms;
 
 
-        // ====================================
         // EARLY
-        // ====================================
-
         if (ms < GREEN_START) {
 
           result.className =
@@ -276,10 +267,7 @@
         }
 
 
-        // ====================================
         // GREEN
-        // ====================================
-
         else if (ms <= GREEN_END) {
 
           result.className =
@@ -291,10 +279,7 @@
         }
 
 
-        // ====================================
         // LATE
-        // ====================================
-
         else {
 
           result.className =
@@ -319,7 +304,7 @@
 
 
   // ==========================================
-  // INICIA O TRAINER
+  // INICIA
   // ==========================================
 
   update();
